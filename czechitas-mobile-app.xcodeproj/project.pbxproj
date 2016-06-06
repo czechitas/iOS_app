@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		8C74DBEA702C012FDB7D4D56 /* Pods_czechitas_mobile_app.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FE206C2A293010A8821A1E28 /* Pods_czechitas_mobile_app.framework */; };
 		DC91E8AE1D0583F90054F356 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC91E8AD1D0583F90054F356 /* AppDelegate.swift */; };
 		DC91E8B01D0583F90054F356 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC91E8AF1D0583F90054F356 /* ViewController.swift */; };
 		DC91E8B31D0583F90054F356 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DC91E8B11D0583F90054F356 /* Main.storyboard */; };
@@ -15,6 +16,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		623A6661139BD833CF55CED6 /* Pods-czechitas-mobile-app.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-czechitas-mobile-app.debug.xcconfig"; path = "Pods/Target Support Files/Pods-czechitas-mobile-app/Pods-czechitas-mobile-app.debug.xcconfig"; sourceTree = "<group>"; };
 		DC91E8AA1D0583F90054F356 /* czechitas-mobile-app.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "czechitas-mobile-app.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		DC91E8AD1D0583F90054F356 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		DC91E8AF1D0583F90054F356 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -22,6 +24,8 @@
 		DC91E8B41D0583F90054F356 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		DC91E8B71D0583F90054F356 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		DC91E8B91D0583F90054F356 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		FDF7574992EF1F62F3D05742 /* Pods-czechitas-mobile-app.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-czechitas-mobile-app.release.xcconfig"; path = "Pods/Target Support Files/Pods-czechitas-mobile-app/Pods-czechitas-mobile-app.release.xcconfig"; sourceTree = "<group>"; };
+		FE206C2A293010A8821A1E28 /* Pods_czechitas_mobile_app.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_czechitas_mobile_app.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -29,17 +33,37 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				8C74DBEA702C012FDB7D4D56 /* Pods_czechitas_mobile_app.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		8A8F37340527E7E1B7168C83 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				623A6661139BD833CF55CED6 /* Pods-czechitas-mobile-app.debug.xcconfig */,
+				FDF7574992EF1F62F3D05742 /* Pods-czechitas-mobile-app.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
+		D5ECD7D71A77940B057CD92A /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				FE206C2A293010A8821A1E28 /* Pods_czechitas_mobile_app.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 		DC91E8A11D0583F80054F356 = {
 			isa = PBXGroup;
 			children = (
 				DC91E8AC1D0583F90054F356 /* czechitas-mobile-app */,
 				DC91E8AB1D0583F90054F356 /* Products */,
+				8A8F37340527E7E1B7168C83 /* Pods */,
+				D5ECD7D71A77940B057CD92A /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -71,9 +95,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = DC91E8BC1D0583F90054F356 /* Build configuration list for PBXNativeTarget "czechitas-mobile-app" */;
 			buildPhases = (
+				DDBBF87714C9D11FC245C6D7 /* 📦 Check Pods Manifest.lock */,
 				DC91E8A61D0583F80054F356 /* Sources */,
 				DC91E8A71D0583F80054F356 /* Frameworks */,
 				DC91E8A81D0583F80054F356 /* Resources */,
+				A7707BD42253A67BCD2A5AFA /* 📦 Embed Pods Frameworks */,
+				0DBEAD559C4ABE1DF298EAB3 /* 📦 Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -96,7 +123,7 @@
 				TargetAttributes = {
 					DC91E8A91D0583F80054F356 = {
 						CreatedOnToolsVersion = 7.3.1;
-						DevelopmentTeam = D3U95MADM7;
+						DevelopmentTeam = V74C3HABYQ;
 					};
 				};
 			};
@@ -130,6 +157,54 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		0DBEAD559C4ABE1DF298EAB3 /* 📦 Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "📦 Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-czechitas-mobile-app/Pods-czechitas-mobile-app-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		A7707BD42253A67BCD2A5AFA /* 📦 Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "📦 Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-czechitas-mobile-app/Pods-czechitas-mobile-app-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		DDBBF87714C9D11FC245C6D7 /* 📦 Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "📦 Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		DC91E8A61D0583F80054F356 /* Sources */ = {
@@ -248,6 +323,7 @@
 		};
 		DC91E8BD1D0583F90054F356 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 623A6661139BD833CF55CED6 /* Pods-czechitas-mobile-app.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
@@ -255,11 +331,13 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.brainity.czechitas-mobile-app";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "6ac5cd8d-4fdc-4210-8926-bc50fc318b28";
 			};
 			name = Debug;
 		};
 		DC91E8BE1D0583F90054F356 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = FDF7574992EF1F62F3D05742 /* Pods-czechitas-mobile-app.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
@@ -267,6 +345,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.brainity.czechitas-mobile-app";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "6ac5cd8d-4fdc-4210-8926-bc50fc318b28";
 			};
 			name = Release;
 		};
@@ -289,6 +368,7 @@
 				DC91E8BE1D0583F90054F356 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
