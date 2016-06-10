@@ -7,9 +7,6 @@
 //
 
 import Foundation
-import UIKit
-import Alamofire
-import SwiftyJSON
 
 class Course : NSObject {
     var id : Int
@@ -62,7 +59,7 @@ class Category : NSObject {
         self.colorCode = colorCode
         
         // TODO: convert colorCode
-        
+        // Možnost vyzkoušet implementace Extension nad UIColor :-)
         
     }
     
