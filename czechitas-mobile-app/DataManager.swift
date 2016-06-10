@@ -34,7 +34,7 @@ enum APIRouter: URLRequestConvertible {
                 return "/courses/open/"
             case .CourseDetail(let id):
                 return "/courses/\(id)/"
-            default:
+            case .Venues:
                 return "/courses/"
             }
         }()
