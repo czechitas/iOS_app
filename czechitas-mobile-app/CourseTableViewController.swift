@@ -7,8 +7,6 @@
 //
 
 import UIKit
-import Alamofire
-import SwiftyJSON
 
 class CourseTableViewController: UITableViewController {
     
@@ -20,25 +18,29 @@ class CourseTableViewController: UITableViewController {
         super.viewDidLoad()
         
         // Nevadi ze tu sa to spravi iba raz? Ci potom budeme robit uz iba update cez ten refresh smerom dole?
+        // Když nepůjde data měnit lokálně, tak určitě stačí jen jednou a pak v pull to refresh (standardní komponenta UIRefreshControl nebo jiný framework)
         Model.sharedInstance.fetchCourseData(setTableView(), courseData: {
             (data, data2) -> Void in
             for course in data {
                 print (course.title)
-                self.courses.append(course)
             }
-            
             
             for category in data2 {
                 print (category.title)
-                self.categories.append(category)
             }
+            
+            // Rychlejší a přehlednější je bez for cyklu (nechal jsem výpis)
+            // Navíc pak není nutné vymazat pole před dalším načítáním
+            self.courses = data
+            self.categories = data2
             
             self.tableView.reloadData()
             
         })
         
         
-        
+        // Možnost skrývání prázdných řádků na konci
+        // tableView.tableFooterView = UIView()
         
 
         // Uncomment the following line to preserve selection between presentations
@@ -52,15 +54,14 @@ class CourseTableViewController: UITableViewController {
     
     
     
-    func setTableView() -> (APIRouter) {
-        if self.navigationController is PreparedViewController {
+    func setTableView() -> APIRouter {
+        // Switch se mi pro 2+ položek líbí víc :-)
+        switch navigationController {
+        case is PreparedViewController:
             return APIRouter.CoursesPrepared()
-        }
-        else if self.navigationController is OpenViewController {
+        case is OpenViewController:
             return APIRouter.CoursesOpen()
-            
-        }
-        else {
+        default:
             return APIRouter.CoursesPrepared()
         }
     }
