@@ -56,6 +56,7 @@ class Model {
                     
                 }
             }
+            // Jen drobnost - možná lepší alternativa pro takovéhle věci funkce debugPrint - neloguje v produkční verzi
             print ("Number of \(method) courses: \(courses.count)")
             print ("Number of \(method) categories: \(categories.count)")
             courseData(data: courses, data2 : categories)
