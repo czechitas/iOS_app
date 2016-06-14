@@ -8,6 +8,7 @@
 
 import Foundation
 
+
 class Course : NSObject {
     var id : Int
     var title : String

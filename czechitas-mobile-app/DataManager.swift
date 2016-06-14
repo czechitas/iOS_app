@@ -23,19 +23,19 @@ enum APIRouter: URLRequestConvertible {
     case Venues()
     
     var URLRequest: NSMutableURLRequest {
-        let path: String = {
+        let path : String = {
             switch self
             {
             case .Cities():
-                return "/cities/"
+                return ("/cities/")
             case .CoursesPrepared():
-                return "/courses/prepared/"
+                return ("/courses/prepared/")
             case .CoursesOpen():
-                return "/courses/open/"
+                return ("/courses/open/")
             case .CourseDetail(let id):
-                return "/courses/\(id)/"
+                return ("/courses/\(id)/")
             case .Venues:
-                return "/courses/"
+                return ("/courses/")
             }
         }()
 
@@ -47,9 +47,8 @@ enum APIRouter: URLRequestConvertible {
 
 class APIManager {
     static let sharedInstance = APIManager()
-    
-    
-    func callAPI(method : APIRouter, onComplete : ((data : JSON) -> [AnyObject])) {
+
+    func callAPI(method : APIRouter, onComplete : ((data : JSON) -> Void)) {
         // Switch nebylo třeba - k tomu účelu se vytváří ten enum (omezení duplikace kódu)
         Alamofire.request(method)
         .validate()
@@ -57,6 +56,8 @@ class APIManager {
             if let value = response.result.value {
                 let valueJSON = JSON(value)
                 onComplete(data: valueJSON)
+
+    
             }
         }
     }

@@ -21,19 +21,9 @@ class CourseTableViewController: UITableViewController {
         // Když nepůjde data měnit lokálně, tak určitě stačí jen jednou a pak v pull to refresh (standardní komponenta UIRefreshControl nebo jiný framework)
         Model.sharedInstance.fetchCourseData(setTableView(), courseData: {
             (data, data2) -> Void in
-            for course in data {
-                print (course.title)
-            }
-            
-            for category in data2 {
-                print (category.title)
-            }
-            
-            // Rychlejší a přehlednější je bez for cyklu (nechal jsem výpis)
-            // Navíc pak není nutné vymazat pole před dalším načítáním
+
             self.courses = data
             self.categories = data2
-            
             self.tableView.reloadData()
             
         })
@@ -55,7 +45,6 @@ class CourseTableViewController: UITableViewController {
     
     
     func setTableView() -> APIRouter {
-        // Switch se mi pro 2+ položek líbí víc :-)
         switch navigationController {
         case is PreparedViewController:
             return APIRouter.CoursesPrepared()
@@ -73,23 +62,24 @@ class CourseTableViewController: UITableViewController {
 
     override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
         // #warning Incomplete implementation, return the number of sections
-        return 0
+        return 1
     }
 
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of rows
-        return 0
+        
+        return self.courses.count
     }
 
-    /*
+    
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCellWithIdentifier("reuseIdentifier", forIndexPath: indexPath)
+        let cell = tableView.dequeueReusableCellWithIdentifier("courseCell", forIndexPath: indexPath)
 
         // Configure the cell...
 
         return cell
     }
-    */
+    
 
     /*
     // Override to support conditional editing of the table view.
