@@ -49,7 +49,7 @@ class APIManager {
     static let sharedInstance = APIManager()
     
     
-    func callAPI(method : APIRouter, onComplete : ((data : JSON) -> [AnyObject])) {
+    func callAPI(method : APIRouter, onComplete : ((data : JSON) -> Void)) {
         switch method {
         case .Cities():
             Alamofire.request(APIRouter.Cities())

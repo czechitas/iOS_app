@@ -22,17 +22,10 @@ class CourseTableViewController: UITableViewController {
         // Nevadi ze tu sa to spravi iba raz? Ci potom budeme robit uz iba update cez ten refresh smerom dole?
         Model.sharedInstance.fetchCourseData(setTableView(), courseData: {
             (data, data2) -> Void in
-            for course in data {
-                print (course.title)
-                self.courses.append(course)
-            }
             
             
-            for category in data2 {
-                print (category.title)
-                self.categories.append(category)
-            }
-            
+            self.courses = data
+            self.categories = data2
             self.tableView.reloadData()
             
         })
@@ -72,23 +65,24 @@ class CourseTableViewController: UITableViewController {
 
     override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
         // #warning Incomplete implementation, return the number of sections
-        return 0
+        return 1
     }
 
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of rows
-        return 0
+        
+        return self.courses.count
     }
 
-    /*
+    
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCellWithIdentifier("reuseIdentifier", forIndexPath: indexPath)
+        let cell = tableView.dequeueReusableCellWithIdentifier("courseCell", forIndexPath: indexPath)
 
         // Configure the cell...
 
         return cell
     }
-    */
+    
 
     /*
     // Override to support conditional editing of the table view.

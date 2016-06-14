@@ -23,7 +23,7 @@ class Model {
         
         
         APIManager.sharedInstance.callAPI(method, onComplete: {
-            (data) -> [AnyObject] in
+            (data) -> Void in
             
             
             
@@ -61,8 +61,7 @@ class Model {
             print ("Number of \(method) categories: \(categories.count)")
             courseData(data: courses, data2 : categories)
             
-            // toto tiez prerobim, lebo to nie je potrebne, len uz nestiham
-            return courses
+            
             
             
         })
