@@ -14,13 +14,8 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <prototypes>
-<<<<<<< HEAD
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" id="f5M-jK-PKG">
-                                <rect key="frame" x="0.0" y="92" width="320" height="44"/>
-=======
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="courseCell" id="f5M-jK-PKG">
                                 <rect key="frame" x="0.0" y="92" width="600" height="44"/>
->>>>>>> test
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="f5M-jK-PKG" id="fDN-Fx-aBN">
                                     <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
