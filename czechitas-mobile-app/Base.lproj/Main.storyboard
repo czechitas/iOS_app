@@ -10,15 +10,20 @@
             <objects>
                 <tableViewController id="akH-qF-stU" customClass="CourseTableViewController" customModule="czechitas_mobile_app" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" id="hM0-2f-Cxv">
-                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <prototypes>
+<<<<<<< HEAD
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" id="f5M-jK-PKG">
+                                <rect key="frame" x="0.0" y="92" width="320" height="44"/>
+=======
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="courseCell" id="f5M-jK-PKG">
                                 <rect key="frame" x="0.0" y="92" width="600" height="44"/>
+>>>>>>> test
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="f5M-jK-PKG" id="fDN-Fx-aBN">
-                                    <rect key="frame" x="0.0" y="0.0" width="600" height="43.5"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                 </tableViewCellContentView>
                             </tableViewCell>
@@ -32,7 +37,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="4Au-na-htW" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3237" y="436"/>
+            <point key="canvasLocation" x="2841" y="448"/>
         </scene>
         <!--Item-->
         <scene sceneID="Ors-lO-kZs">
@@ -51,7 +56,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Z6X-lq-Lzc" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2291" y="822"/>
+            <point key="canvasLocation" x="2123" y="810"/>
         </scene>
         <!--Item-->
         <scene sceneID="JLi-TK-Yfs">
@@ -71,13 +76,14 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="T3L-fU-Ojo" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2291" y="34"/>
+            <point key="canvasLocation" x="2123" y="22"/>
         </scene>
         <!--Tab Bar Controller-->
         <scene sceneID="jEO-YN-nS0">
             <objects>
                 <tabBarController automaticallyAdjustsScrollViewInsets="NO" id="Vnw-Cj-qXi" sceneMemberID="viewController">
                     <toolbarItems/>
+                    <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>
                     <tabBar key="tabBar" contentMode="scaleToFill" id="Scb-zz-39s">
                         <autoresizingMask key="autoresizingMask"/>
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
@@ -93,6 +99,6 @@
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="D4E-Ud-jbM"/>
+        <segue reference="11m-D8-yna"/>
     </inferredMetricsTieBreakers>
 </document>

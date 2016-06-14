@@ -7,8 +7,6 @@
 //
 
 import UIKit
-import Alamofire
-import SwiftyJSON
 
 class CourseTableViewController: UITableViewController {
     
@@ -20,8 +18,10 @@ class CourseTableViewController: UITableViewController {
         super.viewDidLoad()
         
         // Nevadi ze tu sa to spravi iba raz? Ci potom budeme robit uz iba update cez ten refresh smerom dole?
+        // Když nepůjde data měnit lokálně, tak určitě stačí jen jednou a pak v pull to refresh (standardní komponenta UIRefreshControl nebo jiný framework)
         Model.sharedInstance.fetchCourseData(setTableView(), courseData: {
             (data, data2) -> Void in
+
             self.courses = data
             self.categories = data2
             self.tableView.reloadData()
@@ -29,7 +29,8 @@ class CourseTableViewController: UITableViewController {
         })
         
         
-        
+        // Možnost skrývání prázdných řádků na konci
+        // tableView.tableFooterView = UIView()
         
 
         // Uncomment the following line to preserve selection between presentations

@@ -47,51 +47,18 @@ enum APIRouter: URLRequestConvertible {
 
 class APIManager {
     static let sharedInstance = APIManager()
-    
-    
+
     func callAPI(method : APIRouter, onComplete : ((data : JSON) -> Void)) {
-        switch method {
-        case .Cities():
-            Alamofire.request(APIRouter.Cities())
-                .validate()
-                .responseJSON{ response in
-                    if let value = response.result.value {
-                        let cityJson = JSON(value)
-                        onComplete(data : cityJson)
-                        
-                        
-                    }
+        // Switch nebylo třeba - k tomu účelu se vytváří ten enum (omezení duplikace kódu)
+        Alamofire.request(method)
+        .validate()
+        .responseJSON { response in
+            if let value = response.result.value {
+                let valueJSON = JSON(value)
+                onComplete(data: valueJSON)
+
+    
             }
-        case .CoursesOpen():
-            Alamofire.request(APIRouter.CoursesOpen())
-                .validate()
-                .responseJSON{ response in
-                    if let value = response.result.value {
-                        let courseOpenJson = JSON(value)
-                        onComplete(data: courseOpenJson)
-                    }
-            }
-        case .CoursesPrepared():
-            Alamofire.request(APIRouter.CoursesPrepared())
-                .validate()
-                .responseJSON{ response in
-                    if let value = response.result.value {
-                        let coursePreparedJson = JSON(value)
-                        onComplete(data: coursePreparedJson)
-                    }
-            }
-        case .CourseDetail(let id):
-            Alamofire.request(APIRouter.CourseDetail(id))
-                .validate()
-                .responseJSON{ response in
-                    if let value = response.result.value {
-                        let courseDetailJson = JSON(value)
-                        onComplete(data: courseDetailJson)
-                    }
-            }
-        default:
-            break
-            
         }
     }
     
