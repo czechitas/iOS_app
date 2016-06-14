@@ -23,24 +23,24 @@ enum APIRouter: URLRequestConvertible {
     case Venues()
     
     var URLRequest: NSMutableURLRequest {
-        let result: (path: String, parameters: [String: AnyObject]) = {
+        let path : String = {
             switch self
             {
             case .Cities():
-                return ("/cities/", [:])
+                return ("/cities/")
             case .CoursesPrepared():
-                return ("/courses/prepared/", [:])
+                return ("/courses/prepared/")
             case .CoursesOpen():
-                return ("/courses/open/", [:])
+                return ("/courses/open/")
             case .CourseDetail(let id):
-                return ("/courses/\(id)/", [:])
-            default:
-                return ("/courses/", [:])
+                return ("/courses/\(id)/")
+            case .Venues:
+                return ("/courses/")
             }
         }()
 
         let URL = NSURL(string: Alamofire.Manager.baseURL)!
-        let URLRequest = NSMutableURLRequest(URL: URL.URLByAppendingPathComponent(result.path))
+        let URLRequest = NSMutableURLRequest(URL: URL.URLByAppendingPathComponent(path))
         return URLRequest
     }
 }

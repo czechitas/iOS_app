@@ -22,8 +22,6 @@ class CourseTableViewController: UITableViewController {
         // Nevadi ze tu sa to spravi iba raz? Ci potom budeme robit uz iba update cez ten refresh smerom dole?
         Model.sharedInstance.fetchCourseData(setTableView(), courseData: {
             (data, data2) -> Void in
-            
-            
             self.courses = data
             self.categories = data2
             self.tableView.reloadData()
@@ -45,15 +43,13 @@ class CourseTableViewController: UITableViewController {
     
     
     
-    func setTableView() -> (APIRouter) {
-        if self.navigationController is PreparedViewController {
+    func setTableView() -> APIRouter {
+        switch navigationController {
+        case is PreparedViewController:
             return APIRouter.CoursesPrepared()
-        }
-        else if self.navigationController is OpenViewController {
+        case is OpenViewController:
             return APIRouter.CoursesOpen()
-            
-        }
-        else {
+        default:
             return APIRouter.CoursesPrepared()
         }
     }
