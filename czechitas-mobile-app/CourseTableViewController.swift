@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import SwiftHEXColors
 
 class CourseTableViewController: UITableViewController {
     
@@ -24,13 +25,14 @@ class CourseTableViewController: UITableViewController {
 
             self.courses = data
             self.categories = data2
+            
             self.tableView.reloadData()
             
         })
         
         
         // Možnost skrývání prázdných řádků na konci
-        // tableView.tableFooterView = UIView()
+        tableView.tableFooterView = UIView()
         
 
         // Uncomment the following line to preserve selection between presentations
@@ -73,7 +75,17 @@ class CourseTableViewController: UITableViewController {
 
     
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCellWithIdentifier("courseCell", forIndexPath: indexPath)
+        let cell = tableView.dequeueReusableCellWithIdentifier("courseCell", forIndexPath: indexPath) as! CourseTableViewCell
+        
+        cell.courseDate.text = "\(courses[indexPath.row].courseStartDate!), \(courses[indexPath.row].courseCity)"
+        cell.courseDate.font = UIFont.boldSystemFontOfSize(12.0)
+        cell.courseTitle.text = courses[indexPath.row].title
+        cell.courseDescription.numberOfLines = 30
+        cell.courseDescription.lineBreakMode = .ByWordWrapping
+        cell.courseDescription.text = courses[indexPath.row].courseDescription
+        let color = courses[indexPath.row].courseCategoryColorCode
+        cell.courseCategory.textColor = UIColor(hexString : color!)
+        cell.courseCategory.text = courses[indexPath.row].courseCategoryTitle
 
         // Configure the cell...
 

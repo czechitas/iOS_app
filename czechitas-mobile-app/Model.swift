@@ -33,22 +33,35 @@ class Model {
                     
                     let category = Category(id: subJson["course_category"]["id"].intValue, title: subJson["course_category"]["title"].stringValue, colorCode: subJson["course_category"]["color_code"].stringValue)
                     
+                    
+                    
+                    
+                    
+                        
                     if categories.count != 0 {
+                        
+                        
                         for cat in categories {
-                            if cat.id == category.id {
-                                continue
-                            }
-                            else {
+                            if cat.id != category.id {
                                 categories.append(category)
                             }
+                            else {
+                                break
+                                
+                                
+                            }
                         }
-                    }
-                    else {
+                        
+                    } else {
                         categories.append(category)
+                        
                     }
+                    
                     
                     // toto tu finalne nebude , lebo kategorie sa vraj budu este menit
                     course.addCategory(subJson["course_category"]["title"].stringValue, courseCategoryColorCode: subJson["course_category"]["color_code"].stringValue)
+                    
+                    course.convertDate(subJson["course_start_date"].stringValue)
                     
                     courses.append(course)
                     
@@ -58,7 +71,8 @@ class Model {
             }
             // Jen drobnost - možná lepší alternativa pro takovéhle věci funkce debugPrint - neloguje v produkční verzi
             print ("Number of \(method) courses: \(courses.count)")
-            print ("Number of \(method) categories: \(categories.count)")
+            
+            
             courseData(data: courses, data2 : categories)
             
             

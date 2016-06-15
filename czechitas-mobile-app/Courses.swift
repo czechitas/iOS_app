@@ -22,32 +22,41 @@ class Course : NSObject {
     
     
     init?(id : Int, title : String, courseStartDate : String, courseEndDate : String,courseDescription : String, courseCity : String) {
+        
+        
         self.id = id
         self.title = title
-        self.courseStartDate = courseStartDate
+        self.courseStartDate = String(courseStartDate)
         self.courseEndDate = courseEndDate
         self.courseCity = courseCity
         self.courseDescription = courseDescription
-        
-        
-        // TODO: convert date
-        
         
         if courseStartDate.isEmpty || courseEndDate.isEmpty {
             self.courseStartDate = String(NSDate())
             self.courseEndDate = String(NSDate())
         }
         
+        
+    }
     
+    func convertDate(courseStartDate : String) -> () {
+        let formatter = NSDateFormatter()
+        formatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss'Z'"
+        let date = formatter.dateFromString(courseStartDate)
+        formatter.dateFormat = "dd. MM. yyyy"
+        self.courseStartDate = formatter.stringFromDate(date!)
     }
     
     func addCategory(courseCategoryTitle : String, courseCategoryColorCode : String) {
         self.courseCategoryTitle = courseCategoryTitle
         self.courseCategoryColorCode = courseCategoryColorCode
     }
-    
-    
 }
+
+
+
+
+
 
 class Category : NSObject {
     var id : Int
@@ -66,4 +75,5 @@ class Category : NSObject {
     
     
 }
+
 

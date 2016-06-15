@@ -1,15 +1,18 @@
 PODS:
   - Alamofire (3.4.0)
+  - SwiftHEXColors (1.0.4)
   - SwiftyJSON (2.3.2)
 
 DEPENDENCIES:
   - Alamofire (~> 3.4)
+  - SwiftHEXColors
   - SwiftyJSON
 
 SPEC CHECKSUMS:
   Alamofire: c19a627cefd6a95f840401c49ab1f124e07f54ee
+  SwiftHEXColors: b0ecc7bd83a1aa2e1956f9ba51f55ebb2bcf86ef
   SwiftyJSON: 04ccea08915aa0109039157c7974cf0298da292a
 
-PODFILE CHECKSUM: bae5786abb84fb2000033b0a3f8a8e3f5461d673
+PODFILE CHECKSUM: 9de32acb09fd420c350b6472cb31c921010604fa
 
 COCOAPODS: 1.0.0

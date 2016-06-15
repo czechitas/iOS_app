@@ -14,6 +14,8 @@
 		DC29A0C81D0853ED00D22919 /* PreparedViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC29A0C71D0853ED00D22919 /* PreparedViewController.swift */; };
 		DC29A0CA1D08554500D22919 /* OpenViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC29A0C91D08554500D22919 /* OpenViewController.swift */; };
 		DC29A0CC1D0889E300D22919 /* Model.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC29A0CB1D0889E300D22919 /* Model.swift */; };
+		DC6946C51D11562100E5753C /* CourseTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC6946C41D11562100E5753C /* CourseTableViewCell.swift */; };
+		DC6946C71D11881300E5753C /* open-sans in Resources */ = {isa = PBXBuildFile; fileRef = DC6946C61D11881300E5753C /* open-sans */; };
 		DC91E8AE1D0583F90054F356 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC91E8AD1D0583F90054F356 /* AppDelegate.swift */; };
 		DC91E8B01D0583F90054F356 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC91E8AF1D0583F90054F356 /* ViewController.swift */; };
 		DC91E8B31D0583F90054F356 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DC91E8B11D0583F90054F356 /* Main.storyboard */; };
@@ -29,6 +31,8 @@
 		DC29A0C71D0853ED00D22919 /* PreparedViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PreparedViewController.swift; sourceTree = "<group>"; };
 		DC29A0C91D08554500D22919 /* OpenViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OpenViewController.swift; sourceTree = "<group>"; };
 		DC29A0CB1D0889E300D22919 /* Model.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Model.swift; sourceTree = "<group>"; };
+		DC6946C41D11562100E5753C /* CourseTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CourseTableViewCell.swift; sourceTree = "<group>"; };
+		DC6946C61D11881300E5753C /* open-sans */ = {isa = PBXFileReference; lastKnownFileType = folder; path = "open-sans"; sourceTree = "<group>"; };
 		DC91E8AA1D0583F90054F356 /* czechitas-mobile-app.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "czechitas-mobile-app.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		DC91E8AD1D0583F90054F356 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		DC91E8AF1D0583F90054F356 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -92,6 +96,7 @@
 		DC29A0C21D07580800D22919 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				DC6946C41D11562100E5753C /* CourseTableViewCell.swift */,
 			);
 			name = Views;
 			sourceTree = "<group>";
@@ -124,6 +129,7 @@
 				DC91E8AF1D0583F90054F356 /* ViewController.swift */,
 				DC91E8B11D0583F90054F356 /* Main.storyboard */,
 				DC91E8B41D0583F90054F356 /* Assets.xcassets */,
+				DC6946C61D11881300E5753C /* open-sans */,
 				DC91E8B61D0583F90054F356 /* LaunchScreen.storyboard */,
 				DC91E8B91D0583F90054F356 /* Info.plist */,
 			);
@@ -193,6 +199,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				DC91E8B81D0583F90054F356 /* LaunchScreen.storyboard in Resources */,
+				DC6946C71D11881300E5753C /* open-sans in Resources */,
 				DC91E8B51D0583F90054F356 /* Assets.xcassets in Resources */,
 				DC91E8B31D0583F90054F356 /* Main.storyboard in Resources */,
 			);
@@ -256,6 +263,7 @@
 				DC29A0C61D0846DE00D22919 /* CourseTableViewController.swift in Sources */,
 				DC29A0C81D0853ED00D22919 /* PreparedViewController.swift in Sources */,
 				DC29A0BF1D05E9A500D22919 /* Courses.swift in Sources */,
+				DC6946C51D11562100E5753C /* CourseTableViewCell.swift in Sources */,
 				DC91E8B01D0583F90054F356 /* ViewController.swift in Sources */,
 				DC29A0BB1D05C20200D22919 /* DataManager.swift in Sources */,
 				DC91E8AE1D0583F90054F356 /* AppDelegate.swift in Sources */,

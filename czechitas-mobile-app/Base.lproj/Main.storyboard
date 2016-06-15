@@ -3,24 +3,95 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
+    <customFonts key="customFonts">
+        <mutableArray key="OpenSans-Bold.ttf">
+            <string>OpenSans-Bold</string>
+            <string>OpenSans-Bold</string>
+        </mutableArray>
+        <mutableArray key="OpenSans-Regular.ttf">
+            <string>OpenSans</string>
+            <string>OpenSans</string>
+        </mutableArray>
+    </customFonts>
     <scenes>
-        <!--Course Table View Controller-->
+        <!--Courses-->
         <scene sceneID="5yr-qL-GzV">
             <objects>
                 <tableViewController id="akH-qF-stU" customClass="CourseTableViewController" customModule="czechitas_mobile_app" customModuleProvider="target" sceneMemberID="viewController">
-                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" id="hM0-2f-Cxv">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="166" sectionHeaderHeight="28" sectionFooterHeight="28" id="hM0-2f-Cxv">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="courseCell" id="f5M-jK-PKG">
-                                <rect key="frame" x="0.0" y="92" width="600" height="44"/>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="courseCell" rowHeight="166" id="f5M-jK-PKG" customClass="CourseTableViewCell" customModule="czechitas_mobile_app" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="92" width="320" height="166"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="f5M-jK-PKG" id="fDN-Fx-aBN">
-                                    <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="320" height="165.5"/>
                                     <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2K8-pZ-0cS">
+                                            <rect key="frame" x="18" y="22" width="294" height="15"/>
+                                            <constraints>
+                                                <constraint firstAttribute="height" constant="15" id="7yi-Je-NVw"/>
+                                                <constraint firstAttribute="width" constant="294" id="dFF-lc-zvB"/>
+                                            </constraints>
+                                            <fontDescription key="fontDescription" name="OpenSans-Bold" family="Open Sans" pointSize="14"/>
+                                            <color key="textColor" red="0.10588235294117647" green="0.086274509803921567" blue="0.31372549019607843" alpha="1" colorSpace="calibratedRGB"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="top" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="none" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="76D-Nm-iyS">
+                                            <rect key="frame" x="18" y="82" width="279" height="45"/>
+                                            <constraints>
+                                                <constraint firstAttribute="height" constant="45" id="F8W-WP-APe"/>
+                                            </constraints>
+                                            <fontDescription key="fontDescription" name="OpenSans" family="Open Sans" pointSize="12"/>
+                                            <color key="textColor" red="0.54509803921568623" green="0.54509803921568623" blue="0.5607843137254902" alpha="1" colorSpace="calibratedRGB"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="g3r-Sk-gp7">
+                                            <rect key="frame" x="18" y="132.5" width="217" height="20"/>
+                                            <constraints>
+                                                <constraint firstAttribute="height" constant="20" id="VSt-t9-269"/>
+                                            </constraints>
+                                            <fontDescription key="fontDescription" name="OpenSans" family="Open Sans" pointSize="12"/>
+                                            <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="wordWrap" numberOfLines="10" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xy5-7C-8g3">
+                                            <rect key="frame" x="18" y="42" width="294" height="35"/>
+                                            <constraints>
+                                                <constraint firstAttribute="height" constant="35" id="uER-5N-b0C"/>
+                                            </constraints>
+                                            <fontDescription key="fontDescription" name="OpenSans-Bold" family="Open Sans" pointSize="14"/>
+                                            <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                    </subviews>
+                                    <constraints>
+                                        <constraint firstItem="xy5-7C-8g3" firstAttribute="trailing" secondItem="fDN-Fx-aBN" secondAttribute="trailingMargin" id="3Dq-G0-eho"/>
+                                        <constraint firstItem="76D-Nm-iyS" firstAttribute="top" secondItem="xy5-7C-8g3" secondAttribute="bottom" constant="5" id="66F-Ma-xad"/>
+                                        <constraint firstItem="xy5-7C-8g3" firstAttribute="top" secondItem="2K8-pZ-0cS" secondAttribute="bottom" constant="5" id="6Bx-uy-aCb"/>
+                                        <constraint firstItem="xy5-7C-8g3" firstAttribute="leading" secondItem="2K8-pZ-0cS" secondAttribute="leading" id="74t-hs-ncA"/>
+                                        <constraint firstItem="2K8-pZ-0cS" firstAttribute="leading" secondItem="fDN-Fx-aBN" secondAttribute="leadingMargin" constant="10" id="9kq-Zb-QhW"/>
+                                        <constraint firstItem="2K8-pZ-0cS" firstAttribute="top" secondItem="fDN-Fx-aBN" secondAttribute="topMargin" constant="14" id="L2d-6f-0Tt"/>
+                                        <constraint firstItem="g3r-Sk-gp7" firstAttribute="leading" secondItem="76D-Nm-iyS" secondAttribute="leading" id="YeY-6A-NTT"/>
+                                        <constraint firstAttribute="bottomMargin" secondItem="g3r-Sk-gp7" secondAttribute="bottom" constant="5" id="b4y-6I-tXj"/>
+                                        <constraint firstItem="xy5-7C-8g3" firstAttribute="leading" secondItem="2K8-pZ-0cS" secondAttribute="leading" id="erh-H0-f1P"/>
+                                        <constraint firstItem="76D-Nm-iyS" firstAttribute="trailing" secondItem="xy5-7C-8g3" secondAttribute="trailing" constant="-15" id="ezi-M2-WAg"/>
+                                        <constraint firstAttribute="trailingMargin" secondItem="g3r-Sk-gp7" secondAttribute="trailing" constant="77" id="q8Q-qC-uiP"/>
+                                        <constraint firstItem="2K8-pZ-0cS" firstAttribute="top" secondItem="fDN-Fx-aBN" secondAttribute="top" constant="22" id="qIC-xb-ymp"/>
+                                        <constraint firstItem="76D-Nm-iyS" firstAttribute="leading" secondItem="xy5-7C-8g3" secondAttribute="leading" id="uJD-IJ-mrC"/>
+                                    </constraints>
                                 </tableViewCellContentView>
+                                <connections>
+                                    <outlet property="courseCategory" destination="g3r-Sk-gp7" id="wfB-KK-Ts7"/>
+                                    <outlet property="courseDate" destination="2K8-pZ-0cS" id="nol-w3-6V0"/>
+                                    <outlet property="courseDescription" destination="76D-Nm-iyS" id="3Ys-ZW-kTH"/>
+                                    <outlet property="courseTitle" destination="xy5-7C-8g3" id="0V5-cX-OC1"/>
+                                </connections>
                             </tableViewCell>
                         </prototypes>
                         <connections>
@@ -28,21 +99,29 @@
                             <outlet property="delegate" destination="akH-qF-stU" id="zIm-FZ-ubC"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" id="hfh-Fs-Chp"/>
+                    <navigationItem key="navigationItem" title="Courses" id="hfh-Fs-Chp">
+                        <barButtonItem key="rightBarButtonItem" image="filter" width="25" id="89V-DA-jZT">
+                            <color key="tintColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                        </barButtonItem>
+                    </navigationItem>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="4Au-na-htW" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="2841" y="448"/>
         </scene>
-        <!--Item-->
+        <!--Open-->
         <scene sceneID="Ors-lO-kZs">
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="ILb-vm-ibv" customClass="OpenViewController" customModule="czechitas_mobile_app" customModuleProvider="target" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Item" id="JWQ-bg-Z4O"/>
+                    <tabBarItem key="tabBarItem" title="Open" id="JWQ-bg-Z4O"/>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="JFA-sg-yWX">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
+                        <color key="barTintColor" red="0.1058823529" green="0.086274509799999996" blue="0.31372549020000001" alpha="1" colorSpace="calibratedRGB"/>
+                        <textAttributes key="titleTextAttributes">
+                            <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                        </textAttributes>
                     </navigationBar>
                     <nil name="viewControllers"/>
                     <connections>
@@ -53,16 +132,21 @@
             </objects>
             <point key="canvasLocation" x="2123" y="810"/>
         </scene>
-        <!--Item-->
+        <!--Prepared-->
         <scene sceneID="JLi-TK-Yfs">
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="K9B-DU-Btx" customClass="PreparedViewController" customModule="czechitas_mobile_app" customModuleProvider="target" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Item" id="5ZR-9b-gqm"/>
+                    <tabBarItem key="tabBarItem" title="Prepared" id="5ZR-9b-gqm"/>
                     <toolbarItems/>
                     <navigationItem key="navigationItem" id="lzQ-la-zmu"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="nwU-ae-clx">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
+                        <color key="barTintColor" red="0.10588235294117647" green="0.086274509803921567" blue="0.31372549019607843" alpha="1" colorSpace="calibratedRGB"/>
+                        <textAttributes key="titleTextAttributes">
+                            <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                            <color key="textShadowColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                        </textAttributes>
                     </navigationBar>
                     <nil name="viewControllers"/>
                     <connections>
@@ -93,7 +177,10 @@
             <point key="canvasLocation" x="1442" y="448"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="filter" width="25" height="25"/>
+    </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="11m-D8-yna"/>
+        <segue reference="D4E-Ud-jbM"/>
     </inferredMetricsTieBreakers>
 </document>
