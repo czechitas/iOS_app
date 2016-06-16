@@ -18,6 +18,9 @@ class CourseTableViewController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        tableView.estimatedRowHeight = 85.0
+        tableView.rowHeight = UITableViewAutomaticDimension
+        
         // Nevadi ze tu sa to spravi iba raz? Ci potom budeme robit uz iba update cez ten refresh smerom dole?
         // Když nepůjde data měnit lokálně, tak určitě stačí jen jednou a pak v pull to refresh (standardní komponenta UIRefreshControl nebo jiný framework)
         Model.sharedInstance.fetchCourseData(setTableView(), courseData: {
@@ -80,9 +83,10 @@ class CourseTableViewController: UITableViewController {
         cell.courseDate.text = "\(courses[indexPath.row].courseStartDate!), \(courses[indexPath.row].courseCity)"
         cell.courseDate.font = UIFont.boldSystemFontOfSize(12.0)
         cell.courseTitle.text = courses[indexPath.row].title
-        cell.courseDescription.numberOfLines = 30
-        cell.courseDescription.lineBreakMode = .ByWordWrapping
-        cell.courseDescription.text = courses[indexPath.row].courseDescription
+        let description = courses[indexPath.row].courseDescription
+        let index = description?.startIndex.advancedBy(200)
+        var desc = description?.substringToIndex(index!)
+        cell.courseDescription.text = desc
         let color = courses[indexPath.row].courseCategoryColorCode
         cell.courseCategory.textColor = UIColor(hexString : color!)
         cell.courseCategory.text = courses[indexPath.row].courseCategoryTitle
