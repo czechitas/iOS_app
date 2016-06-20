@@ -49,15 +49,12 @@ class APIManager {
     static let sharedInstance = APIManager()
 
     func callAPI(method : APIRouter, onComplete : ((data : JSON) -> Void)) {
-        // Switch nebylo třeba - k tomu účelu se vytváří ten enum (omezení duplikace kódu)
         Alamofire.request(method)
         .validate()
         .responseJSON { response in
             if let value = response.result.value {
                 let valueJSON = JSON(value)
                 onComplete(data: valueJSON)
-
-    
             }
         }
     }

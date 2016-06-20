@@ -14,6 +14,7 @@ class CourseTableViewController: UITableViewController {
     
     var courses = [Course]()
     var categories = [Category]()
+   
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -27,9 +28,11 @@ class CourseTableViewController: UITableViewController {
             (data, data2) -> Void in
 
             self.courses = data
+
             self.categories = data2
             
             self.tableView.reloadData()
+            
             
         })
         
@@ -80,12 +83,14 @@ class CourseTableViewController: UITableViewController {
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCellWithIdentifier("courseCell", forIndexPath: indexPath) as! CourseTableViewCell
         
-        cell.courseDate.text = "\(courses[indexPath.row].courseStartDate!), \(courses[indexPath.row].courseCity)"
+        
+        cell.courseDate.text = "\(courses[indexPath.row].courseStartDate), \(courses[indexPath.row].courseCity)"
+        
         cell.courseDate.font = UIFont.boldSystemFontOfSize(12.0)
         cell.courseTitle.text = courses[indexPath.row].title
         let description = courses[indexPath.row].courseDescription
-        let index = description?.startIndex.advancedBy(200)
-        var desc = description?.substringToIndex(index!)
+        let index = description.startIndex.advancedBy(200)
+        var desc = description.substringToIndex(index)
         cell.courseDescription.text = desc
         let color = courses[indexPath.row].courseCategoryColorCode
         cell.courseCategory.textColor = UIColor(hexString : color!)
@@ -96,6 +101,62 @@ class CourseTableViewController: UITableViewController {
         return cell
     }
     
+    
+    
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+        
+        let index = self.tableView.indexPathForSelectedRow
+            let courseD = courses[index!.row]
+            
+        
+            
+        Model.sharedInstance.fetchCourseDetailData(APIRouter.CourseDetail(courses[index!.row].id), currentCourse: courseD)
+        
+        
+        
+        
+        if segue.identifier == "courseDetailSegue" {
+            
+            
+            
+            
+            if let vc = segue.destinationViewController as? CourseDetailViewController {
+            
+            
+                vc.courseDate = "\(courseD.courseStartDate) - \(courseD.courseEndDate)"
+                vc.courseT = courseD.title ?? "None"
+                vc.courseURL = courseD.courseLink ?? "None"
+                vc.catColor = courseD.courseCategoryColorCode ?? "#dedede"
+                vc.courseD = courseD.courseDescription ?? "None"
+                
+                var price1 : String = ""
+                if let price = courseD.coursePrice {
+                    price1 = price + " CZK"
+                }
+                
+                
+                
+                vc.courseDict = [
+                1 : courseD.courseStartTime ?? "None",
+                2 : courseD.createFullAddress(),
+                3 : price1 ?? "None",
+                4 : courseD.courseCouchEmail ?? "None",
+                5 : courseD.courseNotes ?? "None"
+                    
+                    
+            ]
+                
+                vc.hidesBottomBarWhenPushed = true
+            }
+        }
+        else {
+            print ("error")
+        }
+        
+        
+        
+        
+    }
 
     /*
     // Override to support conditional editing of the table view.

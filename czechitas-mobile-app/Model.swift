@@ -34,51 +34,36 @@ class Model {
                     let category = Category(id: subJson["course_category"]["id"].intValue, title: subJson["course_category"]["title"].stringValue, colorCode: subJson["course_category"]["color_code"].stringValue)
                     
                     
-                    
-                    
-                    
-                        
-                    if categories.count != 0 {
-                        
-                        
-                        for cat in categories {
-                            if cat.id != category.id {
-                                categories.append(category)
-                            }
-                            else {
-                                break
-                                
-                                
-                            }
-                        }
-                        
-                    } else {
-                        categories.append(category)
-                        
-                    }
-                    
-                    
                     // toto tu finalne nebude , lebo kategorie sa vraj budu este menit
                     course.addCategory(subJson["course_category"]["title"].stringValue, courseCategoryColorCode: subJson["course_category"]["color_code"].stringValue)
                     
-                    course.convertDate(subJson["course_start_date"].stringValue)
+                    course.convertDate()
+                    
                     
                     courses.append(course)
-                    
-                    
                     
                 }
             }
             // Jen drobnost - možná lepší alternativa pro takovéhle věci funkce debugPrint - neloguje v produkční verzi
-            print ("Number of \(method) courses: \(courses.count)")
+            debugPrint ("Number of \(method) courses: \(courses.count)")
             
             
             courseData(data: courses, data2 : categories)
             
+        })
+    }
+    
+    func fetchCourseDetailData(method : APIRouter, currentCourse : Course) {
+        APIManager.sharedInstance.callAPI(method, onComplete: {
+            (data) -> Void in
+            
+            currentCourse.addDetailInfo(data["course_price"].stringValue, courseNotes: data["notes"].stringValue, courseLink: data["registration_form_link"].stringValue, courseVenueTitle: data["course_venue"]["title"].stringValue, courseStreetName: data["course_venue"]["street_name"].stringValue, courseStreetNumber: data["course_venue"]["street_number"].stringValue, courseCouchEmail: data["couch"]["user"].stringValue)
             
             
-            
+        
         })
     }
 
 }
+
+
