@@ -37,7 +37,7 @@ class Model {
                     // toto tu finalne nebude , lebo kategorie sa vraj budu este menit
                     course.addCategory(subJson["course_category"]["title"].stringValue, courseCategoryColorCode: subJson["course_category"]["color_code"].stringValue)
                     
-                    course.convertDate()
+                    //course.convertDate()
                     
                     
                     courses.append(course)

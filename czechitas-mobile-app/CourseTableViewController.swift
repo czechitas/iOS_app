@@ -15,21 +15,27 @@ class CourseTableViewController: UITableViewController {
     var courses = [Course]()
     var categories = [Category]()
    
+    var courseID : Int = 0
+    var course : Course?
     
     override func viewDidLoad() {
+        
         super.viewDidLoad()
         
         tableView.estimatedRowHeight = 85.0
         tableView.rowHeight = UITableViewAutomaticDimension
         
-        // Nevadi ze tu sa to spravi iba raz? Ci potom budeme robit uz iba update cez ten refresh smerom dole?
+        // Nevadi ze tu sa to spravi iba raz? Ci potom budeme rvart uz iba update cez ten refresh smerom dole?
         // Když nepůjde data měnit lokálně, tak určitě stačí jen jednou a pak v pull to refresh (standardní komponenta UIRefreshControl nebo jiný framework)
         Model.sharedInstance.fetchCourseData(setTableView(), courseData: {
             (data, data2) -> Void in
 
             self.courses = data
-
             self.categories = data2
+            
+            for course in self.courses {
+                Model.sharedInstance.fetchCourseDetailData(APIRouter.CourseDetail(course.id), currentCourse: course)
+            }
             
             self.tableView.reloadData()
             
@@ -40,18 +46,8 @@ class CourseTableViewController: UITableViewController {
         // Možnost skrývání prázdných řádků na konci
         tableView.tableFooterView = UIView()
         
-
-        // Uncomment the following line to preserve selection between presentations
-        // self.clearsSelectionOnViewWillAppear = false
-
-        // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-        // self.navigationItem.rightBarButtonItem = self.editButtonItem()
     }
-    
-    
-    
-    
-    
+
     func setTableView() -> APIRouter {
         switch navigationController {
         case is PreparedViewController:
@@ -84,8 +80,8 @@ class CourseTableViewController: UITableViewController {
         let cell = tableView.dequeueReusableCellWithIdentifier("courseCell", forIndexPath: indexPath) as! CourseTableViewCell
         
         
-        cell.courseDate.text = "\(courses[indexPath.row].courseStartDate), \(courses[indexPath.row].courseCity)"
-        
+        var dates = courses[indexPath.row].convertDate()
+        cell.courseDate.text = "\(dates.0), \(courses[indexPath.row].courseCity)"
         cell.courseDate.font = UIFont.boldSystemFontOfSize(12.0)
         cell.courseTitle.text = courses[indexPath.row].title
         let description = courses[indexPath.row].courseDescription
@@ -95,69 +91,25 @@ class CourseTableViewController: UITableViewController {
         let color = courses[indexPath.row].courseCategoryColorCode
         cell.courseCategory.textColor = UIColor(hexString : color!)
         cell.courseCategory.text = courses[indexPath.row].courseCategoryTitle
-
-        // Configure the cell...
-
         return cell
     }
     
-    
-    
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        
         let index = self.tableView.indexPathForSelectedRow
-            let courseD = courses[index!.row]
-            
-        
-            
-        Model.sharedInstance.fetchCourseDetailData(APIRouter.CourseDetail(courses[index!.row].id), currentCourse: courseD)
-        
-        
-        
+        let courseD = courses[index!.row]
         
         if segue.identifier == "courseDetailSegue" {
-            
-            
-            
-            
             if let vc = segue.destinationViewController as? CourseDetailViewController {
-            
-            
-                vc.courseDate = "\(courseD.courseStartDate) - \(courseD.courseEndDate)"
-                vc.courseT = courseD.title ?? "None"
-                vc.courseURL = courseD.courseLink ?? "None"
-                vc.catColor = courseD.courseCategoryColorCode ?? "#dedede"
-                vc.courseD = courseD.courseDescription ?? "None"
-                
-                var price1 : String = ""
-                if let price = courseD.coursePrice {
-                    price1 = price + " CZK"
-                }
-                
-                
-                
-                vc.courseDict = [
-                1 : courseD.courseStartTime ?? "None",
-                2 : courseD.createFullAddress(),
-                3 : price1 ?? "None",
-                4 : courseD.courseCouchEmail ?? "None",
-                5 : courseD.courseNotes ?? "None"
-                    
-                    
-            ]
-                
+                vc.course = courseD
                 vc.hidesBottomBarWhenPushed = true
+                
             }
         }
         else {
             print ("error")
         }
-        
-        
-        
-        
     }
-
+ 
     /*
     // Override to support conditional editing of the table view.
     override func tableView(tableView: UITableView, canEditRowAtIndexPath indexPath: NSIndexPath) -> Bool {

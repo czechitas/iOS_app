@@ -7,68 +7,134 @@
 //
 
 import UIKit
+import EventKit
+import MessageUI
 
 class CourseDetailViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
 
     @IBOutlet weak var buttonAction: UIButton!
     @IBOutlet weak var courseTableView: UITableView!
     @IBOutlet weak var courseInfoView: UIView!
+    @IBOutlet weak var courseTitle: UILabel!
+    @IBOutlet weak var courseDates: UILabel!
     
-        @IBOutlet weak var courseTitle: UILabel!
-        @IBOutlet weak var courseDates: UILabel!
-    
-    var courseDate : String?
-    var courseT : String?
-    var courseD : String?
+    var course : Course!
     var courseDict = [Int : String]()
     var iconArray = [String]()
-    var catColor : String = ""
-    var courseURL : String = ""
-    
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        courseInfoView.backgroundColor = UIColor(hexString: catColor)
+        self.navigationItem.title = course?.title
+        self.navigationController?.navigationBar.tintColor = .whiteColor()
         
-        courseDates.text = courseDate
-        courseTitle.text = courseT
+        courseInfoView.backgroundColor = UIColor(hexString: (course?.courseCategoryColorCode)!)
         
-        self.courseTableView.delegate = self
-        self.courseTableView.dataSource = self
-        
-        self.courseTableView.tableFooterView = UIView()
-        
-        
-        self.courseTableView.estimatedRowHeight = 15.0
-        self.courseTableView.rowHeight = UITableViewAutomaticDimension
-        
+        var dates = course?.convertDate()
+        courseDates.text = (dates!.0) + " - " +  (dates!.1)
+        courseTitle.text = course?.title
         iconArray = ["", "time-icon", "pin-icon", "money-icon", "mail-icon", "notes-icon"]
         
         
-        self.navigationItem.title = courseT
         
-        self.navigationController?.navigationBar.tintColor = .whiteColor()
         
-        if courseURL == "" || courseURL == "None" {
-        self.buttonAction.setTitle("Remind me", forState: .Normal)
-        }
-        else {
+        if course?.courseLink == "" || course?.courseLink == "None" {
+            self.buttonAction.setTitle("Remind me", forState: .Normal)
+        } else {
             self.buttonAction.setTitle("Register", forState: .Normal)
         }
-        // Do any additional setup after loading the view.
+        
+        if course?.courseStartTime != nil && course?.createFullAddress() != nil && course?.coursePrice != nil && course?.courseCouchEmail != nil && course?.courseNotes != nil {
+            createDict()
+        }
+        
+        self.courseTableView.delegate = self
+        self.courseTableView.dataSource = self
+        self.courseTableView.tableFooterView = UIView()
+        self.courseTableView.estimatedRowHeight = 15.0
+        self.courseTableView.rowHeight = UITableViewAutomaticDimension
+    }
+    
+    
+    func createDict() -> () {
+        var dates = course?.convertDate()
+        
+        var price1 : String = ""
+        if let price = course?.coursePrice {
+            price1 = price + " CZK"
+        }
+        
+        self.courseDict = [
+            1 : dates!.2 ?? "Datum neuvedeny",
+            2 : (course?.createFullAddress()) ?? "Adresa neuvedena",
+            3 : price1 ?? "Cena neuvedena",
+            4 : course?.courseCouchEmail ?? "Email neuvedeny",
+            5 : course?.courseNotes ?? "Poznamka neuvedena"
+            ]
+    }
+    
+    @IBAction func addToCalendar(sender: UIBarButtonItem) {
+        let eventStore = EKEventStore()
+        if (EKEventStore.authorizationStatusForEntityType(.Event) != EKAuthorizationStatus.Authorized) {
+            eventStore.requestAccessToEntityType(.Event, completion: { granted, error in
+            })
+        } else {
+            print ("Error")
+        }
+        
+        var convertedDate = convertToDate((course?.courseStartDate)!, endDate: (course?.courseEndDate)!)
+        createEvent(eventStore, title: course.title, startDate: convertedDate.0, endDate: convertedDate.1)
+        
+    }
+    
+    func convertToDate(startDate : String, endDate : String) -> (NSDate, NSDate) {
+        let startDate = startDate
+        let endDate = endDate
+        let formatter = NSDateFormatter()
+        formatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss'Z'"
+        var startDate1 = formatter.dateFromString(startDate)
+        var endDate1 = formatter.dateFromString(endDate)
+        return (startDate1 ?? NSDate(), endDate1 ?? NSDate())
+    }
+    
+    func createEvent(eventStore : EKEventStore, title : String, startDate : NSDate, endDate : NSDate) {
+        let event = EKEvent(eventStore : eventStore)
+        event.title = title
+        event.startDate = startDate
+        event.endDate = endDate
+        event.calendar = eventStore.defaultCalendarForNewEvents
+        do {
+            try eventStore.saveEvent(event, span: .ThisEvent)
+        } catch {
+            print ("Error")
+        }
     }
     
     @IBAction func buttonClick(sender: AnyObject) {
-        if courseURL != "" || courseURL != "None" {
-        
+        if course.courseLink != "" || course.courseLink != "None" {
         let myWebView : UIWebView = UIWebView(frame: CGRectMake(0, 0, self.view.frame.width, self.view.frame.height))
-        myWebView.loadRequest(NSURLRequest(URL: NSURL(string: courseURL)!))
+        myWebView.loadRequest(NSURLRequest(URL: NSURL(string: course.courseLink!)!))
         self.view.addSubview(myWebView)
         }
         else {
             // TODO
         }
+    }
+    
+    func sendEmail() {
+        if MFMailComposeViewController.canSendMail() {
+            let mail = MFMailComposeViewController()
+            mail.setToRecipients([courseDict[4]!])
+            mail.setMessageBody("", isHTML: false)
+            presentViewController(mail, animated: true, completion: nil)
+            
+        } else {
+            print ("Error")
+        }
+    }
+    
+    func mailComposeController(controller : MFMailComposeViewController, didFinishWithResult : MFMailComposeResult, error : NSError?) {
+        controller.dismissViewControllerAnimated(true, completion: nil)
     }
     
     func numberOfSectionsInTableView(courseTableView: UITableView) -> Int {
@@ -81,52 +147,34 @@ class CourseDetailViewController: UIViewController, UITableViewDelegate, UITable
     }
     
     func tableView(courseTableView: UITableView, cellForRowAtIndexPath indexPath : NSIndexPath) -> UITableViewCell {
-        
-            
         if indexPath.row == 0 {
-            
             if let cell = courseTableView.dequeueReusableCellWithIdentifier("courseDesc", forIndexPath: indexPath) as?  CourseDescriptionTableViewCell {
-        
-        
-            cell.courseDescription.text = courseD
-            return cell
+                cell.courseDescription.text = course?.courseDescription
+                cell.selectionStyle = .None
+                return cell
             }
+            
         } else {
-           
-                
             if let cell = courseTableView.dequeueReusableCellWithIdentifier("infoCell", forIndexPath: indexPath) as? InfoTableViewCell {
-            
-                
                 cell.infoCourse.text = courseDict[indexPath.row]
-                
-            
                 cell.imageCourse.image = UIImage(named: iconArray[indexPath.row])
-            
-            return cell
+                cell.selectionStyle = .None
+                if indexPath.row == 4 {
+                    cell.selectionStyle = .Blue
+                }
+                return cell
             }
             
         }
-        
-        
-        
         return UITableViewCell()
         
     }
-
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
-    }
     
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
+    func tableView(courseTableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+        if indexPath.row == 4 {
+            
+            sendEmail()
+        }
     }
-    */
 
 }
