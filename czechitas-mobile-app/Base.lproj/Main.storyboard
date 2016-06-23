@@ -12,8 +12,12 @@
             <string>OpenSans-Bold</string>
             <string>OpenSans-Bold</string>
             <string>OpenSans-Bold</string>
+            <string>OpenSans-Bold</string>
+            <string>OpenSans-Bold</string>
         </mutableArray>
         <mutableArray key="OpenSans-Regular.ttf">
+            <string>OpenSans</string>
+            <string>OpenSans</string>
             <string>OpenSans</string>
             <string>OpenSans</string>
             <string>OpenSans</string>
@@ -27,12 +31,12 @@
             <objects>
                 <tableViewController id="akH-qF-stU" customClass="CourseTableViewController" customModule="czechitas_mobile_app" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="166" sectionHeaderHeight="28" sectionFooterHeight="28" id="hM0-2f-Cxv">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <rect key="frame" x="0.0" y="64" width="320" height="455"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <prototypes>
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="courseCell" id="f5M-jK-PKG" customClass="CourseTableViewCell" customModule="czechitas_mobile_app" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="92" width="320" height="166"/>
+                                <rect key="frame" x="0.0" y="28" width="320" height="166"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="f5M-jK-PKG" id="fDN-Fx-aBN">
                                     <rect key="frame" x="0.0" y="0.0" width="320" height="165.5"/>
@@ -45,7 +49,7 @@
                                                 <constraint firstAttribute="width" constant="294" id="dFF-lc-zvB"/>
                                             </constraints>
                                             <fontDescription key="fontDescription" name="OpenSans-Bold" family="Open Sans" pointSize="14"/>
-                                            <color key="textColor" red="0.10588235294117647" green="0.086274509803921567" blue="0.31372549019607843" alpha="1" colorSpace="calibratedRGB"/>
+                                            <color key="textColor" red="0.15686274509803921" green="0.2196078431372549" blue="0.56862745098039214" alpha="1" colorSpace="calibratedRGB"/>
                                             <nil key="highlightedColor"/>
                                             <variation key="default">
                                                 <mask key="constraints">
@@ -164,6 +168,9 @@
                         </barButtonItem>
                     </navigationItem>
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>
+                    <refreshControl key="refreshControl" opaque="NO" multipleTouchEnabled="YES" contentMode="center" enabled="NO" contentHorizontalAlignment="center" contentVerticalAlignment="center" id="tYb-ib-esM">
+                        <autoresizingMask key="autoresizingMask"/>
+                    </refreshControl>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="4Au-na-htW" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -178,11 +185,11 @@
                         <viewControllerLayoutGuide type="bottom" id="r2E-HK-6pG"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="PKJ-Om-EXC">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <rect key="frame" x="0.0" y="64" width="320" height="504"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="7ee-QK-fK3">
-                                <rect key="frame" x="0.0" y="64" width="320" height="100"/>
+                                <rect key="frame" x="0.0" y="0.0" width="320" height="100"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="characterWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7up-Ks-vOy">
                                         <rect key="frame" x="15" y="28" width="290" height="21"/>
@@ -244,8 +251,8 @@
                                 </variation>
                             </view>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="GfU-aK-gI0">
-                                <rect key="frame" x="0.0" y="474" width="320" height="50"/>
-                                <color key="backgroundColor" red="0.1058823529" green="0.086274509799999996" blue="0.31372549020000001" alpha="1" colorSpace="calibratedRGB"/>
+                                <rect key="frame" x="0.0" y="410" width="320" height="50"/>
+                                <color key="backgroundColor" red="0.15686274509803921" green="0.2196078431372549" blue="0.56862745098039214" alpha="1" colorSpace="calibratedRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="50" id="4XZ-Z2-B9M"/>
                                 </constraints>
@@ -258,7 +265,7 @@
                                 </connections>
                             </button>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" showsSelectionImmediatelyOnTouchBegin="NO" rowHeight="40" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="HkV-eg-Dwc">
-                                <rect key="frame" x="0.0" y="166" width="320" height="300"/>
+                                <rect key="frame" x="0.0" y="102" width="320" height="309"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="courseDesc" id="KcP-Ap-aNu" customClass="CourseDescriptionTableViewCell" customModule="czechitas_mobile_app" customModuleProvider="target">
@@ -398,7 +405,7 @@
                             <constraint firstAttribute="trailing" secondItem="7ee-QK-fK3" secondAttribute="trailing" id="TLY-Yg-C0Z"/>
                             <constraint firstItem="7ee-QK-fK3" firstAttribute="trailing" secondItem="HkV-eg-Dwc" secondAttribute="trailing" id="bCy-Jn-mSa"/>
                             <constraint firstItem="HkV-eg-Dwc" firstAttribute="top" secondItem="7ee-QK-fK3" secondAttribute="bottom" constant="2" id="uoM-5y-wTc"/>
-                            <constraint firstItem="GfU-aK-gI0" firstAttribute="top" secondItem="HkV-eg-Dwc" secondAttribute="bottom" constant="8" id="yOB-F8-ny8"/>
+                            <constraint firstItem="GfU-aK-gI0" firstAttribute="top" secondItem="HkV-eg-Dwc" secondAttribute="bottom" constant="-1" id="yOB-F8-ny8"/>
                         </constraints>
                         <variation key="default">
                             <mask key="constraints">
@@ -410,8 +417,12 @@
                     <navigationItem key="navigationItem" title="CourseDetail" id="RuR-Km-ecY">
                         <barButtonItem key="backBarButtonItem" title="Courses" id="S5I-Od-HzQ"/>
                         <rightBarButtonItems>
-                            <barButtonItem systemItem="refresh" id="OPV-Rj-KXY"/>
-                            <barButtonItem systemItem="reply" id="ldl-0q-KLe">
+                            <barButtonItem image="course-add" id="OPV-Rj-KXY">
+                                <connections>
+                                    <action selector="addCourse:" destination="sMy-9K-6CX" id="gOF-TH-6rH"/>
+                                </connections>
+                            </barButtonItem>
+                            <barButtonItem image="calendar" id="ldl-0q-KLe">
                                 <inset key="imageInsets" minX="0.0" minY="0.0" maxX="-30" maxY="0.0"/>
                                 <connections>
                                     <action selector="addToCalendar:" destination="sMy-9K-6CX" id="Xuc-HI-vNQ"/>
@@ -422,6 +433,7 @@
                     <simulatedToolbarMetrics key="simulatedBottomBarMetrics"/>
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>
                     <connections>
+                        <outlet property="addBtn" destination="OPV-Rj-KXY" id="Sce-42-efc"/>
                         <outlet property="buttonAction" destination="GfU-aK-gI0" id="BkB-UC-yO6"/>
                         <outlet property="courseDates" destination="7up-Ks-vOy" id="Twh-rX-0YP"/>
                         <outlet property="courseInfoView" destination="7ee-QK-fK3" id="5ch-2h-vmb"/>
@@ -433,16 +445,38 @@
             </objects>
             <point key="canvasLocation" x="3251" y="448"/>
         </scene>
-        <!--Open-->
+        <!--Moje kurzy-->
+        <scene sceneID="dID-Bl-R6M">
+            <objects>
+                <navigationController id="Ctm-jL-raf" customClass="FavouriteViewController" customModule="czechitas_mobile_app" customModuleProvider="target" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" title="Moje kurzy" image="my-courses" id="EvL-49-KRS"/>
+                    <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" translucent="NO" id="9yV-9h-Qlp">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                        <color key="barTintColor" red="0.15686274509803921" green="0.2196078431372549" blue="0.56862745098039214" alpha="1" colorSpace="calibratedRGB"/>
+                        <textAttributes key="titleTextAttributes">
+                            <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                        </textAttributes>
+                    </navigationBar>
+                    <connections>
+                        <segue destination="TfQ-Er-ffX" kind="relationship" relationship="rootViewController" id="cj3-Cr-pIQ"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="3hQ-0v-GzB" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2123" y="1613"/>
+        </scene>
+        <!--Otvorené kurzy-->
         <scene sceneID="Ors-lO-kZs">
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="ILb-vm-ibv" customClass="OpenViewController" customModule="czechitas_mobile_app" customModuleProvider="target" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Open" id="JWQ-bg-Z4O"/>
+                    <tabBarItem key="tabBarItem" title="Otvorené kurzy" image="open@1x" id="JWQ-bg-Z4O"/>
                     <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="JFA-sg-yWX">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" translucent="NO" id="JFA-sg-yWX">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
-                        <color key="barTintColor" red="0.1058823529" green="0.086274509799999996" blue="0.31372549020000001" alpha="1" colorSpace="calibratedRGB"/>
+                        <color key="barTintColor" red="0.15686274509803921" green="0.2196078431372549" blue="0.56862745098039214" alpha="1" colorSpace="calibratedRGB"/>
                         <textAttributes key="titleTextAttributes">
                             <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                         </textAttributes>
@@ -456,17 +490,17 @@
             </objects>
             <point key="canvasLocation" x="2123" y="810"/>
         </scene>
-        <!--Prepared-->
+        <!--Pripravované kurzy-->
         <scene sceneID="JLi-TK-Yfs">
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="K9B-DU-Btx" customClass="PreparedViewController" customModule="czechitas_mobile_app" customModuleProvider="target" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Prepared" id="5ZR-9b-gqm"/>
+                    <tabBarItem key="tabBarItem" title="Pripravované kurzy" image="prepared" id="5ZR-9b-gqm"/>
                     <toolbarItems/>
                     <navigationItem key="navigationItem" id="lzQ-la-zmu"/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="nwU-ae-clx">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" translucent="NO" id="nwU-ae-clx">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
-                        <color key="barTintColor" red="0.10588235294117647" green="0.086274509803921567" blue="0.31372549019607843" alpha="1" colorSpace="calibratedRGB"/>
+                        <color key="barTintColor" red="0.15686274509803921" green="0.2196078431372549" blue="0.56862745098039214" alpha="1" colorSpace="calibratedRGB"/>
                         <textAttributes key="titleTextAttributes">
                             <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                             <color key="textShadowColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
@@ -479,7 +513,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="T3L-fU-Ojo" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2123" y="22"/>
+            <point key="canvasLocation" x="2129" y="28"/>
         </scene>
         <!--Tab Bar Controller-->
         <scene sceneID="jEO-YN-nS0">
@@ -487,24 +521,182 @@
                 <tabBarController automaticallyAdjustsScrollViewInsets="NO" id="Vnw-Cj-qXi" sceneMemberID="viewController">
                     <toolbarItems/>
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>
-                    <tabBar key="tabBar" contentMode="scaleToFill" id="Scb-zz-39s">
+                    <tabBar key="tabBar" contentMode="scaleToFill" translucent="NO" id="Scb-zz-39s">
                         <autoresizingMask key="autoresizingMask"/>
-                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                        <color key="tintColor" red="0.15686274510000001" green="0.21960784310000001" blue="0.56862745100000001" alpha="1" colorSpace="calibratedRGB"/>
+                        <color key="barTintColor" red="0.93725490199999995" green="0.93725490199999995" blue="0.95686274510000002" alpha="1" colorSpace="calibratedRGB"/>
+                        <color key="selectedImageTintColor" red="0.15686274510000001" green="0.21960784310000001" blue="0.56862745100000001" alpha="1" colorSpace="calibratedRGB"/>
                     </tabBar>
                     <connections>
                         <segue destination="K9B-DU-Btx" kind="relationship" relationship="viewControllers" id="ntG-oc-3gi"/>
                         <segue destination="ILb-vm-ibv" kind="relationship" relationship="viewControllers" id="dwk-kv-WET"/>
+                        <segue destination="Ctm-jL-raf" kind="relationship" relationship="viewControllers" id="I5F-L6-Hap"/>
                     </connections>
                 </tabBarController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Xzh-j8-LlV" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1442" y="448"/>
         </scene>
+        <!--Courses-->
+        <scene sceneID="aFa-kL-LpD">
+            <objects>
+                <tableViewController id="TfQ-Er-ffX" customClass="FavouriteTableViewController" customModule="czechitas_mobile_app" customModuleProvider="target" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="166" sectionHeaderHeight="28" sectionFooterHeight="28" id="Ycz-Bj-wR7">
+                        <rect key="frame" x="0.0" y="64" width="320" height="455"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <prototypes>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="courseCell" id="sk2-xN-iy4" customClass="CourseTableViewCell" customModule="czechitas_mobile_app" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="28" width="320" height="166"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="sk2-xN-iy4" id="fZj-z2-biy">
+                                    <rect key="frame" x="0.0" y="0.0" width="320" height="165.5"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="253" verticalCompressionResistancePriority="751" text="Label" textAlignment="natural" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="none" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="NNc-5j-tEO">
+                                            <rect key="frame" x="18" y="22" width="38" height="20"/>
+                                            <constraints>
+                                                <constraint firstAttribute="height" constant="15" id="hcQ-Ww-T5e"/>
+                                                <constraint firstAttribute="width" constant="294" id="mhN-BN-EWp"/>
+                                            </constraints>
+                                            <fontDescription key="fontDescription" name="OpenSans-Bold" family="Open Sans" pointSize="14"/>
+                                            <color key="textColor" red="0.1058823529" green="0.086274509799999996" blue="0.31372549020000001" alpha="1" colorSpace="calibratedRGB"/>
+                                            <nil key="highlightedColor"/>
+                                            <variation key="default">
+                                                <mask key="constraints">
+                                                    <exclude reference="hcQ-Ww-T5e"/>
+                                                    <exclude reference="mhN-BN-EWp"/>
+                                                </mask>
+                                            </variation>
+                                        </label>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="top" horizontalHuggingPriority="251" text="Label" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="none" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="mK6-tz-0M4">
+                                            <rect key="frame" x="18" y="72" width="289" height="58.5"/>
+                                            <constraints>
+                                                <constraint firstAttribute="height" constant="50" id="GkL-ed-yqF"/>
+                                                <constraint firstAttribute="height" constant="45" id="Yvd-ic-gZT"/>
+                                            </constraints>
+                                            <fontDescription key="fontDescription" name="OpenSans" family="Open Sans" pointSize="12"/>
+                                            <color key="textColor" red="0.5450980392" green="0.5450980392" blue="0.56078431370000004" alpha="1" colorSpace="calibratedRGB"/>
+                                            <nil key="highlightedColor"/>
+                                            <variation key="default">
+                                                <mask key="constraints">
+                                                    <exclude reference="GkL-ed-yqF"/>
+                                                    <exclude reference="Yvd-ic-gZT"/>
+                                                </mask>
+                                            </variation>
+                                        </label>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="RWd-LY-DIY">
+                                            <rect key="frame" x="18" y="135.5" width="217" height="20"/>
+                                            <constraints>
+                                                <constraint firstAttribute="height" constant="20" id="lFI-ef-Xsn"/>
+                                                <constraint firstAttribute="height" constant="20" id="lc7-1H-5B8"/>
+                                            </constraints>
+                                            <fontDescription key="fontDescription" name="OpenSans" family="Open Sans" pointSize="12"/>
+                                            <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                            <nil key="highlightedColor"/>
+                                            <variation key="default">
+                                                <mask key="constraints">
+                                                    <exclude reference="lc7-1H-5B8"/>
+                                                </mask>
+                                            </variation>
+                                        </label>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="FL0-jz-8z1">
+                                            <rect key="frame" x="18" y="47" width="289" height="20"/>
+                                            <constraints>
+                                                <constraint firstAttribute="height" constant="35" id="6KI-f3-VyO"/>
+                                            </constraints>
+                                            <fontDescription key="fontDescription" name="OpenSans-Bold" family="Open Sans" pointSize="14"/>
+                                            <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                            <nil key="highlightedColor"/>
+                                            <variation key="default">
+                                                <mask key="constraints">
+                                                    <exclude reference="6KI-f3-VyO"/>
+                                                </mask>
+                                            </variation>
+                                        </label>
+                                    </subviews>
+                                    <constraints>
+                                        <constraint firstItem="RWd-LY-DIY" firstAttribute="leading" secondItem="mK6-tz-0M4" secondAttribute="leading" id="0Mu-j0-J7f"/>
+                                        <constraint firstItem="mK6-tz-0M4" firstAttribute="trailing" secondItem="FL0-jz-8z1" secondAttribute="trailing" constant="-15" id="1ff-xO-3py"/>
+                                        <constraint firstItem="NNc-5j-tEO" firstAttribute="top" secondItem="fZj-z2-biy" secondAttribute="topMargin" constant="14" id="9lc-wL-qTY"/>
+                                        <constraint firstItem="FL0-jz-8z1" firstAttribute="trailing" secondItem="mK6-tz-0M4" secondAttribute="trailing" id="ECQ-VS-drJ"/>
+                                        <constraint firstAttribute="trailingMargin" secondItem="FL0-jz-8z1" secondAttribute="trailing" constant="5" id="H4p-KW-yP0"/>
+                                        <constraint firstItem="FL0-jz-8z1" firstAttribute="leading" secondItem="NNc-5j-tEO" secondAttribute="leading" id="LXk-y0-8Ab"/>
+                                        <constraint firstAttribute="bottomMargin" secondItem="mK6-tz-0M4" secondAttribute="bottom" constant="120" id="Ndn-1M-hlf"/>
+                                        <constraint firstItem="mK6-tz-0M4" firstAttribute="top" secondItem="FL0-jz-8z1" secondAttribute="bottom" constant="5" id="TSo-HK-UZJ"/>
+                                        <constraint firstItem="mK6-tz-0M4" firstAttribute="leading" secondItem="RWd-LY-DIY" secondAttribute="leading" id="XFe-7L-dGs"/>
+                                        <constraint firstItem="FL0-jz-8z1" firstAttribute="trailing" secondItem="fZj-z2-biy" secondAttribute="trailingMargin" id="Y2B-Xd-xxG"/>
+                                        <constraint firstItem="RWd-LY-DIY" firstAttribute="top" secondItem="mK6-tz-0M4" secondAttribute="top" constant="70" id="aK8-Ve-uGy"/>
+                                        <constraint firstAttribute="bottomMargin" secondItem="RWd-LY-DIY" secondAttribute="bottom" constant="5" id="bmS-MC-oyM"/>
+                                        <constraint firstItem="mK6-tz-0M4" firstAttribute="top" secondItem="RWd-LY-DIY" secondAttribute="top" id="cEe-1L-cwG"/>
+                                        <constraint firstItem="FL0-jz-8z1" firstAttribute="leading" secondItem="NNc-5j-tEO" secondAttribute="leading" id="cZr-3u-A8A"/>
+                                        <constraint firstItem="FL0-jz-8z1" firstAttribute="leading" secondItem="NNc-5j-tEO" secondAttribute="leading" id="cn9-B3-EkL"/>
+                                        <constraint firstItem="RWd-LY-DIY" firstAttribute="top" secondItem="mK6-tz-0M4" secondAttribute="bottom" constant="5" id="eCM-c7-nV2"/>
+                                        <constraint firstAttribute="bottomMargin" secondItem="RWd-LY-DIY" secondAttribute="bottom" constant="2" id="fA5-rK-W3E"/>
+                                        <constraint firstItem="NNc-5j-tEO" firstAttribute="top" secondItem="fZj-z2-biy" secondAttribute="top" constant="22" id="gMQ-lm-LFn"/>
+                                        <constraint firstItem="mK6-tz-0M4" firstAttribute="leading" secondItem="FL0-jz-8z1" secondAttribute="leading" id="gf4-KW-U4r"/>
+                                        <constraint firstItem="FL0-jz-8z1" firstAttribute="top" secondItem="NNc-5j-tEO" secondAttribute="bottom" constant="5" id="nIJ-uY-9bq"/>
+                                        <constraint firstAttribute="trailingMargin" secondItem="RWd-LY-DIY" secondAttribute="trailing" constant="77" id="qDq-LH-MhH"/>
+                                        <constraint firstItem="NNc-5j-tEO" firstAttribute="leading" secondItem="fZj-z2-biy" secondAttribute="leadingMargin" constant="10" id="vhQ-RM-HDv"/>
+                                        <constraint firstAttribute="trailingMargin" secondItem="FL0-jz-8z1" secondAttribute="trailing" constant="5" id="wgc-En-rAj"/>
+                                        <constraint firstAttribute="trailingMargin" secondItem="mK6-tz-0M4" secondAttribute="trailing" constant="5" id="zq6-m0-xpP"/>
+                                    </constraints>
+                                    <variation key="default">
+                                        <mask key="constraints">
+                                            <exclude reference="9lc-wL-qTY"/>
+                                            <exclude reference="LXk-y0-8Ab"/>
+                                            <exclude reference="Y2B-Xd-xxG"/>
+                                            <exclude reference="cn9-B3-EkL"/>
+                                            <exclude reference="wgc-En-rAj"/>
+                                            <exclude reference="1ff-xO-3py"/>
+                                            <exclude reference="Ndn-1M-hlf"/>
+                                            <exclude reference="cEe-1L-cwG"/>
+                                            <exclude reference="zq6-m0-xpP"/>
+                                            <exclude reference="0Mu-j0-J7f"/>
+                                            <exclude reference="aK8-Ve-uGy"/>
+                                            <exclude reference="bmS-MC-oyM"/>
+                                        </mask>
+                                    </variation>
+                                </tableViewCellContentView>
+                                <connections>
+                                    <outlet property="courseCategory" destination="RWd-LY-DIY" id="nEc-4z-Nqi"/>
+                                    <outlet property="courseDate" destination="NNc-5j-tEO" id="l8B-bX-90C"/>
+                                    <outlet property="courseDescription" destination="mK6-tz-0M4" id="CtL-jr-ZWT"/>
+                                    <outlet property="courseTitle" destination="FL0-jz-8z1" id="fY3-eM-Qa9"/>
+                                    <segue destination="sMy-9K-6CX" kind="show" identifier="courseDetailSegue" id="qi5-bH-u3I"/>
+                                </connections>
+                            </tableViewCell>
+                        </prototypes>
+                        <connections>
+                            <outlet property="dataSource" destination="TfQ-Er-ffX" id="xnO-ps-RHd"/>
+                            <outlet property="delegate" destination="TfQ-Er-ffX" id="Nxj-7e-82D"/>
+                        </connections>
+                    </tableView>
+                    <navigationItem key="navigationItem" title="Courses" id="XVp-0A-icb">
+                        <barButtonItem key="backBarButtonItem" title="Courses" id="IZ2-k4-0ce">
+                            <color key="tintColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                        </barButtonItem>
+                        <barButtonItem key="rightBarButtonItem" image="filter" width="25" id="SfG-DG-JN8">
+                            <color key="tintColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                        </barButtonItem>
+                    </navigationItem>
+                    <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="u35-E7-0Qs" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2841" y="1249"/>
+        </scene>
     </scenes>
     <resources>
+        <image name="calendar" width="30" height="30"/>
+        <image name="course-add" width="30" height="30"/>
         <image name="filter" width="25" height="25"/>
+        <image name="my-courses" width="30" height="30"/>
+        <image name="open@1x" width="30" height="30"/>
+        <image name="prepared" width="30" height="30"/>
     </resources>
     <inferredMetricsTieBreakers>
         <segue reference="D4E-Ud-jbM"/>
+        <segue reference="rxr-s1-DWT"/>
     </inferredMetricsTieBreakers>
 </document>

@@ -19,7 +19,7 @@ enum APIRouter: URLRequestConvertible {
     case Cities()
     case CoursesPrepared()
     case CoursesOpen()
-    case CourseDetail(Int)
+    case CoursesAll()
     case Venues()
     
     var URLRequest: NSMutableURLRequest {
@@ -32,8 +32,8 @@ enum APIRouter: URLRequestConvertible {
                 return ("/courses/prepared/")
             case .CoursesOpen():
                 return ("/courses/open/")
-            case .CourseDetail(let id):
-                return ("/courses/\(id)/")
+            case .CoursesAll():
+                return ("/courses/all/")
             case .Venues:
                 return ("/courses/")
             }

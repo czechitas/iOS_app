@@ -18,6 +18,7 @@ class CourseTableViewController: UITableViewController {
     var courseID : Int = 0
     var course : Course?
     
+    
     override func viewDidLoad() {
         
         super.viewDidLoad()
@@ -33,9 +34,8 @@ class CourseTableViewController: UITableViewController {
             self.courses = data
             self.categories = data2
             
-            for course in self.courses {
-                Model.sharedInstance.fetchCourseDetailData(APIRouter.CourseDetail(course.id), currentCourse: course)
-            }
+            
+            
             
             self.tableView.reloadData()
             
@@ -46,7 +46,18 @@ class CourseTableViewController: UITableViewController {
         // Možnost skrývání prázdných řádků na konci
         tableView.tableFooterView = UIView()
         
+            
+        self.refreshControl?.addTarget(self, action: "handleRefresh", forControlEvents: UIControlEvents.ValueChanged)
+        
     }
+    
+    func handleRefresh(refreshControl : UIRefreshControl) {
+        // volanie api s rozdielovou metodou
+    }
+    
+    
+
+
 
     func setTableView() -> APIRouter {
         switch navigationController {
@@ -55,7 +66,7 @@ class CourseTableViewController: UITableViewController {
         case is OpenViewController:
             return APIRouter.CoursesOpen()
         default:
-            return APIRouter.CoursesPrepared()
+            return APIRouter.CoursesOpen()
         }
     }
     
@@ -66,7 +77,15 @@ class CourseTableViewController: UITableViewController {
 
     override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
         // #warning Incomplete implementation, return the number of sections
-        return 1
+        if courses.count > 0 {
+            self.tableView.separatorStyle = .SingleLine
+            self.tableView.backgroundView?.hidden = true
+            return 1
+        } else {
+            TableViewHelper.emptyMessage("empty", viewController: self)
+            return 0
+        }
+        
     }
 
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -105,6 +124,7 @@ class CourseTableViewController: UITableViewController {
                 
             }
         }
+    
         else {
             print ("error")
         }
@@ -155,4 +175,21 @@ class CourseTableViewController: UITableViewController {
     }
     */
 
+}
+
+class TableViewHelper {
+    class func emptyMessage(image: String, viewController: UITableViewController) {
+        
+        let image = UIImage(named: image)
+        var imageV = UIImageView(image : image!)
+        
+        imageV.frame = CGRectMake(20, 100, 60, 60)
+        imageV.contentMode = .ScaleAspectFit
+        imageV.sizeToFit()
+        imageV.clipsToBounds = true
+        
+        
+        viewController.tableView.backgroundView = imageV;
+        viewController.tableView.separatorStyle = .None
+    }
 }

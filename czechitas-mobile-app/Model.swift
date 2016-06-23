@@ -12,13 +12,13 @@ import SwiftyJSON
 class Model {
     static var sharedInstance = Model()
     
-    
+    var allCourses = [Course]()
     
     func fetchCourseData(method : APIRouter, courseData : ((data : [Course], data2 : [Category]) -> Void)) {
         
-        var courses = [Course]()
-        var categories = [Category]()
         
+        var categories = [Category]()
+        var courses = [Course]()
         
         
         APIManager.sharedInstance.callAPI(method, onComplete: {
@@ -39,28 +39,19 @@ class Model {
                     
                     //course.convertDate()
                     
+                    course.addDetailInfo(subJson["course_price"].stringValue, courseNotes: subJson["notes"].stringValue, courseLink: subJson["registration_form_link"].stringValue, courseVenueTitle: subJson["course_venue"]["title"].stringValue, courseStreetName: subJson["course_venue"]["street_name"].stringValue, courseStreetNumber: subJson["course_venue"]["street_number"].stringValue, courseCouchEmail: subJson["couch"]["user"].stringValue)
                     
                     courses.append(course)
+                    self.allCourses.append(course)
                     
                 }
             }
             // Jen drobnost - možná lepší alternativa pro takovéhle věci funkce debugPrint - neloguje v produkční verzi
-            debugPrint ("Number of \(method) courses: \(courses.count)")
+            //debugPrint ("Number of \(method) courses: \(self.courses.count)")
             
             
             courseData(data: courses, data2 : categories)
             
-        })
-    }
-    
-    func fetchCourseDetailData(method : APIRouter, currentCourse : Course) {
-        APIManager.sharedInstance.callAPI(method, onComplete: {
-            (data) -> Void in
-            
-            currentCourse.addDetailInfo(data["course_price"].stringValue, courseNotes: data["notes"].stringValue, courseLink: data["registration_form_link"].stringValue, courseVenueTitle: data["course_venue"]["title"].stringValue, courseStreetName: data["course_venue"]["street_name"].stringValue, courseStreetNumber: data["course_venue"]["street_number"].stringValue, courseCouchEmail: data["couch"]["user"].stringValue)
-            
-            
-        
         })
     }
 

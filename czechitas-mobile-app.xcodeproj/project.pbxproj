@@ -8,6 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		8C74DBEA702C012FDB7D4D56 /* Pods_czechitas_mobile_app.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FE206C2A293010A8821A1E28 /* Pods_czechitas_mobile_app.framework */; };
+		DC25BBF41D19333C008C5AB8 /* FavouriteViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC25BBF31D19333C008C5AB8 /* FavouriteViewController.swift */; };
+		DC25BBF61D193846008C5AB8 /* FavouriteTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC25BBF51D193846008C5AB8 /* FavouriteTableViewController.swift */; };
 		DC29A0BB1D05C20200D22919 /* DataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC29A0BA1D05C20200D22919 /* DataManager.swift */; };
 		DC29A0BF1D05E9A500D22919 /* Courses.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC29A0BE1D05E9A500D22919 /* Courses.swift */; };
 		DC29A0C61D0846DE00D22919 /* CourseTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC29A0C51D0846DE00D22919 /* CourseTableViewController.swift */; };
@@ -28,6 +30,8 @@
 
 /* Begin PBXFileReference section */
 		623A6661139BD833CF55CED6 /* Pods-czechitas-mobile-app.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-czechitas-mobile-app.debug.xcconfig"; path = "Pods/Target Support Files/Pods-czechitas-mobile-app/Pods-czechitas-mobile-app.debug.xcconfig"; sourceTree = "<group>"; };
+		DC25BBF31D19333C008C5AB8 /* FavouriteViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FavouriteViewController.swift; sourceTree = "<group>"; };
+		DC25BBF51D193846008C5AB8 /* FavouriteTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FavouriteTableViewController.swift; sourceTree = "<group>"; };
 		DC29A0BA1D05C20200D22919 /* DataManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DataManager.swift; sourceTree = "<group>"; };
 		DC29A0BE1D05E9A500D22919 /* Courses.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Courses.swift; sourceTree = "<group>"; };
 		DC29A0C51D0846DE00D22919 /* CourseTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CourseTableViewController.swift; sourceTree = "<group>"; };
@@ -96,6 +100,8 @@
 				DC29A0C71D0853ED00D22919 /* PreparedViewController.swift */,
 				DC29A0C91D08554500D22919 /* OpenViewController.swift */,
 				DC6946C81D12AAAA00E5753C /* CourseDetailViewController.swift */,
+				DC25BBF31D19333C008C5AB8 /* FavouriteViewController.swift */,
+				DC25BBF51D193846008C5AB8 /* FavouriteTableViewController.swift */,
 			);
 			name = Controllers;
 			sourceTree = "<group>";
@@ -277,6 +283,8 @@
 				DC91E8B01D0583F90054F356 /* ViewController.swift in Sources */,
 				DC29A0BB1D05C20200D22919 /* DataManager.swift in Sources */,
 				DCA292491D12C778001B32E4 /* CourseDescriptionTableViewCell.swift in Sources */,
+				DC25BBF41D19333C008C5AB8 /* FavouriteViewController.swift in Sources */,
+				DC25BBF61D193846008C5AB8 /* FavouriteTableViewController.swift in Sources */,
 				DC91E8AE1D0583F90054F356 /* AppDelegate.swift in Sources */,
 				DCA2924D1D133FDB001B32E4 /* InfoTableViewCell.swift in Sources */,
 				DC29A0CA1D08554500D22919 /* OpenViewController.swift in Sources */,

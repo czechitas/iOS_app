@@ -16,6 +16,23 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
         // Override point for customization after application launch.
+        
+        Model.sharedInstance.fetchCourseData(APIRouter.CoursesOpen(), courseData: {
+            (data, data2) -> Void in
+            
+            return data
+            
+        })
+        
+        Model.sharedInstance.fetchCourseData(APIRouter.CoursesPrepared(), courseData: {
+            (data, data2) -> Void in
+            
+            return data
+            
+        })
+        
+        
+        
         return true
     }
 
@@ -39,6 +56,13 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func applicationWillTerminate(application: UIApplication) {
         // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
+    }
+    
+    func applicationDidFinishLaunching(application: UIApplication) {
+        
+        let defaults = NSUserDefaults.standardUserDefaults()
+        let defaultValue = ["Courses" : [[String:Int]]()]
+        defaults.registerDefaults(defaultValue)
     }
 
 

@@ -15,6 +15,7 @@ class Course : NSObject {
     var courseStartDate : String
     var courseEndDate : String
     var courseStartTime : String?
+    var courseEndTime : String?
     var courseDescription : String
     var coursePrice : String?
     var courseNotes : String?
@@ -52,18 +53,20 @@ class Course : NSObject {
         
     }
     
-    func convertDate() -> (String, String, String) {
+    func convertDate() -> (String, String, String, String) {
         let formatter = NSDateFormatter()
         formatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss'Z'"
         var startDate = formatter.dateFromString(courseStartDate)
-        var time = formatter.dateFromString(courseStartDate)
+        var startTime = formatter.dateFromString(courseStartDate)
+        var endTime = formatter.dateFromString(courseEndDate)
         var endDate = formatter.dateFromString(courseEndDate)
         formatter.dateFormat = "dd. MM. yyyy"
         var startDate1 = formatter.stringFromDate(startDate!)
         var endDate1 = formatter.stringFromDate(endDate!)
         formatter.dateFormat = "HH:mm"
-        courseStartTime = formatter.stringFromDate(time!)
-        return (startDate1, endDate1, courseStartTime!)
+        courseStartTime = formatter.stringFromDate(startTime!)
+        courseEndTime = formatter.stringFromDate(endTime!)
+        return (startDate1, endDate1, courseStartTime!, courseEndTime!)
     }
     
     

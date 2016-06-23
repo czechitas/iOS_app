@@ -12,6 +12,7 @@ import MessageUI
 
 class CourseDetailViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
 
+    @IBOutlet weak var addBtn: UIBarButtonItem!
     @IBOutlet weak var buttonAction: UIButton!
     @IBOutlet weak var courseTableView: UITableView!
     @IBOutlet weak var courseInfoView: UIView!
@@ -21,27 +22,37 @@ class CourseDetailViewController: UIViewController, UITableViewDelegate, UITable
     var course : Course!
     var courseDict = [Int : String]()
     var iconArray = [String]()
+    var myCourses = [Int]()
+    
+    var btnAddTitle : String?
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        
+        var image2 = UIImage(named: setBtnTitle())
+       
+    
+        self.addBtn.setBackgroundImage(image2, forState: .Normal, barMetrics: .Compact)
+        
+        
         self.navigationItem.title = course?.title
         self.navigationController?.navigationBar.tintColor = .whiteColor()
         
-        courseInfoView.backgroundColor = UIColor(hexString: (course?.courseCategoryColorCode)!)
+        courseInfoView.backgroundColor = UIColor(hexString: course.courseCategoryColorCode!)
         
         var dates = course?.convertDate()
         courseDates.text = (dates!.0) + " - " +  (dates!.1)
         courseTitle.text = course?.title
-        iconArray = ["", "time-icon", "pin-icon", "money-icon", "mail-icon", "notes-icon"]
+        iconArray = ["", "time", "pin", "money", "email", "notes"]
         
         
         
         
         if course?.courseLink == "" || course?.courseLink == "None" {
-            self.buttonAction.setTitle("Remind me", forState: .Normal)
+            self.buttonAction.setTitle("Mám záujem", forState: .Normal)
         } else {
-            self.buttonAction.setTitle("Register", forState: .Normal)
+            self.buttonAction.setTitle("Registrovať sa", forState: .Normal)
         }
         
         if course?.courseStartTime != nil && course?.createFullAddress() != nil && course?.coursePrice != nil && course?.courseCouchEmail != nil && course?.courseNotes != nil {
@@ -53,7 +64,27 @@ class CourseDetailViewController: UIViewController, UITableViewDelegate, UITable
         self.courseTableView.tableFooterView = UIView()
         self.courseTableView.estimatedRowHeight = 15.0
         self.courseTableView.rowHeight = UITableViewAutomaticDimension
+        
+        
     }
+    
+    func setBtnTitle() -> String {
+        if let existingCourse = getCourse() {
+            
+            for c in existingCourse {
+                if course.id == c["id"] {
+                    return "course-remove@1x"
+                }
+            }
+            
+        }
+        else {
+            return "course-add@1x"
+        }
+        return "course-add@1x"
+    }
+    
+    
     
     
     func createDict() -> () {
@@ -65,10 +96,10 @@ class CourseDetailViewController: UIViewController, UITableViewDelegate, UITable
         }
         
         self.courseDict = [
-            1 : dates!.2 ?? "Datum neuvedeny",
+            1 : dates!.2 + " - " + dates!.3 ?? "Datum neuvedeny",
             2 : (course?.createFullAddress()) ?? "Adresa neuvedena",
             3 : price1 ?? "Cena neuvedena",
-            4 : course?.courseCouchEmail ?? "Email neuvedeny",
+            4 : "Napíš koučovi" ?? "Email neuvedeny",
             5 : course?.courseNotes ?? "Poznamka neuvedena"
             ]
     }
@@ -137,6 +168,107 @@ class CourseDetailViewController: UIViewController, UITableViewDelegate, UITable
         controller.dismissViewControllerAnimated(true, completion: nil)
     }
     
+    func getCourse() -> [[String : Int]]? {
+        
+        return NSUserDefaults.standardUserDefaults().arrayForKey("Courses") as? [[String : Int]]
+        NSUserDefaults.standardUserDefaults().synchronize()
+        
+    }
+    
+    func saveCourse(dict : [String:Int]) {
+        
+        var newCourses : [[String : Int]]
+        if let existingCourse = getCourse() {
+            
+            newCourses = existingCourse
+            for i in newCourses {
+                
+            }
+            
+            newCourses.append(dict)
+            
+            
+        } else {
+            newCourses = [dict]
+            
+            
+        }
+        
+        
+        NSUserDefaults.standardUserDefaults().setObject(newCourses, forKey: "Courses")
+        NSUserDefaults.standardUserDefaults().synchronize()
+        
+    }
+    
+    func removeCourse(index : Int) {
+        var newCourses : [[String : Int]]
+        var existingCourse = getCourse()
+            
+            newCourses = existingCourse!
+            
+            newCourses.removeAtIndex(index)
+        
+            
+            
+            
+        
+        
+        
+        NSUserDefaults.standardUserDefaults().setObject(newCourses, forKey: "Courses")
+        NSUserDefaults.standardUserDefaults().synchronize()
+        
+    }
+    
+    func hasCourseWithThisID(courseId : Int) -> Bool {
+     if let existingCourse = getCourse() {
+        for c in existingCourse {
+            if c["id"] == courseId {
+                return true
+            }
+        }
+        }
+        return false
+    }
+    
+    @IBAction func addCourse(sender: UIBarButtonItem) {
+        let defaults = NSUserDefaults.standardUserDefaults()
+        var count = 0
+        
+        if let existingCourse = getCourse() {
+            for c in existingCourse {
+                if !hasCourseWithThisID(course.id) {
+                    
+                    
+                    saveCourse(["id" : course.id])
+                    break
+                    
+                }
+                else {
+                   
+                    if course.id == c["id"] {
+                    removeCourse(count)
+                        continue
+                        
+                    }
+                    count += 1
+                    
+                    continue
+                    
+                }
+            
+            }
+            
+            
+        }
+        
+        else {
+            
+            var date = course.convertDate()
+            saveCourse(["id" : course.id])
+        }
+
+    }
+    
     func numberOfSectionsInTableView(courseTableView: UITableView) -> Int {
         return 1
     }
@@ -172,7 +304,6 @@ class CourseDetailViewController: UIViewController, UITableViewDelegate, UITable
     
     func tableView(courseTableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         if indexPath.row == 4 {
-            
             sendEmail()
         }
     }
