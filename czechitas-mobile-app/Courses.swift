@@ -27,6 +27,7 @@ class Course : NSObject {
     var courseCity : String
     var courseCategoryTitle : String?
     var courseCategoryColorCode : String?
+    var courseState : String?
     
     
     
@@ -54,6 +55,7 @@ class Course : NSObject {
     }
     
     func convertDate() -> (String, String, String, String) {
+        
         let formatter = NSDateFormatter()
         formatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss'Z'"
         var startDate = formatter.dateFromString(courseStartDate)
@@ -73,7 +75,9 @@ class Course : NSObject {
     
     
     
-    
+    func setState(courseState : String) {
+        self.courseState = courseState
+    }
     
     func addCategory(courseCategoryTitle : String, courseCategoryColorCode : String) {
         self.courseCategoryTitle = courseCategoryTitle

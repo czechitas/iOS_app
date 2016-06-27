@@ -26,7 +26,7 @@
         </mutableArray>
     </customFonts>
     <scenes>
-        <!--Courses-->
+        <!--Kurzy-->
         <scene sceneID="5yr-qL-GzV">
             <objects>
                 <tableViewController id="akH-qF-stU" customClass="CourseTableViewController" customModule="czechitas_mobile_app" customModuleProvider="target" sceneMemberID="viewController">
@@ -161,22 +161,19 @@
                             <outlet property="delegate" destination="akH-qF-stU" id="zIm-FZ-ubC"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" title="Courses" id="hfh-Fs-Chp">
-                        <barButtonItem key="backBarButtonItem" title="Courses" id="cLC-pw-BbR"/>
-                        <barButtonItem key="rightBarButtonItem" image="filter" width="25" id="89V-DA-jZT">
+                    <navigationItem key="navigationItem" title="Kurzy" id="hfh-Fs-Chp">
+                        <barButtonItem key="backBarButtonItem" title="Kurzy" id="cLC-pw-BbR"/>
+                        <barButtonItem key="rightBarButtonItem" image="filter-1" width="25" id="89V-DA-jZT">
                             <color key="tintColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                         </barButtonItem>
                     </navigationItem>
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>
-                    <refreshControl key="refreshControl" opaque="NO" multipleTouchEnabled="YES" contentMode="center" enabled="NO" contentHorizontalAlignment="center" contentVerticalAlignment="center" id="tYb-ib-esM">
-                        <autoresizingMask key="autoresizingMask"/>
-                    </refreshControl>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="4Au-na-htW" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="2841" y="448"/>
         </scene>
-        <!--CourseDetail-->
+        <!--KurzDetail-->
         <scene sceneID="J91-sB-E6X">
             <objects>
                 <viewController id="sMy-9K-6CX" customClass="CourseDetailViewController" customModule="czechitas_mobile_app" customModuleProvider="target" sceneMemberID="viewController">
@@ -414,8 +411,8 @@
                         </variation>
                     </view>
                     <toolbarItems/>
-                    <navigationItem key="navigationItem" title="CourseDetail" id="RuR-Km-ecY">
-                        <barButtonItem key="backBarButtonItem" title="Courses" id="S5I-Od-HzQ"/>
+                    <navigationItem key="navigationItem" title="KurzDetail" id="RuR-Km-ecY">
+                        <barButtonItem key="backBarButtonItem" title="Kurzy" id="S5I-Od-HzQ"/>
                         <rightBarButtonItems>
                             <barButtonItem image="course-add" id="OPV-Rj-KXY">
                                 <connections>
@@ -526,6 +523,11 @@
                         <color key="tintColor" red="0.15686274510000001" green="0.21960784310000001" blue="0.56862745100000001" alpha="1" colorSpace="calibratedRGB"/>
                         <color key="barTintColor" red="0.93725490199999995" green="0.93725490199999995" blue="0.95686274510000002" alpha="1" colorSpace="calibratedRGB"/>
                         <color key="selectedImageTintColor" red="0.15686274510000001" green="0.21960784310000001" blue="0.56862745100000001" alpha="1" colorSpace="calibratedRGB"/>
+                        <userDefinedRuntimeAttributes>
+                            <userDefinedRuntimeAttribute type="color" keyPath="tintColor">
+                                <color key="value" red="0.15686274509803921" green="0.2196078431372549" blue="0.56862745098039214" alpha="1" colorSpace="calibratedRGB"/>
+                            </userDefinedRuntimeAttribute>
+                        </userDefinedRuntimeAttributes>
                     </tabBar>
                     <connections>
                         <segue destination="K9B-DU-Btx" kind="relationship" relationship="viewControllers" id="ntG-oc-3gi"/>
@@ -537,7 +539,7 @@
             </objects>
             <point key="canvasLocation" x="1442" y="448"/>
         </scene>
-        <!--Courses-->
+        <!--Kurzy-->
         <scene sceneID="aFa-kL-LpD">
             <objects>
                 <tableViewController id="TfQ-Er-ffX" customClass="FavouriteTableViewController" customModule="czechitas_mobile_app" customModuleProvider="target" sceneMemberID="viewController">
@@ -672,11 +674,8 @@
                             <outlet property="delegate" destination="TfQ-Er-ffX" id="Nxj-7e-82D"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" title="Courses" id="XVp-0A-icb">
-                        <barButtonItem key="backBarButtonItem" title="Courses" id="IZ2-k4-0ce">
-                            <color key="tintColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
-                        </barButtonItem>
-                        <barButtonItem key="rightBarButtonItem" image="filter" width="25" id="SfG-DG-JN8">
+                    <navigationItem key="navigationItem" title="Kurzy" id="XVp-0A-icb">
+                        <barButtonItem key="backBarButtonItem" title="Kurzy" id="IZ2-k4-0ce">
                             <color key="tintColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                         </barButtonItem>
                     </navigationItem>
@@ -690,13 +689,13 @@
     <resources>
         <image name="calendar" width="30" height="30"/>
         <image name="course-add" width="30" height="30"/>
-        <image name="filter" width="25" height="25"/>
+        <image name="filter-1" width="30" height="30"/>
         <image name="my-courses" width="30" height="30"/>
         <image name="open@1x" width="30" height="30"/>
         <image name="prepared" width="30" height="30"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="D4E-Ud-jbM"/>
         <segue reference="rxr-s1-DWT"/>
+        <segue reference="11m-D8-yna"/>
     </inferredMetricsTieBreakers>
 </document>

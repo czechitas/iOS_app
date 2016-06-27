@@ -21,21 +21,24 @@ enum APIRouter: URLRequestConvertible {
     case CoursesOpen()
     case CoursesAll()
     case Venues()
+    case Update(timestamp : Int)
     
     var URLRequest: NSMutableURLRequest {
         let path : String = {
             switch self
             {
-            case .Cities():
+            case .Cities:
                 return ("/cities/")
-            case .CoursesPrepared():
+            case .CoursesPrepared:
                 return ("/courses/prepared/")
-            case .CoursesOpen():
+            case .CoursesOpen:
                 return ("/courses/open/")
-            case .CoursesAll():
+            case .CoursesAll:
                 return ("/courses/all/")
             case .Venues:
                 return ("/courses/")
+            case .Update:
+                return ("/update-from=1464889500/")
             }
         }()
 

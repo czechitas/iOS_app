@@ -26,6 +26,7 @@ class FavouriteTableViewController: UITableViewController {
         
         
         
+        
         tableView.estimatedRowHeight = 85.0
         tableView.rowHeight = UITableViewAutomaticDimension
         tableView.tableFooterView = UIView()
@@ -37,7 +38,7 @@ class FavouriteTableViewController: UITableViewController {
     
     func getCourse() -> [[String:Int]]? {
         return NSUserDefaults.standardUserDefaults().arrayForKey("Courses") as? [[String:Int]]
-        NSUserDefaults.standardUserDefaults().synchronize()
+        //NSUserDefaults.standardUserDefaults().synchronize()
         
     }
     
@@ -48,7 +49,7 @@ class FavouriteTableViewController: UITableViewController {
             
         }
         self.myCourses = []
-
+        
         addMyCourse()
         self.tableView.reloadData()
         
@@ -68,6 +69,7 @@ class FavouriteTableViewController: UITableViewController {
     
     func addMyCourse() {
         
+       
         for i in self.course {
             for j in self.courses {
                 if i.id == j["id"]! {

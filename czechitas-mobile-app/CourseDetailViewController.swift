@@ -23,6 +23,7 @@ class CourseDetailViewController: UIViewController, UITableViewDelegate, UITable
     var courseDict = [Int : String]()
     var iconArray = [String]()
     var myCourses = [Int]()
+    var savedEventId : String?
     
     var btnAddTitle : String?
     
@@ -64,6 +65,7 @@ class CourseDetailViewController: UIViewController, UITableViewDelegate, UITable
         self.courseTableView.tableFooterView = UIView()
         self.courseTableView.estimatedRowHeight = 15.0
         self.courseTableView.rowHeight = UITableViewAutomaticDimension
+        self.savedEventId = "0"
         
         
     }
@@ -73,15 +75,15 @@ class CourseDetailViewController: UIViewController, UITableViewDelegate, UITable
             
             for c in existingCourse {
                 if course.id == c["id"] {
-                    return "course-remove@1x"
+                    return "course-remove"
                 }
             }
             
         }
         else {
-            return "course-add@1x"
+            return "course-add"
         }
-        return "course-add@1x"
+        return "course-add"
     }
     
     
@@ -99,7 +101,7 @@ class CourseDetailViewController: UIViewController, UITableViewDelegate, UITable
             1 : dates!.2 + " - " + dates!.3 ?? "Datum neuvedeny",
             2 : (course?.createFullAddress()) ?? "Adresa neuvedena",
             3 : price1 ?? "Cena neuvedena",
-            4 : "Napíš koučovi" ?? "Email neuvedeny",
+            4 : "Napíš koučovi",
             5 : course?.courseNotes ?? "Poznamka neuvedena"
             ]
     }
@@ -108,13 +110,27 @@ class CourseDetailViewController: UIViewController, UITableViewDelegate, UITable
         let eventStore = EKEventStore()
         if (EKEventStore.authorizationStatusForEntityType(.Event) != EKAuthorizationStatus.Authorized) {
             eventStore.requestAccessToEntityType(.Event, completion: { granted, error in
+                print (error)
+                if granted {
+                    
+                    
+                } else {
+                    AlertViewController().createAlert("Oznam", message : "Povolenie sa nepodarilo.")
+                }
             })
         } else {
-            print ("Error")
+            
+            eventStore.requestAccessToEntityType(.Event, completion: { granted, error in
+                
+            })
         }
         
-        var convertedDate = convertToDate((course?.courseStartDate)!, endDate: (course?.courseEndDate)!)
-        createEvent(eventStore, title: course.title, startDate: convertedDate.0, endDate: convertedDate.1)
+        let convertedDate = self.convertToDate((self.course?.courseStartDate)!, endDate: (self.course?.courseEndDate)!)
+        self.createEvent(eventStore, title: self.course.title, startDate: convertedDate.0, endDate: convertedDate.1)
+        
+        
+        
+        
         
     }
     
@@ -129,16 +145,37 @@ class CourseDetailViewController: UIViewController, UITableViewDelegate, UITable
     }
     
     func createEvent(eventStore : EKEventStore, title : String, startDate : NSDate, endDate : NSDate) {
-        let event = EKEvent(eventStore : eventStore)
-        event.title = title
-        event.startDate = startDate
-        event.endDate = endDate
-        event.calendar = eventStore.defaultCalendarForNewEvents
-        do {
-            try eventStore.saveEvent(event, span: .ThisEvent)
-        } catch {
-            print ("Error")
+        
+        
+        if let eventId = savedEventId {
+            
+            var event1 = eventStore.eventWithIdentifier(eventId)
+            
+            if event1 == nil {
+                let event = EKEvent(eventStore : eventStore)
+                event.title = title
+                event.startDate = startDate
+                event.endDate = endDate
+                event.calendar = eventStore.defaultCalendarForNewEvents
+                do {
+                    
+                    try eventStore.saveEvent(event, span: .ThisEvent)
+                    self.savedEventId = event.eventIdentifier
+                    
+                    AlertViewController().createAlert("Oznam", message : "Udalost pridana do kalendara")
+                    
+                } catch {
+                    AlertViewController().createAlert("Oznam", message : "Udalost uz existuje1")
+                }
+            } else {
+                AlertViewController().createAlert("Oznam", message : "Udalost uz existuje2")
+            }
+            
+        } else {
+            self.savedEventId = "0"
+            
         }
+        
     }
     
     @IBAction func buttonClick(sender: AnyObject) {
@@ -155,12 +192,12 @@ class CourseDetailViewController: UIViewController, UITableViewDelegate, UITable
     func sendEmail() {
         if MFMailComposeViewController.canSendMail() {
             let mail = MFMailComposeViewController()
-            mail.setToRecipients([courseDict[4]!])
+            mail.setToRecipients([course.courseCouchEmail!])
             mail.setMessageBody("", isHTML: false)
             presentViewController(mail, animated: true, completion: nil)
             
         } else {
-            print ("Error")
+            AlertViewController().createAlert("Chyba", message: "Email nie je mozne poslat")
         }
     }
     
@@ -171,7 +208,7 @@ class CourseDetailViewController: UIViewController, UITableViewDelegate, UITable
     func getCourse() -> [[String : Int]]? {
         
         return NSUserDefaults.standardUserDefaults().arrayForKey("Courses") as? [[String : Int]]
-        NSUserDefaults.standardUserDefaults().synchronize()
+        //NSUserDefaults.standardUserDefaults().synchronize()
         
     }
     
@@ -181,22 +218,22 @@ class CourseDetailViewController: UIViewController, UITableViewDelegate, UITable
         if let existingCourse = getCourse() {
             
             newCourses = existingCourse
-            for i in newCourses {
-                
-            }
+            
             
             newCourses.append(dict)
             
             
+            
         } else {
             newCourses = [dict]
+           
             
             
         }
         
         
         NSUserDefaults.standardUserDefaults().setObject(newCourses, forKey: "Courses")
-        NSUserDefaults.standardUserDefaults().synchronize()
+        //NSUserDefaults.standardUserDefaults().synchronize()
         
     }
     
@@ -208,7 +245,7 @@ class CourseDetailViewController: UIViewController, UITableViewDelegate, UITable
             
             newCourses.removeAtIndex(index)
         
-            
+        
             
             
         
@@ -235,18 +272,26 @@ class CourseDetailViewController: UIViewController, UITableViewDelegate, UITable
         var count = 0
         
         if let existingCourse = getCourse() {
+            
+            if existingCourse == [] {
+                saveCourse(["id" : course.id])
+            }
+            else {
+            
             for c in existingCourse {
                 if !hasCourseWithThisID(course.id) {
                     
                     
                     saveCourse(["id" : course.id])
-                    break
+                    
+                    continue
                     
                 }
                 else {
                    
                     if course.id == c["id"] {
                     removeCourse(count)
+                        
                         continue
                         
                     }
@@ -258,6 +303,7 @@ class CourseDetailViewController: UIViewController, UITableViewDelegate, UITable
             
             }
             
+            }
             
         }
         

@@ -13,6 +13,7 @@ class CourseTableViewController: UITableViewController {
     
     
     var courses = [Course]()
+    var coursesU = [Course]()
     var categories = [Category]()
    
     var courseID : Int = 0
@@ -46,14 +47,39 @@ class CourseTableViewController: UITableViewController {
         // Možnost skrývání prázdných řádků na konci
         tableView.tableFooterView = UIView()
         
-            
-        self.refreshControl?.addTarget(self, action: "handleRefresh", forControlEvents: UIControlEvents.ValueChanged)
+        /*
+        refreshControl = UIRefreshControl()
+        refreshControl!.attributedTitle = NSAttributedString(string: "Pull to refresh")
+        refreshControl!.addTarget(self, action: "refresh:", forControlEvents: UIControlEvents.ValueChanged)
+        */
+        
+        
+        
         
     }
     
-    func handleRefresh(refreshControl : UIRefreshControl) {
-        // volanie api s rozdielovou metodou
+    
+    /*
+    func refresh(sender:AnyObject) {
+        Model.sharedInstance.UpdateData(APIRouter.Update(timestamp: 1464889500), courseI: self.courses, courseData: {
+            (data, data2) -> Void in
+            
+            self.courses = data
+            var courseI = self.courses
+            
+                        //self.categories = data2
+            
+            
+            
+            
+        })
+        
+        
+        refreshControl!.endRefreshing()
+        self.tableView.reloadData()
     }
+    
+    */
     
     
 
@@ -78,6 +104,7 @@ class CourseTableViewController: UITableViewController {
     override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
         // #warning Incomplete implementation, return the number of sections
         if courses.count > 0 {
+            
             self.tableView.separatorStyle = .SingleLine
             self.tableView.backgroundView?.hidden = true
             return 1
@@ -193,3 +220,7 @@ class TableViewHelper {
         viewController.tableView.separatorStyle = .None
     }
 }
+
+
+
+
