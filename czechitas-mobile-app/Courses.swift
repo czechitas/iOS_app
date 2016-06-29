@@ -20,6 +20,7 @@ class Course : NSObject {
     var coursePrice : String?
     var courseNotes : String?
     var courseLink : String?
+    var interestedLink : String?
     var courseVenueTitle : String = ""
     var courseStreetName : String = ""
     var courseStreetNumber : String = ""
@@ -84,10 +85,11 @@ class Course : NSObject {
         self.courseCategoryColorCode = courseCategoryColorCode
     }
     
-    func addDetailInfo(coursePrice : String, courseNotes : String, courseLink : String, courseVenueTitle : String, courseStreetName : String, courseStreetNumber : String, courseCouchEmail : String) {
+    func addDetailInfo(coursePrice : String, courseNotes : String, courseLink : String, interestedLink : String, courseVenueTitle : String, courseStreetName : String, courseStreetNumber : String, courseCouchEmail : String) {
         self.coursePrice = coursePrice
         self.courseNotes = courseNotes
         self.courseLink = courseLink
+        self.interestedLink = interestedLink
         self.courseVenueTitle = courseVenueTitle
         self.courseStreetName = courseStreetName
         self.courseStreetNumber = courseStreetNumber

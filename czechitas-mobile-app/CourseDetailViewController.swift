@@ -198,7 +198,11 @@ class CourseDetailViewController: UIViewController, UITableViewDelegate, UITable
             }
         }
         else {
-            // TODO
+            let myWebView : UIWebView = UIWebView(frame: CGRectMake(0, 0, self.view.frame.width, self.view.frame.height))
+            if let interestedLink = course.interestedLink {
+                myWebView.loadRequest(NSURLRequest(URL: NSURL(string: interestedLink)!))
+                self.view.addSubview(myWebView)
+            }
         }
     }
     
