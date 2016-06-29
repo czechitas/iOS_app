@@ -1,6 +1,7 @@
 import Foundation
 import SystemConfiguration
 
+/*
 public class Reachability {
     
     class func isConnectedToNetwork() -> Bool {
@@ -25,3 +26,4 @@ public class Reachability {
         
     }
 }
+ */

@@ -68,12 +68,10 @@ class FavouriteTableViewController: UITableViewController {
     }
     
     func addMyCourse() {
-        
-       
         for i in self.course {
             for j in self.courses {
-                if i.id == j["id"]! {
-                    if !hasCourseWithThisTitle(j["id"]!) {
+                if i.id == j["id"] ?? 0 {
+                    if !hasCourseWithThisTitle(j["id"] ?? 0) {
                         self.myCourses.append(i)
                     }
                     else {
@@ -97,7 +95,7 @@ class FavouriteTableViewController: UITableViewController {
             self.tableView.backgroundView?.hidden = true
             return 1
         } else {
-            TableViewHelper.emptyMessage("empty", viewController: self)
+            TableViewHelper.emptyImage("empty", viewController: self)
             return 0
         }
 
@@ -110,7 +108,7 @@ class FavouriteTableViewController: UITableViewController {
 
     
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCellWithIdentifier("courseCell", forIndexPath: indexPath) as! CourseTableViewCell
+        if let cell = tableView.dequeueReusableCellWithIdentifier("courseCell", forIndexPath: indexPath) as? CourseTableViewCell {
         
         var dates = myCourses[indexPath.row].convertDate()
         cell.courseDate.text = dates.0 + " - " + myCourses[indexPath.row].courseCity
@@ -121,27 +119,24 @@ class FavouriteTableViewController: UITableViewController {
         var desc = description.substringToIndex(index)
         cell.courseDescription.text = desc
         let color = myCourses[indexPath.row].courseCategoryColorCode
-        cell.courseCategory.textColor = UIColor(hexString : color!)
+        cell.courseCategory.textColor = UIColor(hexString : color ?? "#dedede")
         cell.courseCategory.text = myCourses[indexPath.row].courseCategoryTitle
-        
-
         return cell
+        }
+        
+        return UITableViewCell()
     }
     
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        let index = self.tableView.indexPathForSelectedRow
-        
-        
-        
-        var courseD = self.myCourses[index!.row]
+        if let index = self.tableView.indexPathForSelectedRow {
+        var courseD = self.myCourses[index.row]
         if segue.identifier == "courseDetailSegue" {
             if let vc = segue.destinationViewController as? CourseDetailViewController {
-                
-                
                 vc.course = courseD
                 vc.hidesBottomBarWhenPushed = true
                 
             }
+        }
         }
         else {
             print ("error")

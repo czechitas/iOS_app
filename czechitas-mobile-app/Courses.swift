@@ -63,12 +63,12 @@ class Course : NSObject {
         var endTime = formatter.dateFromString(courseEndDate)
         var endDate = formatter.dateFromString(courseEndDate)
         formatter.dateFormat = "dd. MM. yyyy"
-        var startDate1 = formatter.stringFromDate(startDate!)
-        var endDate1 = formatter.stringFromDate(endDate!)
+        var startDate1 = formatter.stringFromDate(startDate ?? NSDate())
+        var endDate1 = formatter.stringFromDate(endDate ?? NSDate())
         formatter.dateFormat = "HH:mm"
-        courseStartTime = formatter.stringFromDate(startTime!)
-        courseEndTime = formatter.stringFromDate(endTime!)
-        return (startDate1, endDate1, courseStartTime!, courseEndTime!)
+        self.courseStartTime = formatter.stringFromDate(startTime ?? NSDate())
+        self.courseEndTime = formatter.stringFromDate(endTime ?? NSDate())
+        return (startDate1, endDate1, courseStartTime ?? "00:00:00", courseEndTime ?? "00:00:00")
     }
     
     

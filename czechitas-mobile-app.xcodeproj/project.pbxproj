@@ -21,6 +21,7 @@
 		DC6946C91D12AAAA00E5753C /* CourseDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC6946C81D12AAAA00E5753C /* CourseDetailViewController.swift */; };
 		DC740B451D207B9E00E2450B /* AlertViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC740B441D207B9E00E2450B /* AlertViewController.swift */; };
 		DC740B471D212BDB00E2450B /* Reachibility.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC740B461D212BDB00E2450B /* Reachibility.swift */; };
+		DC8D4CAB1D23F11600404599 /* PopUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC8D4CAA1D23F11600404599 /* PopUpViewController.swift */; };
 		DC91E8AE1D0583F90054F356 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC91E8AD1D0583F90054F356 /* AppDelegate.swift */; };
 		DC91E8B01D0583F90054F356 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC91E8AF1D0583F90054F356 /* ViewController.swift */; };
 		DC91E8B31D0583F90054F356 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DC91E8B11D0583F90054F356 /* Main.storyboard */; };
@@ -45,6 +46,7 @@
 		DC6946C81D12AAAA00E5753C /* CourseDetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CourseDetailViewController.swift; sourceTree = "<group>"; };
 		DC740B441D207B9E00E2450B /* AlertViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AlertViewController.swift; sourceTree = "<group>"; };
 		DC740B461D212BDB00E2450B /* Reachibility.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Reachibility.swift; sourceTree = "<group>"; };
+		DC8D4CAA1D23F11600404599 /* PopUpViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PopUpViewController.swift; sourceTree = "<group>"; };
 		DC91E8AA1D0583F90054F356 /* czechitas-mobile-app.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "czechitas-mobile-app.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		DC91E8AD1D0583F90054F356 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		DC91E8AF1D0583F90054F356 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -108,6 +110,7 @@
 				DC25BBF51D193846008C5AB8 /* FavouriteTableViewController.swift */,
 				DC740B441D207B9E00E2450B /* AlertViewController.swift */,
 				DC740B461D212BDB00E2450B /* Reachibility.swift */,
+				DC8D4CAA1D23F11600404599 /* PopUpViewController.swift */,
 			);
 			name = Controllers;
 			sourceTree = "<group>";
@@ -291,6 +294,7 @@
 				DC29A0BB1D05C20200D22919 /* DataManager.swift in Sources */,
 				DCA292491D12C778001B32E4 /* CourseDescriptionTableViewCell.swift in Sources */,
 				DC25BBF41D19333C008C5AB8 /* FavouriteViewController.swift in Sources */,
+				DC8D4CAB1D23F11600404599 /* PopUpViewController.swift in Sources */,
 				DC25BBF61D193846008C5AB8 /* FavouriteTableViewController.swift in Sources */,
 				DC91E8AE1D0583F90054F356 /* AppDelegate.swift in Sources */,
 				DCA2924D1D133FDB001B32E4 /* InfoTableViewCell.swift in Sources */,

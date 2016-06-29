@@ -42,9 +42,11 @@ enum APIRouter: URLRequestConvertible {
             }
         }()
 
-        let URL = NSURL(string: Alamofire.Manager.baseURL)!
+        if let URL = NSURL(string: Alamofire.Manager.baseURL) {
         let URLRequest = NSMutableURLRequest(URL: URL.URLByAppendingPathComponent(path))
         return URLRequest
+        }
+        return NSMutableURLRequest()
     }
 }
 

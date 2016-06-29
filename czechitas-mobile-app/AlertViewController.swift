@@ -9,9 +9,12 @@
 import UIKit
 
 class AlertViewController: UIAlertController {
+    
+    
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        
 
         // Do any additional setup after loading the view.
     }
@@ -31,11 +34,36 @@ class AlertViewController: UIAlertController {
             print (action)
             
         }
+        
+        
         alertController.addAction(OKAction)
         self.presentViewController(alertController, animated : true, completion: nil)
             
         
     }
+    
+    func createAlert2(title : String, message : String) {
+        let alertController = UIAlertController(title: title, message: message, preferredStyle: .Alert)
+        
+        var settingsAction = UIAlertAction(title: "Settings", style: .Default) { (_) -> Void in
+            let settingsURL = NSURL(string: UIApplicationOpenSettingsURLString)
+            if let url = settingsURL {
+                UIApplication.sharedApplication().openURL(url)
+            }
+        }
+        
+        let cancelAction = UIAlertAction(title : "Cancel", style: .Default) { (action) in
+            print (action)
+            
+        }
+        
+        alertController.addAction(settingsAction)
+        alertController.addAction(cancelAction)
+        self.presentViewController(alertController, animated : true, completion: nil)
+        
+        
+    }
+    
     
 
     /*
