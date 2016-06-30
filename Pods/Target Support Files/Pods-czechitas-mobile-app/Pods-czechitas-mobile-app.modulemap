@@ -1,0 +1,6 @@
+framework module Pods_czechitas_mobile_app {
+  umbrella header "Pods-czechitas-mobile-app-umbrella.h"
+
+  export *
+  module * { export * }
+}

@@ -1,0 +1,466 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		8C74DBEA702C012FDB7D4D56 /* Pods_czechitas_mobile_app.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FE206C2A293010A8821A1E28 /* Pods_czechitas_mobile_app.framework */; };
+		DC25BBF41D19333C008C5AB8 /* FavouriteViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC25BBF31D19333C008C5AB8 /* FavouriteViewController.swift */; };
+		DC25BBF61D193846008C5AB8 /* FavouriteTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC25BBF51D193846008C5AB8 /* FavouriteTableViewController.swift */; };
+		DC29A0BB1D05C20200D22919 /* DataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC29A0BA1D05C20200D22919 /* DataManager.swift */; };
+		DC29A0BF1D05E9A500D22919 /* Courses.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC29A0BE1D05E9A500D22919 /* Courses.swift */; };
+		DC29A0C61D0846DE00D22919 /* CourseTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC29A0C51D0846DE00D22919 /* CourseTableViewController.swift */; };
+		DC29A0C81D0853ED00D22919 /* PreparedViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC29A0C71D0853ED00D22919 /* PreparedViewController.swift */; };
+		DC29A0CA1D08554500D22919 /* OpenViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC29A0C91D08554500D22919 /* OpenViewController.swift */; };
+		DC29A0CC1D0889E300D22919 /* Model.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC29A0CB1D0889E300D22919 /* Model.swift */; };
+		DC6946C51D11562100E5753C /* CourseTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC6946C41D11562100E5753C /* CourseTableViewCell.swift */; };
+		DC6946C71D11881300E5753C /* open-sans in Resources */ = {isa = PBXBuildFile; fileRef = DC6946C61D11881300E5753C /* open-sans */; };
+		DC6946C91D12AAAA00E5753C /* CourseDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC6946C81D12AAAA00E5753C /* CourseDetailViewController.swift */; };
+		DC740B451D207B9E00E2450B /* AlertViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC740B441D207B9E00E2450B /* AlertViewController.swift */; };
+		DC740B471D212BDB00E2450B /* Reachibility.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC740B461D212BDB00E2450B /* Reachibility.swift */; };
+		DC8D4CAB1D23F11600404599 /* PopUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC8D4CAA1D23F11600404599 /* PopUpViewController.swift */; };
+		DC91E8AE1D0583F90054F356 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC91E8AD1D0583F90054F356 /* AppDelegate.swift */; };
+		DC91E8B01D0583F90054F356 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC91E8AF1D0583F90054F356 /* ViewController.swift */; };
+		DC91E8B31D0583F90054F356 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DC91E8B11D0583F90054F356 /* Main.storyboard */; };
+		DC91E8B51D0583F90054F356 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = DC91E8B41D0583F90054F356 /* Assets.xcassets */; };
+		DC91E8B81D0583F90054F356 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DC91E8B61D0583F90054F356 /* LaunchScreen.storyboard */; };
+		DCA292491D12C778001B32E4 /* CourseDescriptionTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCA292481D12C778001B32E4 /* CourseDescriptionTableViewCell.swift */; };
+		DCA2924D1D133FDB001B32E4 /* InfoTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCA2924C1D133FDB001B32E4 /* InfoTableViewCell.swift */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXFileReference section */
+		623A6661139BD833CF55CED6 /* Pods-czechitas-mobile-app.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-czechitas-mobile-app.debug.xcconfig"; path = "Pods/Target Support Files/Pods-czechitas-mobile-app/Pods-czechitas-mobile-app.debug.xcconfig"; sourceTree = "<group>"; };
+		DC25BBF31D19333C008C5AB8 /* FavouriteViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FavouriteViewController.swift; sourceTree = "<group>"; };
+		DC25BBF51D193846008C5AB8 /* FavouriteTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FavouriteTableViewController.swift; sourceTree = "<group>"; };
+		DC29A0BA1D05C20200D22919 /* DataManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DataManager.swift; sourceTree = "<group>"; };
+		DC29A0BE1D05E9A500D22919 /* Courses.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Courses.swift; sourceTree = "<group>"; };
+		DC29A0C51D0846DE00D22919 /* CourseTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CourseTableViewController.swift; sourceTree = "<group>"; };
+		DC29A0C71D0853ED00D22919 /* PreparedViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PreparedViewController.swift; sourceTree = "<group>"; };
+		DC29A0C91D08554500D22919 /* OpenViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OpenViewController.swift; sourceTree = "<group>"; };
+		DC29A0CB1D0889E300D22919 /* Model.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Model.swift; sourceTree = "<group>"; };
+		DC6946C41D11562100E5753C /* CourseTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CourseTableViewCell.swift; sourceTree = "<group>"; };
+		DC6946C61D11881300E5753C /* open-sans */ = {isa = PBXFileReference; lastKnownFileType = folder; path = "open-sans"; sourceTree = "<group>"; };
+		DC6946C81D12AAAA00E5753C /* CourseDetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CourseDetailViewController.swift; sourceTree = "<group>"; };
+		DC740B441D207B9E00E2450B /* AlertViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AlertViewController.swift; sourceTree = "<group>"; };
+		DC740B461D212BDB00E2450B /* Reachibility.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Reachibility.swift; sourceTree = "<group>"; };
+		DC8D4CAA1D23F11600404599 /* PopUpViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PopUpViewController.swift; sourceTree = "<group>"; };
+		DC91E8AA1D0583F90054F356 /* czechitas-mobile-app.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "czechitas-mobile-app.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		DC91E8AD1D0583F90054F356 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		DC91E8AF1D0583F90054F356 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		DC91E8B21D0583F90054F356 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		DC91E8B41D0583F90054F356 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		DC91E8B71D0583F90054F356 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		DC91E8B91D0583F90054F356 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		DCA292481D12C778001B32E4 /* CourseDescriptionTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CourseDescriptionTableViewCell.swift; sourceTree = "<group>"; };
+		DCA2924C1D133FDB001B32E4 /* InfoTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InfoTableViewCell.swift; sourceTree = "<group>"; };
+		FDF7574992EF1F62F3D05742 /* Pods-czechitas-mobile-app.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-czechitas-mobile-app.release.xcconfig"; path = "Pods/Target Support Files/Pods-czechitas-mobile-app/Pods-czechitas-mobile-app.release.xcconfig"; sourceTree = "<group>"; };
+		FE206C2A293010A8821A1E28 /* Pods_czechitas_mobile_app.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_czechitas_mobile_app.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		DC91E8A71D0583F80054F356 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				8C74DBEA702C012FDB7D4D56 /* Pods_czechitas_mobile_app.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		8A8F37340527E7E1B7168C83 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				623A6661139BD833CF55CED6 /* Pods-czechitas-mobile-app.debug.xcconfig */,
+				FDF7574992EF1F62F3D05742 /* Pods-czechitas-mobile-app.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
+		D5ECD7D71A77940B057CD92A /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				FE206C2A293010A8821A1E28 /* Pods_czechitas_mobile_app.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		DC29A0C01D07579700D22919 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				DC29A0BE1D05E9A500D22919 /* Courses.swift */,
+				DC29A0BA1D05C20200D22919 /* DataManager.swift */,
+				DC29A0CB1D0889E300D22919 /* Model.swift */,
+			);
+			name = Model;
+			sourceTree = "<group>";
+		};
+		DC29A0C11D0757AD00D22919 /* Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				DC29A0C51D0846DE00D22919 /* CourseTableViewController.swift */,
+				DC29A0C71D0853ED00D22919 /* PreparedViewController.swift */,
+				DC29A0C91D08554500D22919 /* OpenViewController.swift */,
+				DC6946C81D12AAAA00E5753C /* CourseDetailViewController.swift */,
+				DC25BBF31D19333C008C5AB8 /* FavouriteViewController.swift */,
+				DC25BBF51D193846008C5AB8 /* FavouriteTableViewController.swift */,
+				DC740B441D207B9E00E2450B /* AlertViewController.swift */,
+				DC740B461D212BDB00E2450B /* Reachibility.swift */,
+				DC8D4CAA1D23F11600404599 /* PopUpViewController.swift */,
+			);
+			name = Controllers;
+			sourceTree = "<group>";
+		};
+		DC29A0C21D07580800D22919 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				DC6946C41D11562100E5753C /* CourseTableViewCell.swift */,
+				DCA292481D12C778001B32E4 /* CourseDescriptionTableViewCell.swift */,
+				DCA2924C1D133FDB001B32E4 /* InfoTableViewCell.swift */,
+			);
+			name = Views;
+			sourceTree = "<group>";
+		};
+		DC91E8A11D0583F80054F356 = {
+			isa = PBXGroup;
+			children = (
+				DC91E8AC1D0583F90054F356 /* czechitas-mobile-app */,
+				DC91E8AB1D0583F90054F356 /* Products */,
+				8A8F37340527E7E1B7168C83 /* Pods */,
+				D5ECD7D71A77940B057CD92A /* Frameworks */,
+			);
+			sourceTree = "<group>";
+		};
+		DC91E8AB1D0583F90054F356 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				DC91E8AA1D0583F90054F356 /* czechitas-mobile-app.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		DC91E8AC1D0583F90054F356 /* czechitas-mobile-app */ = {
+			isa = PBXGroup;
+			children = (
+				DC29A0C21D07580800D22919 /* Views */,
+				DC29A0C11D0757AD00D22919 /* Controllers */,
+				DC29A0C01D07579700D22919 /* Model */,
+				DC91E8AD1D0583F90054F356 /* AppDelegate.swift */,
+				DC91E8AF1D0583F90054F356 /* ViewController.swift */,
+				DC91E8B11D0583F90054F356 /* Main.storyboard */,
+				DC91E8B41D0583F90054F356 /* Assets.xcassets */,
+				DC6946C61D11881300E5753C /* open-sans */,
+				DC91E8B61D0583F90054F356 /* LaunchScreen.storyboard */,
+				DC91E8B91D0583F90054F356 /* Info.plist */,
+			);
+			path = "czechitas-mobile-app";
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		DC91E8A91D0583F80054F356 /* czechitas-mobile-app */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = DC91E8BC1D0583F90054F356 /* Build configuration list for PBXNativeTarget "czechitas-mobile-app" */;
+			buildPhases = (
+				DDBBF87714C9D11FC245C6D7 /* 📦 Check Pods Manifest.lock */,
+				DC91E8A61D0583F80054F356 /* Sources */,
+				DC91E8A71D0583F80054F356 /* Frameworks */,
+				DC91E8A81D0583F80054F356 /* Resources */,
+				A7707BD42253A67BCD2A5AFA /* 📦 Embed Pods Frameworks */,
+				0DBEAD559C4ABE1DF298EAB3 /* 📦 Copy Pods Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = "czechitas-mobile-app";
+			productName = "czechitas-mobile-app";
+			productReference = DC91E8AA1D0583F90054F356 /* czechitas-mobile-app.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		DC91E8A21D0583F80054F356 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastSwiftUpdateCheck = 0730;
+				LastUpgradeCheck = 0730;
+				ORGANIZATIONNAME = "Svetlana Margetová";
+				TargetAttributes = {
+					DC91E8A91D0583F80054F356 = {
+						CreatedOnToolsVersion = 7.3.1;
+						DevelopmentTeam = V74C3HABYQ;
+					};
+				};
+			};
+			buildConfigurationList = DC91E8A51D0583F80054F356 /* Build configuration list for PBXProject "czechitas-mobile-app" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = DC91E8A11D0583F80054F356;
+			productRefGroup = DC91E8AB1D0583F90054F356 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				DC91E8A91D0583F80054F356 /* czechitas-mobile-app */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		DC91E8A81D0583F80054F356 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				DC91E8B81D0583F90054F356 /* LaunchScreen.storyboard in Resources */,
+				DC6946C71D11881300E5753C /* open-sans in Resources */,
+				DC91E8B51D0583F90054F356 /* Assets.xcassets in Resources */,
+				DC91E8B31D0583F90054F356 /* Main.storyboard in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		0DBEAD559C4ABE1DF298EAB3 /* 📦 Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "📦 Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-czechitas-mobile-app/Pods-czechitas-mobile-app-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		A7707BD42253A67BCD2A5AFA /* 📦 Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "📦 Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-czechitas-mobile-app/Pods-czechitas-mobile-app-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		DDBBF87714C9D11FC245C6D7 /* 📦 Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "📦 Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		DC91E8A61D0583F80054F356 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				DC6946C91D12AAAA00E5753C /* CourseDetailViewController.swift in Sources */,
+				DC29A0C61D0846DE00D22919 /* CourseTableViewController.swift in Sources */,
+				DC29A0C81D0853ED00D22919 /* PreparedViewController.swift in Sources */,
+				DC29A0BF1D05E9A500D22919 /* Courses.swift in Sources */,
+				DC6946C51D11562100E5753C /* CourseTableViewCell.swift in Sources */,
+				DC91E8B01D0583F90054F356 /* ViewController.swift in Sources */,
+				DC740B471D212BDB00E2450B /* Reachibility.swift in Sources */,
+				DC29A0BB1D05C20200D22919 /* DataManager.swift in Sources */,
+				DCA292491D12C778001B32E4 /* CourseDescriptionTableViewCell.swift in Sources */,
+				DC25BBF41D19333C008C5AB8 /* FavouriteViewController.swift in Sources */,
+				DC8D4CAB1D23F11600404599 /* PopUpViewController.swift in Sources */,
+				DC25BBF61D193846008C5AB8 /* FavouriteTableViewController.swift in Sources */,
+				DC91E8AE1D0583F90054F356 /* AppDelegate.swift in Sources */,
+				DCA2924D1D133FDB001B32E4 /* InfoTableViewCell.swift in Sources */,
+				DC29A0CA1D08554500D22919 /* OpenViewController.swift in Sources */,
+				DC740B451D207B9E00E2450B /* AlertViewController.swift in Sources */,
+				DC29A0CC1D0889E300D22919 /* Model.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXVariantGroup section */
+		DC91E8B11D0583F90054F356 /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				DC91E8B21D0583F90054F356 /* Base */,
+			);
+			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
+		DC91E8B61D0583F90054F356 /* LaunchScreen.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				DC91E8B71D0583F90054F356 /* Base */,
+			);
+			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		DC91E8BA1D0583F90054F356 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
+				MTL_ENABLE_DEBUG_INFO = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+			};
+			name = Debug;
+		};
+		DC91E8BB1D0583F90054F356 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				SDKROOT = iphoneos;
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		DC91E8BD1D0583F90054F356 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 623A6661139BD833CF55CED6 /* Pods-czechitas-mobile-app.debug.xcconfig */;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				INFOPLIST_FILE = "czechitas-mobile-app/Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.brainity.czechitas-mobile-app";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "6ac5cd8d-4fdc-4210-8926-bc50fc318b28";
+			};
+			name = Debug;
+		};
+		DC91E8BE1D0583F90054F356 /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = FDF7574992EF1F62F3D05742 /* Pods-czechitas-mobile-app.release.xcconfig */;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				INFOPLIST_FILE = "czechitas-mobile-app/Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.brainity.czechitas-mobile-app";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "6ac5cd8d-4fdc-4210-8926-bc50fc318b28";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		DC91E8A51D0583F80054F356 /* Build configuration list for PBXProject "czechitas-mobile-app" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				DC91E8BA1D0583F90054F356 /* Debug */,
+				DC91E8BB1D0583F90054F356 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		DC91E8BC1D0583F90054F356 /* Build configuration list for PBXNativeTarget "czechitas-mobile-app" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				DC91E8BD1D0583F90054F356 /* Debug */,
+				DC91E8BE1D0583F90054F356 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = DC91E8A21D0583F80054F356 /* Project object */;
+}
