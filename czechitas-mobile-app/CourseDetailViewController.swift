@@ -20,7 +20,7 @@ class CourseDetailViewController: UIViewController, UITableViewDelegate, UITable
     @IBOutlet weak var courseDates: UILabel!
     
     var course : Course!
-    var courseDict = [Int : String]()
+    var courseDict = [String]()
     var iconArray = [String]()
     var myCourses = [Int]()
     var savedEventId : String?
@@ -87,16 +87,11 @@ class CourseDetailViewController: UIViewController, UITableViewDelegate, UITable
         let dates = course.convertDate()
         
         var price1 : String = ""
-        if let price = course?.coursePrice {
+        if let price = course.coursePrice {
             price1 = price + " CZK"
         }
         
-        courseDict = [
-            1 : dates.2 + " - " + dates.3 ?? "Datum neuvedeny",
-            2 : (course?.createFullAddress()) ?? "Adresa neuvedena",
-            3 : price1 ?? "Cena neuvedena",
-            4 : "Napíš koučovi",
-            5 : course?.courseNotes ?? "Poznamka neuvedena"
+        courseDict = ["", dates.2 + " - " + dates.3 ?? "Datum neuvedeny", (course.createFullAddress()) ?? "Adresa neuvedena", price1 ?? "Cena neuvedena", "Napíš koučovi", course.courseNotes ?? "Poznamka neuvedena"
             ]
     }
     
@@ -190,19 +185,10 @@ class CourseDetailViewController: UIViewController, UITableViewDelegate, UITable
 
 
     @IBAction func buttonClick(sender: AnyObject) {
-        if course.courseLink != "" || course.courseLink != "None" {
+        if let url = course.courseLink {
         let myWebView : UIWebView = UIWebView(frame: CGRectMake(0, 0, self.view.frame.width, self.view.frame.height))
-            if let courseLink = course.courseLink {
-                myWebView.loadRequest(NSURLRequest(URL: NSURL(string: courseLink)!))
-                self.view.addSubview(myWebView)
-            }
-        }
-        else {
-            let myWebView : UIWebView = UIWebView(frame: CGRectMake(0, 0, self.view.frame.width, self.view.frame.height))
-            if let interestedLink = course.interestedLink {
-                myWebView.loadRequest(NSURLRequest(URL: NSURL(string: interestedLink)!))
-                self.view.addSubview(myWebView)
-            }
+        myWebView.loadRequest(NSURLRequest(URL: NSURL(string: url)!))
+        self.view.addSubview(myWebView)
         }
     }
     
