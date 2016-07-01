@@ -31,35 +31,35 @@ class CourseDetailViewController: UIViewController, UITableViewDelegate, UITable
         super.viewDidLoad()
         
         
-        var image2 = UIImage(named: setBtnTitle())
+        let image2 = UIImage(named: setBtnTitle())
        
     
-        self.addBtn.image = image2
+        addBtn.image = image2
         
         
-        self.navigationItem.title = course.title
-        self.navigationController?.navigationBar.tintColor = .whiteColor()
+        navigationItem.title = course.title
+        navigationController?.navigationBar.tintColor = .whiteColor()
         
         courseInfoView.backgroundColor = UIColor(hexString: course.courseCategoryColorCode ?? "#dedede")
         
-        var dates = course.convertDate()
+        let dates = course.convertDate()
         courseDates.text = (dates.0) + " - " +  (dates.1)
         courseTitle.text = course.title
         iconArray = ["", "time", "pin", "money", "email", "notes"]
         
         if course.courseLink == "" || course.courseLink == "None" {
-            self.buttonAction.setTitle("Mám záujem", forState: .Normal)
+            buttonAction.setTitle("Mám záujem", forState: .Normal)
         } else {
-            self.buttonAction.setTitle("Registrovať sa", forState: .Normal)
+            buttonAction.setTitle("Registrovať sa", forState: .Normal)
         }
         createDict()
         
         
-        self.courseTableView.delegate = self
-        self.courseTableView.dataSource = self
-        self.courseTableView.tableFooterView = UIView()
-        self.courseTableView.estimatedRowHeight = 15.0
-        self.courseTableView.rowHeight = UITableViewAutomaticDimension
+        courseTableView.delegate = self
+        courseTableView.dataSource = self
+        courseTableView.tableFooterView = UIView()
+        courseTableView.estimatedRowHeight = 15.0
+        courseTableView.rowHeight = UITableViewAutomaticDimension
         
         
         savedEventId = "0"
@@ -84,14 +84,14 @@ class CourseDetailViewController: UIViewController, UITableViewDelegate, UITable
     
     
     func createDict() -> () {
-        var dates = course.convertDate()
+        let dates = course.convertDate()
         
         var price1 : String = ""
         if let price = course?.coursePrice {
             price1 = price + " CZK"
         }
         
-        self.courseDict = [
+        courseDict = [
             1 : dates.2 + " - " + dates.3 ?? "Datum neuvedeny",
             2 : (course?.createFullAddress()) ?? "Adresa neuvedena",
             3 : price1 ?? "Cena neuvedena",
@@ -119,8 +119,8 @@ class CourseDetailViewController: UIViewController, UITableViewDelegate, UITable
             })
         }
         
-        let convertedDate = self.convertToDate((self.course.courseStartDate), endDate: (self.course.courseEndDate))
-        self.createEvent(eventStore, title: self.course.title, startDate: convertedDate.0, endDate: convertedDate.1)
+        let convertedDate = convertToDate((course.courseStartDate), endDate: (course.courseEndDate))
+        createEvent(eventStore, title: course.title, startDate: convertedDate.0, endDate: convertedDate.1)
         
         
         
@@ -133,8 +133,8 @@ class CourseDetailViewController: UIViewController, UITableViewDelegate, UITable
         let endDate = endDate
         let formatter = NSDateFormatter()
         formatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss'Z'"
-        var startDate1 = formatter.dateFromString(startDate)
-        var endDate1 = formatter.dateFromString(endDate)
+        let startDate1 = formatter.dateFromString(startDate)
+        let endDate1 = formatter.dateFromString(endDate)
         return (startDate1 ?? NSDate(), endDate1 ?? NSDate())
     }
     
@@ -144,7 +144,7 @@ class CourseDetailViewController: UIViewController, UITableViewDelegate, UITable
         
         let predicate = eventStore.predicateForEventsWithStartDate(oneMonthAgo, endDate: oneMonthAfter, calendars: nil)
         
-        var events = eventStore.eventsMatchingPredicate(predicate)
+        let events = eventStore.eventsMatchingPredicate(predicate)
         
         
         for e in events {
@@ -175,7 +175,7 @@ class CourseDetailViewController: UIViewController, UITableViewDelegate, UITable
                 event.calendar = eventStore.defaultCalendarForNewEvents
                 do {
                     try eventStore.saveEvent(event, span: .ThisEvent)
-                    self.savedEventId = event.eventIdentifier
+                    savedEventId = event.eventIdentifier
                     
                     AlertViewController().createAlert("Oznam", message : "Udalost pridana do kalendara")
                     
@@ -183,7 +183,7 @@ class CourseDetailViewController: UIViewController, UITableViewDelegate, UITable
                     AlertViewController().createAlert("Oznam", message : "Chyba")
                 }
         } else {
-            AlertViewController().createAlert("Oznam", message : "Existuje")
+            AlertViewController().createAlert("Oznam", message : "Udalost je uz do kalendara pridana")
         }
     }
     
@@ -306,9 +306,7 @@ class CourseDetailViewController: UIViewController, UITableViewDelegate, UITable
 
     }
     
-    func numberOfSectionsInTableView(courseTableView: UITableView) -> Int {
-        return 1
-    }
+    
     
     func tableView(courseTableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         

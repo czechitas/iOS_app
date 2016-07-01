@@ -45,20 +45,20 @@ class FavouriteTableViewController: UITableViewController {
     override func viewWillAppear(animated: Bool) {
         
         if let existingCourse = getCourse() {
-            self.courses = existingCourse
+            courses = existingCourse
             
         }
-        self.myCourses = []
+        myCourses = []
         
         addMyCourse()
-        self.tableView.reloadData()
+        tableView.reloadData()
         
         
     }
     
     
     func hasCourseWithThisTitle(courseId : Int) -> Bool {
-        for c in self.myCourses {
+        for c in myCourses {
             if c.id == courseId {
                 return true
             }
@@ -68,11 +68,11 @@ class FavouriteTableViewController: UITableViewController {
     }
     
     func addMyCourse() {
-        for i in self.course {
-            for j in self.courses {
+        for i in course {
+            for j in courses {
                 if i.id == j["id"] ?? 0 {
                     if !hasCourseWithThisTitle(j["id"] ?? 0) {
-                        self.myCourses.append(i)
+                        myCourses.append(i)
                     }
                     else {
                         print ("Course exists")
@@ -90,9 +90,9 @@ class FavouriteTableViewController: UITableViewController {
     // MARK: - Table view data source
 
     override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
-        if self.myCourses.count > 0 {
-            self.tableView.separatorStyle = .SingleLine
-            self.tableView.backgroundView?.hidden = true
+        if myCourses.count > 0 {
+            tableView.separatorStyle = .SingleLine
+            tableView.backgroundView?.hidden = true
             return 1
         } else {
             TableViewHelper.emptyImage("empty", viewController: self)
@@ -103,20 +103,20 @@ class FavouriteTableViewController: UITableViewController {
 
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of rows
-        return self.myCourses.count
+        return myCourses.count
     }
 
     
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         if let cell = tableView.dequeueReusableCellWithIdentifier("courseCell", forIndexPath: indexPath) as? CourseTableViewCell {
         
-        var dates = myCourses[indexPath.row].convertDate()
+        let dates = myCourses[indexPath.row].convertDate()
         cell.courseDate.text = dates.0 + " - " + myCourses[indexPath.row].courseCity
         cell.courseDate.font = UIFont.boldSystemFontOfSize(12.0)
         cell.courseTitle.text = myCourses[indexPath.row].title
         let description = myCourses[indexPath.row].courseDescription
         let index = description.startIndex.advancedBy(200)
-        var desc = description.substringToIndex(index)
+        let desc = description.substringToIndex(index)
         cell.courseDescription.text = desc
         let color = myCourses[indexPath.row].courseCategoryColorCode
         cell.courseCategory.textColor = UIColor(hexString : color ?? "#dedede")
@@ -128,11 +128,11 @@ class FavouriteTableViewController: UITableViewController {
     }
     
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        if let index = self.tableView.indexPathForSelectedRow {
-        var courseD = self.myCourses[index.row]
+        if let index = tableView.indexPathForSelectedRow {
+        let courseDetail = myCourses[index.row]
         if segue.identifier == "courseDetailSegue" {
             if let vc = segue.destinationViewController as? CourseDetailViewController {
-                vc.course = courseD
+                vc.course = courseDetail
                 vc.hidesBottomBarWhenPushed = true
                 
             }
