@@ -59,13 +59,13 @@ class Course : NSObject {
         
         let formatter = NSDateFormatter()
         formatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss'Z'"
-        var startDate = formatter.dateFromString(courseStartDate)
-        var startTime = formatter.dateFromString(courseStartDate)
-        var endTime = formatter.dateFromString(courseEndDate)
-        var endDate = formatter.dateFromString(courseEndDate)
+        let startDate = formatter.dateFromString(courseStartDate)
+        let startTime = formatter.dateFromString(courseStartDate)
+        let endTime = formatter.dateFromString(courseEndDate)
+        let endDate = formatter.dateFromString(courseEndDate)
         formatter.dateFormat = "dd. MM. yyyy"
-        var startDate1 = formatter.stringFromDate(startDate ?? NSDate())
-        var endDate1 = formatter.stringFromDate(endDate ?? NSDate())
+        let startDate1 = formatter.stringFromDate(startDate ?? NSDate())
+        let endDate1 = formatter.stringFromDate(endDate ?? NSDate())
         formatter.dateFormat = "HH:mm"
         self.courseStartTime = formatter.stringFromDate(startTime ?? NSDate())
         self.courseEndTime = formatter.stringFromDate(endTime ?? NSDate())
@@ -102,7 +102,7 @@ class Course : NSObject {
     }
     
     func createFullAddress() -> String {
-        var fullAddress = "\(self.courseVenueTitle), \(self.courseStreetName) \(self.courseStreetNumber), \(self.courseCity)"
+        let fullAddress = "\(self.courseVenueTitle), \(self.courseStreetName) \(self.courseStreetNumber), \(self.courseCity)"
         
         
         return fullAddress

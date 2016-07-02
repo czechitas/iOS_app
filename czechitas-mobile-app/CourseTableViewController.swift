@@ -55,8 +55,8 @@ class CourseTableViewController: UITableViewController {
 
     override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
         if courses.count > 0 {
-            self.tableView.separatorStyle = .SingleLine
-            self.tableView.backgroundView?.hidden = true
+            tableView.separatorStyle = .SingleLine
+            tableView.backgroundView?.hidden = true
             return 1
         } else {
             TableViewHelper.emptyImage("empty", viewController: self)
@@ -66,23 +66,23 @@ class CourseTableViewController: UITableViewController {
     }
 
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return self.courses.count
+        return courses.count
     }
 
     
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         if let cell = tableView.dequeueReusableCellWithIdentifier("courseCell", forIndexPath: indexPath) as? CourseTableViewCell {
         
-        var dates = courses[indexPath.row].convertDate()
+        let dates = courses[indexPath.row].convertDate()
         cell.courseDate.text = "\(dates.0), \(courses[indexPath.row].courseCity)"
         cell.courseDate.font = UIFont.boldSystemFontOfSize(12.0)
         cell.courseTitle.text = courses[indexPath.row].title
         let description = courses[indexPath.row].courseDescription
         let index = description.startIndex.advancedBy(200)
-        var desc = description.substringToIndex(index)
+        let desc = description.substringToIndex(index)
         cell.courseDescription.text = desc
         let color = courses[indexPath.row].courseCategoryColorCode
-            cell.courseCategory.textColor = UIColor(hexString : color ?? "#dedede")
+        cell.courseCategory.textColor = UIColor(hexString : color ?? "#dedede")
         cell.courseCategory.text = courses[indexPath.row].courseCategoryTitle
         return cell
             
@@ -93,11 +93,11 @@ class CourseTableViewController: UITableViewController {
     }
     
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        if let index = self.tableView.indexPathForSelectedRow {
-            let courseD = courses[index.row]
+        if let index = tableView.indexPathForSelectedRow {
+            let courseDetail = courses[index.row]
             if segue.identifier == "courseDetailSegue" {
                 if let vc = segue.destinationViewController as? CourseDetailViewController {
-                    vc.course = courseD
+                    vc.course = courseDetail
                     vc.hidesBottomBarWhenPushed = true
                 }
             }
@@ -113,7 +113,7 @@ class TableViewHelper {
         let image = UIImage(named: image)
         
         if let bgImage = image {
-            var imageV = UIImageView(image : bgImage)
+            let imageV = UIImageView(image : bgImage)
             imageV.frame = CGRectMake(20, 100, 60, 60)
             imageV.contentMode = .ScaleAspectFit
             imageV.sizeToFit()

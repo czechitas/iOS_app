@@ -20,7 +20,7 @@ class CourseDetailViewController: UIViewController, UITableViewDelegate, UITable
     @IBOutlet weak var courseDates: UILabel!
     
     var course : Course!
-    var courseDict = [Int : String]()
+    var courseDetails = [String]()
     var iconArray = [String]()
     var myCourses = [Int]()
     var savedEventId : String?
@@ -31,35 +31,36 @@ class CourseDetailViewController: UIViewController, UITableViewDelegate, UITable
         super.viewDidLoad()
         
         
-        var image2 = UIImage(named: setBtnTitle())
+        let image2 = UIImage(named: setBtnTitle())
        
     
-        self.addBtn.image = image2
+        addBtn.image = image2
         
         
-        self.navigationItem.title = course.title
-        self.navigationController?.navigationBar.tintColor = .whiteColor()
+        navigationItem.title = course.title
+        navigationController?.navigationBar.tintColor = .whiteColor()
         
         courseInfoView.backgroundColor = UIColor(hexString: course.courseCategoryColorCode ?? "#dedede")
         
-        var dates = course.convertDate()
+        let dates = course.convertDate()
         courseDates.text = (dates.0) + " - " +  (dates.1)
         courseTitle.text = course.title
         iconArray = ["", "time", "pin", "money", "email", "notes"]
         
         if course.courseLink == "" || course.courseLink == "None" {
-            self.buttonAction.setTitle("Mám záujem", forState: .Normal)
+            buttonAction.setTitle("Mám záujem", forState: .Normal)
         } else {
-            self.buttonAction.setTitle("Registrovať sa", forState: .Normal)
+            buttonAction.setTitle("Registrovať sa", forState: .Normal)
         }
-        createDict()
+        
+        createArray()
         
         
-        self.courseTableView.delegate = self
-        self.courseTableView.dataSource = self
-        self.courseTableView.tableFooterView = UIView()
-        self.courseTableView.estimatedRowHeight = 15.0
-        self.courseTableView.rowHeight = UITableViewAutomaticDimension
+        courseTableView.delegate = self
+        courseTableView.dataSource = self
+        courseTableView.tableFooterView = UIView()
+        courseTableView.estimatedRowHeight = 15.0
+        courseTableView.rowHeight = UITableViewAutomaticDimension
         
         
         savedEventId = "0"
@@ -83,20 +84,15 @@ class CourseDetailViewController: UIViewController, UITableViewDelegate, UITable
     
     
     
-    func createDict() -> () {
-        var dates = course.convertDate()
+    func createArray() -> () {
+        let dates = course.convertDate()
         
         var price1 : String = ""
-        if let price = course?.coursePrice {
+        if let price = course.coursePrice {
             price1 = price + " CZK"
         }
         
-        self.courseDict = [
-            1 : dates.2 + " - " + dates.3 ?? "Datum neuvedeny",
-            2 : (course?.createFullAddress()) ?? "Adresa neuvedena",
-            3 : price1 ?? "Cena neuvedena",
-            4 : "Napíš koučovi",
-            5 : course?.courseNotes ?? "Poznamka neuvedena"
+        courseDetails = [" ", dates.2 + " - " + dates.3 ?? "Datum neuvedeny", (course.createFullAddress()) ?? "Adresa neuvedena", price1 ?? "Cena neuvedena", "Napíš koučovi", course.courseNotes ?? "Poznamka neuvedena"
             ]
     }
     
@@ -119,8 +115,8 @@ class CourseDetailViewController: UIViewController, UITableViewDelegate, UITable
             })
         }
         
-        let convertedDate = self.convertToDate((self.course.courseStartDate), endDate: (self.course.courseEndDate))
-        self.createEvent(eventStore, title: self.course.title, startDate: convertedDate.0, endDate: convertedDate.1)
+        let convertedDate = convertToDate((course.courseStartDate), endDate: (course.courseEndDate))
+        createEvent(eventStore, title: course.title, startDate: convertedDate.0, endDate: convertedDate.1)
         
         
         
@@ -133,8 +129,8 @@ class CourseDetailViewController: UIViewController, UITableViewDelegate, UITable
         let endDate = endDate
         let formatter = NSDateFormatter()
         formatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss'Z'"
-        var startDate1 = formatter.dateFromString(startDate)
-        var endDate1 = formatter.dateFromString(endDate)
+        let startDate1 = formatter.dateFromString(startDate)
+        let endDate1 = formatter.dateFromString(endDate)
         return (startDate1 ?? NSDate(), endDate1 ?? NSDate())
     }
     
@@ -144,17 +140,10 @@ class CourseDetailViewController: UIViewController, UITableViewDelegate, UITable
         
         let predicate = eventStore.predicateForEventsWithStartDate(oneMonthAgo, endDate: oneMonthAfter, calendars: nil)
         
-        var events = eventStore.eventsMatchingPredicate(predicate)
+        let events = eventStore.eventsMatchingPredicate(predicate)
         
+        return events.contains({$0.title == course.title})
         
-        for e in events {
-            
-            if e.title == course.title {
-                return true
-                
-            }
-    }
-        return false
     }
     
     func createEvent(eventStore : EKEventStore, title : String, startDate : NSDate, endDate : NSDate) {
@@ -163,7 +152,7 @@ class CourseDetailViewController: UIViewController, UITableViewDelegate, UITable
             
         })
         
-        
+       
         if !getAllEvents(eventStore) {
             
             print (!getAllEvents(eventStore))
@@ -175,7 +164,7 @@ class CourseDetailViewController: UIViewController, UITableViewDelegate, UITable
                 event.calendar = eventStore.defaultCalendarForNewEvents
                 do {
                     try eventStore.saveEvent(event, span: .ThisEvent)
-                    self.savedEventId = event.eventIdentifier
+                    savedEventId = event.eventIdentifier
                     
                     AlertViewController().createAlert("Oznam", message : "Udalost pridana do kalendara")
                     
@@ -183,26 +172,17 @@ class CourseDetailViewController: UIViewController, UITableViewDelegate, UITable
                     AlertViewController().createAlert("Oznam", message : "Chyba")
                 }
         } else {
-            AlertViewController().createAlert("Oznam", message : "Existuje")
+            AlertViewController().createAlert("Oznam", message : "Udalost je uz do kalendara pridana")
         }
     }
     
 
 
     @IBAction func buttonClick(sender: AnyObject) {
-        if course.courseLink != "" || course.courseLink != "None" {
+        if let url = course.courseLink {
         let myWebView : UIWebView = UIWebView(frame: CGRectMake(0, 0, self.view.frame.width, self.view.frame.height))
-            if let courseLink = course.courseLink {
-                myWebView.loadRequest(NSURLRequest(URL: NSURL(string: courseLink)!))
-                self.view.addSubview(myWebView)
-            }
-        }
-        else {
-            let myWebView : UIWebView = UIWebView(frame: CGRectMake(0, 0, self.view.frame.width, self.view.frame.height))
-            if let interestedLink = course.interestedLink {
-                myWebView.loadRequest(NSURLRequest(URL: NSURL(string: interestedLink)!))
-                self.view.addSubview(myWebView)
-            }
+        myWebView.loadRequest(NSURLRequest(URL: NSURL(string: url)!))
+        self.view.addSubview(myWebView)
         }
     }
     
@@ -306,13 +286,12 @@ class CourseDetailViewController: UIViewController, UITableViewDelegate, UITable
 
     }
     
-    func numberOfSectionsInTableView(courseTableView: UITableView) -> Int {
-        return 1
-    }
+    
     
     func tableView(courseTableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         
-        return courseDict.count + 1
+        
+        return courseDetails.count
     }
     
     func tableView(courseTableView: UITableView, cellForRowAtIndexPath indexPath : NSIndexPath) -> UITableViewCell {
@@ -325,7 +304,9 @@ class CourseDetailViewController: UIViewController, UITableViewDelegate, UITable
             
         } else {
             if let cell = courseTableView.dequeueReusableCellWithIdentifier("infoCell", forIndexPath: indexPath) as? InfoTableViewCell {
-                cell.infoCourse.text = courseDict[indexPath.row]
+                
+                print (indexPath.row)
+                cell.infoCourse.text = courseDetails[indexPath.row]
                 cell.imageCourse.image = UIImage(named: iconArray[indexPath.row])
                 cell.selectionStyle = .None
                 if indexPath.row == 4 {

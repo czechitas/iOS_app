@@ -45,14 +45,14 @@ class AlertViewController: UIAlertController {
     func createAlert2(title : String, message : String) {
         let alertController = UIAlertController(title: title, message: message, preferredStyle: .Alert)
         
-        var settingsAction = UIAlertAction(title: "Settings", style: .Default) { (_) -> Void in
+        var settingsAction = UIAlertAction(title: "Nastavenia", style: .Default) { (_) -> Void in
             let settingsURL = NSURL(string: UIApplicationOpenSettingsURLString)
             if let url = settingsURL {
                 UIApplication.sharedApplication().openURL(url)
             }
         }
         
-        let cancelAction = UIAlertAction(title : "Cancel", style: .Default) { (action) in
+        let cancelAction = UIAlertAction(title : "Zrusit", style: .Default) { (action) in
             print (action)
             
         }
