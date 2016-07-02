@@ -20,7 +20,7 @@ class CourseDetailViewController: UIViewController, UITableViewDelegate, UITable
     @IBOutlet weak var courseDates: UILabel!
     
     var course : Course!
-    var courseDict = [String]()
+    var courseDetails = [String]()
     var iconArray = [String]()
     var myCourses = [Int]()
     var savedEventId : String?
@@ -52,7 +52,8 @@ class CourseDetailViewController: UIViewController, UITableViewDelegate, UITable
         } else {
             buttonAction.setTitle("Registrovať sa", forState: .Normal)
         }
-        createDict()
+        
+        createArray()
         
         
         courseTableView.delegate = self
@@ -83,7 +84,7 @@ class CourseDetailViewController: UIViewController, UITableViewDelegate, UITable
     
     
     
-    func createDict() -> () {
+    func createArray() -> () {
         let dates = course.convertDate()
         
         var price1 : String = ""
@@ -91,7 +92,7 @@ class CourseDetailViewController: UIViewController, UITableViewDelegate, UITable
             price1 = price + " CZK"
         }
         
-        courseDict = ["", dates.2 + " - " + dates.3 ?? "Datum neuvedeny", (course.createFullAddress()) ?? "Adresa neuvedena", price1 ?? "Cena neuvedena", "Napíš koučovi", course.courseNotes ?? "Poznamka neuvedena"
+        courseDetails = [" ", dates.2 + " - " + dates.3 ?? "Datum neuvedeny", (course.createFullAddress()) ?? "Adresa neuvedena", price1 ?? "Cena neuvedena", "Napíš koučovi", course.courseNotes ?? "Poznamka neuvedena"
             ]
     }
     
@@ -141,15 +142,8 @@ class CourseDetailViewController: UIViewController, UITableViewDelegate, UITable
         
         let events = eventStore.eventsMatchingPredicate(predicate)
         
+        return events.contains({$0.title == course.title})
         
-        for e in events {
-            
-            if e.title == course.title {
-                return true
-                
-            }
-    }
-        return false
     }
     
     func createEvent(eventStore : EKEventStore, title : String, startDate : NSDate, endDate : NSDate) {
@@ -158,7 +152,7 @@ class CourseDetailViewController: UIViewController, UITableViewDelegate, UITable
             
         })
         
-        
+       
         if !getAllEvents(eventStore) {
             
             print (!getAllEvents(eventStore))
@@ -296,7 +290,8 @@ class CourseDetailViewController: UIViewController, UITableViewDelegate, UITable
     
     func tableView(courseTableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         
-        return courseDict.count + 1
+        
+        return courseDetails.count
     }
     
     func tableView(courseTableView: UITableView, cellForRowAtIndexPath indexPath : NSIndexPath) -> UITableViewCell {
@@ -309,7 +304,9 @@ class CourseDetailViewController: UIViewController, UITableViewDelegate, UITable
             
         } else {
             if let cell = courseTableView.dequeueReusableCellWithIdentifier("infoCell", forIndexPath: indexPath) as? InfoTableViewCell {
-                cell.infoCourse.text = courseDict[indexPath.row]
+                
+                print (indexPath.row)
+                cell.infoCourse.text = courseDetails[indexPath.row]
                 cell.imageCourse.image = UIImage(named: iconArray[indexPath.row])
                 cell.selectionStyle = .None
                 if indexPath.row == 4 {
