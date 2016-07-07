@@ -1,21 +1,24 @@
 PODS:
   - Alamofire (3.4.0)
   - ReachabilitySwift (2.3.3)
+  - SVProgressHUD (2.0.3)
   - SwiftHEXColors (1.0.4)
   - SwiftyJSON (2.3.2)
 
 DEPENDENCIES:
   - Alamofire (~> 3.4)
   - ReachabilitySwift
+  - SVProgressHUD
   - SwiftHEXColors
   - SwiftyJSON
 
 SPEC CHECKSUMS:
   Alamofire: c19a627cefd6a95f840401c49ab1f124e07f54ee
   ReachabilitySwift: e0f6b6f280effb47731acfaaa2d5ffe223703793
+  SVProgressHUD: b0830714205bea1317ea1a2ebc71e5633af334d4
   SwiftHEXColors: b0ecc7bd83a1aa2e1956f9ba51f55ebb2bcf86ef
   SwiftyJSON: 04ccea08915aa0109039157c7974cf0298da292a
 
-PODFILE CHECKSUM: 0df660668eb3ff24b7c08de4d45793998f4e53ad
+PODFILE CHECKSUM: c946a2df38b32e47b6de67e25fa76477cbfa612f
 
 COCOAPODS: 1.0.0

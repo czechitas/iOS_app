@@ -8,13 +8,74 @@
 
 import Foundation
 import SwiftyJSON
+import ReachabilitySwift
+import SVProgressHUD
 
-class Model {
+class Model : BaseViewController {
     static var sharedInstance = Model()
     
     var allCourses = [Course]()
     var categories = [Category]()
     
+    var reachability: Reachability?
+    
+    override func viewDidLoad() {
+        checkReachibility()
+    
+    }
+    func reachabilityChanged(note: NSNotification) {
+        
+        let reachability = note.object as! Reachability
+        
+        if reachability.isReachable() {
+            if reachability.isReachableViaWiFi() {
+                print("Reachable via WiFi")
+                
+                
+            } else {
+                print("Reachable via Cellular")
+                
+            }
+        } else {
+            print("Network not reachable")
+            self.createAlert2("Chyba", message : "Nie ste pripojeny k netu")
+            SVProgressHUD.dismiss()
+        }
+    }
+    
+    func checkReachibility() {
+        do {
+            try reachability?.startNotifier()
+            
+        } catch {
+            print("Unable to start notifier")
+        }
+        
+        do {
+            reachability = try Reachability.reachabilityForInternetConnection()
+            
+        } catch {
+            print("Unable to create Reachability")
+            return
+            
+        }
+        
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: "reachabilityChanged:",name: ReachabilityChangedNotification,object: reachability)
+        do{
+            try reachability?.startNotifier()
+            
+        }catch{
+            print("could not start reachability notifier")
+        }
+    }
+        
+    
+        
+    
+    
+    
+    
+
     
     
     func isCategoryWithThisID(id : Int) -> Bool {
@@ -44,11 +105,11 @@ class Model {
                     
                     let category = Category(id: subJson["course_category"]["id"].intValue, title: subJson["course_category"]["title"].stringValue, colorCode: subJson["course_category"]["color_code"].stringValue)
                     
-                    if !self.isCategoryWithThisID(category.id) {
+                    if self.categories.contains({$0.id == category.id}) == false {
                         self.categories.append(category)
-                    } else {
-                        print ("Category exists")
                     }
+                    
+                    
                     
                     
                     // toto tu finalne nebude , lebo kategorie sa vraj budu este menit
@@ -69,7 +130,7 @@ class Model {
             //debugPrint ("Number of \(method) courses: \(self.courses.count)")
             
             
-           
+            print (self.categories.count)
             courseData(data: courses, data2 : self.categories)
             
         })
@@ -188,6 +249,44 @@ class Model {
         })
     }
  */
+
+    
+    func getCourse() -> [[String : Int]]? {
+        
+        return NSUserDefaults.standardUserDefaults().arrayForKey("Courses") as? [[String : Int]]
+        //NSUserDefaults.standardUserDefaults().synchronize()
+        
+    }
+    
+    func saveCourse(dict : [String:Int]) {
+        
+        var newCourses : [[String : Int]]
+        if let existingCourse = getCourse() {
+            
+            newCourses = existingCourse
+            newCourses.append(dict)
+            
+        } else {
+            newCourses = [dict]
+            
+        }
+        
+        
+        NSUserDefaults.standardUserDefaults().setObject(newCourses, forKey: "Courses")
+        NSUserDefaults.standardUserDefaults().synchronize()
+        
+    }
+    
+    func removeCourse(index : Int) {
+        var newCourses : [[String : Int]]
+        if let existingCourse = getCourse() {
+            newCourses = existingCourse
+            newCourses.removeAtIndex(index)
+            
+            NSUserDefaults.standardUserDefaults().setObject(newCourses, forKey: "Courses")
+            NSUserDefaults.standardUserDefaults().synchronize()
+        }
+    }
 
 
 }

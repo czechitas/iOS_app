@@ -36,15 +36,10 @@ class FavouriteTableViewController: UITableViewController {
     }
     
     
-    func getCourse() -> [[String:Int]]? {
-        return NSUserDefaults.standardUserDefaults().arrayForKey("Courses") as? [[String:Int]]
-        //NSUserDefaults.standardUserDefaults().synchronize()
-        
-    }
-    
     override func viewWillAppear(animated: Bool) {
+        self.course = Model.sharedInstance.allCourses
         
-        if let existingCourse = getCourse() {
+        if let existingCourse = Model.sharedInstance.getCourse() {
             courses = existingCourse
             
         }
@@ -57,32 +52,10 @@ class FavouriteTableViewController: UITableViewController {
     }
     
     
-    func hasCourseWithThisTitle(courseId : Int) -> Bool {
-        for c in myCourses {
-            if c.id == courseId {
-                return true
-            }
-            
-        }
-        return false
-    }
-    
     func addMyCourse() {
-        for i in course {
-            for j in courses {
-                if i.id == j["id"] ?? 0 {
-                    if !hasCourseWithThisTitle(j["id"] ?? 0) {
-                        myCourses.append(i)
-                    }
-                    else {
-                        print ("Course exists")
-                    }
-                }
-                else {
-                    continue
-                }
-            }
-        }
+        myCourses = course.filter( { (course) in
+            courses.contains({$0["id"] == course.id})
+        })
     }
     
     
@@ -96,7 +69,7 @@ class FavouriteTableViewController: UITableViewController {
             return 1
         } else {
             TableViewHelper.emptyImage("empty", viewController: self)
-            return 0
+            return 1
         }
 
     }
@@ -109,19 +82,9 @@ class FavouriteTableViewController: UITableViewController {
     
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         if let cell = tableView.dequeueReusableCellWithIdentifier("courseCell", forIndexPath: indexPath) as? CourseTableViewCell {
-        
-        let dates = myCourses[indexPath.row].convertDate()
-        cell.courseDate.text = dates.0 + " - " + myCourses[indexPath.row].courseCity
-        cell.courseDate.font = UIFont.boldSystemFontOfSize(12.0)
-        cell.courseTitle.text = myCourses[indexPath.row].title
-        let description = myCourses[indexPath.row].courseDescription
-        let index = description.startIndex.advancedBy(200)
-        let desc = description.substringToIndex(index)
-        cell.courseDescription.text = desc
-        let color = myCourses[indexPath.row].courseCategoryColorCode
-        cell.courseCategory.textColor = UIColor(hexString : color ?? "#dedede")
-        cell.courseCategory.text = myCourses[indexPath.row].courseCategoryTitle
-        return cell
+            
+            cell.configureCell(myCourses[indexPath.row])
+            return cell
         }
         
         return UITableViewCell()
@@ -143,47 +106,14 @@ class FavouriteTableViewController: UITableViewController {
         }
     }
     
-
-    /*
-    // Override to support conditional editing of the table view.
-    override func tableView(tableView: UITableView, canEditRowAtIndexPath indexPath: NSIndexPath) -> Bool {
-        // Return false if you do not want the specified item to be editable.
-        return true
+    override func tableView(tableView: UITableView, commitEditingStyle editingStyle: UITableViewCellEditingStyle, forRowAtIndexPath indexPath: NSIndexPath) {
+        if editingStyle == .Delete {
+            Model.sharedInstance.removeCourse(indexPath.row)
+            myCourses.removeAtIndex(indexPath.row)
+            tableView.deleteRowsAtIndexPaths([indexPath], withRowAnimation: .Fade)
+        }
     }
-    */
-
     
-    
-    
-    
-    
-    
-    
-
-    /*
-    // Override to support rearranging the table view.
-    override func tableView(tableView: UITableView, moveRowAtIndexPath fromIndexPath: NSIndexPath, toIndexPath: NSIndexPath) {
-
-    }
-    */
-
-    /*
-    // Override to support conditional rearranging of the table view.
-    override func tableView(tableView: UITableView, canMoveRowAtIndexPath indexPath: NSIndexPath) -> Bool {
-        // Return false if you do not want the item to be re-orderable.
-        return true
-    }
-    */
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
-    }
-    */
 
 }
 

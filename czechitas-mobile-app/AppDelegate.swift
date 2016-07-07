@@ -7,78 +7,14 @@
 //
 
 import UIKit
-import ReachabilitySwift
+
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
-    var reachability: Reachability?
-    
-    
-    func reachabilityChanged(note: NSNotification) {
-        
-        let reachability = note.object as! Reachability
-        
-        if reachability.isReachable() {
-            if reachability.isReachableViaWiFi() {
-                print("Reachable via WiFi")
-                Model.sharedInstance.fetchCourseData(APIRouter.CoursesOpen(), courseData: {
-                    (data, data2) -> Void in
-                    
-                    return data
-                    
-                })
-                
-                Model.sharedInstance.fetchCourseData(APIRouter.CoursesPrepared(), courseData: {
-                    (data, data2) -> Void in
-                    
-                    return data
-                    
-                })
-            } else {
-                print("Reachable via Cellular")
-                Model.sharedInstance.fetchCourseData(APIRouter.CoursesOpen(), courseData: {
-                    (data, data2) -> Void in
-                    
-                    return data
-                    
-                })
-                
-                Model.sharedInstance.fetchCourseData(APIRouter.CoursesPrepared(), courseData: {
-                    (data, data2) -> Void in
-                    
-                    return data
-                    
-                })
-            }
-        } else {
-            print("Network not reachable")
-            AlertViewController().createAlert2("Chyba", message : "Nie ste pripojeny k netu")
-        }
-    }
     
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
-        
-        do {
-            try reachability?.startNotifier()
-        } catch {
-            print("Unable to start notifier")
-        }
-        
-        do {
-            reachability = try Reachability.reachabilityForInternetConnection()
-        } catch {
-            print("Unable to create Reachability")
-            //return
-        }
-        
-        NSNotificationCenter.defaultCenter().addObserver(self, selector: "reachabilityChanged:",name: ReachabilityChangedNotification,object: reachability)
-        do{
-            try reachability?.startNotifier()
-        }catch{
-            print("could not start reachability notifier")
-        }
         
         
         
