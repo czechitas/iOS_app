@@ -15,7 +15,20 @@ class CourseTableViewCell: UITableViewCell {
     @IBOutlet weak var courseDescription: UILabel!
     @IBOutlet weak var courseTitle: UILabel!
     
-    
+    func configureCell(course : Course) {
+        
+        let dates = course.convertDate()
+        courseDate.text = dates.0 + " - " + course.courseCity
+        courseDate.font = UIFont.boldSystemFontOfSize(12.0)
+        courseTitle.text = course.title
+        let description = course.courseDescription
+        let index = description.startIndex.advancedBy(200)
+        let desc = description.substringToIndex(index)
+        courseDescription.text = desc
+        courseCategory.textColor = course.courseCategoryColorCode
+        courseCategory.text = course.courseCategoryTitle
+        
+    }
     
     override func awakeFromNib() {
         super.awakeFromNib()

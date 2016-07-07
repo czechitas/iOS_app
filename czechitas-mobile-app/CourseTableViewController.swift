@@ -9,6 +9,7 @@
 import UIKit
 import SwiftHEXColors
 import ReachabilitySwift
+import SVProgressHUD
 
 class CourseTableViewController: UITableViewController {
     
@@ -24,19 +25,51 @@ class CourseTableViewController: UITableViewController {
         
         super.viewDidLoad()
         
+        
+        
         tableView.estimatedRowHeight = 85.0
         tableView.rowHeight = UITableViewAutomaticDimension
         
+        SVProgressHUD.showWithStatus("Stahovanie dat")
+        SVProgressHUD.setDefaultStyle(.Custom)
+        SVProgressHUD.setForegroundColor(.whiteColor())
+        SVProgressHUD.setBackgroundColor(UIColor(hexString: "#283891"))
         Model.sharedInstance.fetchCourseData(setTableView(), courseData: {
             (data, data2) -> Void in
-
+            
+            
             self.courses = data
             self.categories = data2
+            SVProgressHUD.dismiss()
             self.tableView.reloadData()
         })
         
+        
+        
         tableView.tableFooterView = UIView()
 
+    }
+    
+    
+    override func viewWillAppear(animated: Bool) {
+        
+        Model.sharedInstance.checkReachibility()
+        
+        if courses.isEmpty == true {
+            SVProgressHUD.showWithStatus("Stahovanie dat")
+            SVProgressHUD.setDefaultStyle(.Custom)
+            SVProgressHUD.setForegroundColor(.whiteColor())
+            SVProgressHUD.setBackgroundColor(UIColor(hexString: "#283891"))
+            Model.sharedInstance.fetchCourseData(setTableView(), courseData: {
+                (data, data2) -> Void in
+                
+                
+                self.courses = data
+                self.categories = data2
+                SVProgressHUD.dismiss()
+                self.tableView.reloadData()
+            })
+        }
     }
     
     
@@ -58,9 +91,12 @@ class CourseTableViewController: UITableViewController {
             tableView.separatorStyle = .SingleLine
             tableView.backgroundView?.hidden = true
             return 1
-        } else {
+        } else if SVProgressHUD.isVisible() == true && courses.isEmpty {
             TableViewHelper.emptyImage("empty", viewController: self)
-            return 0
+            return 1
+        }
+        else {
+            return 1
         }
         
     }
@@ -73,18 +109,8 @@ class CourseTableViewController: UITableViewController {
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         if let cell = tableView.dequeueReusableCellWithIdentifier("courseCell", forIndexPath: indexPath) as? CourseTableViewCell {
         
-        let dates = courses[indexPath.row].convertDate()
-        cell.courseDate.text = "\(dates.0), \(courses[indexPath.row].courseCity)"
-        cell.courseDate.font = UIFont.boldSystemFontOfSize(12.0)
-        cell.courseTitle.text = courses[indexPath.row].title
-        let description = courses[indexPath.row].courseDescription
-        let index = description.startIndex.advancedBy(200)
-        let desc = description.substringToIndex(index)
-        cell.courseDescription.text = desc
-        let color = courses[indexPath.row].courseCategoryColorCode
-        cell.courseCategory.textColor = UIColor(hexString : color ?? "#dedede")
-        cell.courseCategory.text = courses[indexPath.row].courseCategoryTitle
-        return cell
+            cell.configureCell(courses[indexPath.row])
+            return cell
             
         }
         
@@ -119,7 +145,7 @@ class TableViewHelper {
             imageV.sizeToFit()
             imageV.clipsToBounds = true
             
-            viewController.tableView.backgroundView = imageV;
+            viewController.tableView.backgroundView = imageV
             viewController.tableView.separatorStyle = .None
         }
     }

@@ -7,7 +7,7 @@
 //
 
 import Foundation
-
+import SwiftHEXColors
 
 class Course : NSObject {
     var id : Int
@@ -27,7 +27,7 @@ class Course : NSObject {
     var courseCouchEmail : String?
     var courseCity : String
     var courseCategoryTitle : String?
-    var courseCategoryColorCode : String?
+    var courseCategoryColorCode : UIColor?
     var courseState : String?
     
     
@@ -82,7 +82,7 @@ class Course : NSObject {
     
     func addCategory(courseCategoryTitle : String, courseCategoryColorCode : String) {
         self.courseCategoryTitle = courseCategoryTitle
-        self.courseCategoryColorCode = courseCategoryColorCode
+        self.courseCategoryColorCode = UIColor(hexString : courseCategoryColorCode ?? "#dedede")
     }
     
     func addDetailInfo(coursePrice : String, courseNotes : String, courseLink : String, interestedLink : String, courseVenueTitle : String, courseStreetName : String, courseStreetNumber : String, courseCouchEmail : String) {

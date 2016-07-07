@@ -10,8 +10,13 @@ import UIKit
 import EventKit
 import MessageUI
 
-class CourseDetailViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
+struct CourseStruct {
+    var icon : String
+    var description : String
+}
 
+class CourseDetailViewController: BaseViewController, UITableViewDelegate, UITableViewDataSource, MFMailComposeViewControllerDelegate {
+    
     @IBOutlet weak var addBtn: UIBarButtonItem!
     @IBOutlet weak var buttonAction: UIButton!
     @IBOutlet weak var courseTableView: UITableView!
@@ -19,33 +24,34 @@ class CourseDetailViewController: UIViewController, UITableViewDelegate, UITable
     @IBOutlet weak var courseTitle: UILabel!
     @IBOutlet weak var courseDates: UILabel!
     
+    
     var course : Course!
-    var courseDetails = [String]()
-    var iconArray = [String]()
-    var myCourses = [Int]()
     var savedEventId : String?
     
     var btnAddTitle : String?
+    
+    var courseDetails = [CourseStruct]()
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
         
         let image2 = UIImage(named: setBtnTitle())
-       
-    
+        
+        
+        
         addBtn.image = image2
         
         
         navigationItem.title = course.title
         navigationController?.navigationBar.tintColor = .whiteColor()
         
-        courseInfoView.backgroundColor = UIColor(hexString: course.courseCategoryColorCode ?? "#dedede")
+        courseInfoView.backgroundColor = course.courseCategoryColorCode
         
         let dates = course.convertDate()
         courseDates.text = (dates.0) + " - " +  (dates.1)
         courseTitle.text = course.title
-        iconArray = ["", "time", "pin", "money", "email", "notes"]
+        
         
         if course.courseLink == "" || course.courseLink == "None" {
             buttonAction.setTitle("Mám záujem", forState: .Normal)
@@ -53,11 +59,8 @@ class CourseDetailViewController: UIViewController, UITableViewDelegate, UITable
             buttonAction.setTitle("Registrovať sa", forState: .Normal)
         }
         
-        createArray()
+        courseDetails = createStruct()
         
-        
-        courseTableView.delegate = self
-        courseTableView.dataSource = self
         courseTableView.tableFooterView = UIView()
         courseTableView.estimatedRowHeight = 15.0
         courseTableView.rowHeight = UITableViewAutomaticDimension
@@ -67,24 +70,18 @@ class CourseDetailViewController: UIViewController, UITableViewDelegate, UITable
     }
     
     func setBtnTitle() -> String {
-        if let existingCourse = getCourse() {
-            
-            for c in existingCourse {
-            if course.id == c["id"] {
-                return "course-remove"
-                
-                }
-            }
-            } else {
+        
+        if Model.sharedInstance.getCourse()?.contains({$0["id"] == course.id}) == true {
+            return "course-remove"
+        } else {
             return "course-add"
         }
-        return "course-add"
     }
     
     
     
     
-    func createArray() -> () {
+    func createStruct() -> [CourseStruct] {
         let dates = course.convertDate()
         
         var price1 : String = ""
@@ -92,8 +89,15 @@ class CourseDetailViewController: UIViewController, UITableViewDelegate, UITable
             price1 = price + " CZK"
         }
         
-        courseDetails = [" ", dates.2 + " - " + dates.3 ?? "Datum neuvedeny", (course.createFullAddress()) ?? "Adresa neuvedena", price1 ?? "Cena neuvedena", "Napíš koučovi", course.courseNotes ?? "Poznamka neuvedena"
-            ]
+        let rowEmpty = CourseStruct(icon: "", description: "")
+        let row1 = CourseStruct(icon: "time", description: dates.2 + " - " + dates.3 ?? "Datum neuvedeny")
+        let row2 = CourseStruct(icon: "pin", description: (course.createFullAddress()) ?? "Adresa neuvedena")
+        let row3 = CourseStruct(icon: "money", description: price1 ?? "Cena neuvedena")
+        let row4 = CourseStruct(icon: "email", description: "Napíš koučovi")
+        let row5 = CourseStruct(icon: "notes", description: course.courseNotes ?? "Poznamka neuvedena")
+        
+        return [rowEmpty, row1, row2, row3, row4, row5]
+
     }
     
     @IBAction func addToCalendar(sender: UIBarButtonItem) {
@@ -105,7 +109,7 @@ class CourseDetailViewController: UIViewController, UITableViewDelegate, UITable
                     
                     
                 } else {
-                    AlertViewController().createAlert("Oznam", message : "Povolenie sa nepodarilo.")
+                    self.createAlert("Oznam", message : "Povolenie sa nepodarilo.")
                 }
             })
         } else {
@@ -125,8 +129,6 @@ class CourseDetailViewController: UIViewController, UITableViewDelegate, UITable
     }
     
     func convertToDate(startDate : String, endDate : String) -> (NSDate, NSDate) {
-        let startDate = startDate
-        let endDate = endDate
         let formatter = NSDateFormatter()
         formatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss'Z'"
         let startDate1 = formatter.dateFromString(startDate)
@@ -152,49 +154,56 @@ class CourseDetailViewController: UIViewController, UITableViewDelegate, UITable
             
         })
         
-       
+        
         if !getAllEvents(eventStore) {
             
             print (!getAllEvents(eventStore))
-                let event = EKEvent(eventStore : eventStore)
+            let event = EKEvent(eventStore : eventStore)
+            
+            event.title = title
+            event.startDate = startDate
+            event.endDate = endDate
+            event.calendar = eventStore.defaultCalendarForNewEvents
+            do {
+                try eventStore.saveEvent(event, span: .ThisEvent)
+                savedEventId = event.eventIdentifier
                 
-                event.title = title
-                event.startDate = startDate
-                event.endDate = endDate
-                event.calendar = eventStore.defaultCalendarForNewEvents
-                do {
-                    try eventStore.saveEvent(event, span: .ThisEvent)
-                    savedEventId = event.eventIdentifier
-                    
-                    AlertViewController().createAlert("Oznam", message : "Udalost pridana do kalendara")
-                    
-                } catch {
-                    AlertViewController().createAlert("Oznam", message : "Chyba")
-                }
+                self.createAlert("Oznam", message : "Udalost pridana do kalendara")
+                
+            } catch {
+                self.createAlert("Oznam", message : "Chyba")
+            }
         } else {
-            AlertViewController().createAlert("Oznam", message : "Udalost je uz do kalendara pridana")
+            self.createAlert("Oznam", message : "Udalost je uz do kalendara pridana")
         }
     }
     
-
-
+    
+    
     @IBAction func buttonClick(sender: AnyObject) {
         if let url = course.courseLink {
-        let myWebView : UIWebView = UIWebView(frame: CGRectMake(0, 0, self.view.frame.width, self.view.frame.height))
-        myWebView.loadRequest(NSURLRequest(URL: NSURL(string: url)!))
-        self.view.addSubview(myWebView)
+            let request = NSURLRequest(URL: NSURL(string : url)!)
+            print (request)
+            let webController = self.storyboard?.instantiateViewControllerWithIdentifier("WebViewController") as! WebViewController
+            self.navigationController?.pushViewController(webController, animated: true)
+            webController.urlRequest = request
+            
+            
+            
+            
         }
     }
     
     func sendEmail() {
         if MFMailComposeViewController.canSendMail() {
             let mail = MFMailComposeViewController()
+            mail.mailComposeDelegate = self
             mail.setToRecipients([course.courseCouchEmail ?? "czechitas@info.com"])
             mail.setMessageBody("", isHTML: false)
             presentViewController(mail, animated: true, completion: nil)
             
         } else {
-            AlertViewController().createAlert("Chyba", message: "Email nie je mozne poslat")
+            self.createAlert("Chyba", message: "Email nie je mozne poslat")
         }
     }
     
@@ -202,88 +211,15 @@ class CourseDetailViewController: UIViewController, UITableViewDelegate, UITable
         controller.dismissViewControllerAnimated(true, completion: nil)
     }
     
-    func getCourse() -> [[String : Int]]? {
         
-        return NSUserDefaults.standardUserDefaults().arrayForKey("Courses") as? [[String : Int]]
-        //NSUserDefaults.standardUserDefaults().synchronize()
+    @IBAction func addCourse(sender: UIBarButtonItem) {
         
-    }
-    
-    func saveCourse(dict : [String:Int]) {
-        
-        var newCourses : [[String : Int]]
-        if let existingCourse = getCourse() {
-            
-            newCourses = existingCourse
-            newCourses.append(dict)
+        if let courseIndex = Model.sharedInstance.getCourse()?.indexOf({$0["id"] == course.id}) {
+            Model.sharedInstance.removeCourse(courseIndex)
             
         } else {
-            newCourses = [dict]
-           
+            Model.sharedInstance.saveCourse(["id" : course.id])
         }
-        
-        
-        NSUserDefaults.standardUserDefaults().setObject(newCourses, forKey: "Courses")
-        NSUserDefaults.standardUserDefaults().synchronize()
-        
-    }
-    
-    func removeCourse(index : Int) {
-        var newCourses : [[String : Int]]
-        if let existingCourse = getCourse() {
-            newCourses = existingCourse
-            newCourses.removeAtIndex(index)
-        
-        NSUserDefaults.standardUserDefaults().setObject(newCourses, forKey: "Courses")
-        NSUserDefaults.standardUserDefaults().synchronize()
-        }
-    }
-    
-    func hasCourseWithThisID(courseId : Int) -> Bool {
-     if let existingCourse = getCourse() {
-        for c in existingCourse {
-            if c["id"] == courseId {
-                return true
-            }
-        }
-        }
-        return false
-    }
-    
-    @IBAction func addCourse(sender: UIBarButtonItem) {
-        let defaults = NSUserDefaults.standardUserDefaults()
-        var count = 0
-        
-        if let existingCourse = getCourse() {
-            
-            if existingCourse == [] {
-                saveCourse(["id" : course.id])
-            }
-            else {
-            
-            for c in existingCourse {
-                if !hasCourseWithThisID(course.id) {
-                    saveCourse(["id" : course.id])
-                    continue
-                    
-                }
-                else {
-                    if course.id == c["id"] {
-                    removeCourse(count)
-                    continue
-                    }
-                    
-                    count += 1
-                    continue
-                    
-                }
-            }
-        }
-            
-    } else {
-        saveCourse(["id" : course.id])
-    }
-
     }
     
     
@@ -306,8 +242,8 @@ class CourseDetailViewController: UIViewController, UITableViewDelegate, UITable
             if let cell = courseTableView.dequeueReusableCellWithIdentifier("infoCell", forIndexPath: indexPath) as? InfoTableViewCell {
                 
                 print (indexPath.row)
-                cell.infoCourse.text = courseDetails[indexPath.row]
-                cell.imageCourse.image = UIImage(named: iconArray[indexPath.row])
+                cell.infoCourse.text = courseDetails[indexPath.row].description
+                cell.imageCourse.image = UIImage(named: courseDetails[indexPath.row].icon)
                 cell.selectionStyle = .None
                 if indexPath.row == 4 {
                     cell.selectionStyle = .Blue
@@ -325,5 +261,11 @@ class CourseDetailViewController: UIViewController, UITableViewDelegate, UITable
             sendEmail()
         }
     }
-
+    
+    // MARK: - MFMailComposerViewController Delegate
+    func mailComposeController(controller: MFMailComposeViewController, didFinishWith:
+        MFMailComposeResult, error: NSError?) {
+        controller.dismissViewControllerAnimated(true, completion: nil)
+    }
+    
 }

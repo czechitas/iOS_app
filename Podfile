@@ -6,4 +6,5 @@ target 'czechitas-mobile-app' do
   pod 'SwiftyJSON'
   pod 'SwiftHEXColors'
   pod 'ReachabilitySwift'
+  pod 'SVProgressHUD'
 end

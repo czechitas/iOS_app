@@ -28,42 +28,7 @@ class AlertViewController: UIAlertController {
         // Dispose of any resources that can be recreated.
     }
     
-    func createAlert(title : String, message : String) {
-        let alertController = UIAlertController(title: title, message: message, preferredStyle: .Alert)
-        let OKAction = UIAlertAction(title : "OK", style: .Default) { (action) in
-            print (action)
-            
-        }
         
-        
-        alertController.addAction(OKAction)
-        self.presentViewController(alertController, animated : true, completion: nil)
-            
-        
-    }
-    
-    func createAlert2(title : String, message : String) {
-        let alertController = UIAlertController(title: title, message: message, preferredStyle: .Alert)
-        
-        var settingsAction = UIAlertAction(title: "Nastavenia", style: .Default) { (_) -> Void in
-            let settingsURL = NSURL(string: UIApplicationOpenSettingsURLString)
-            if let url = settingsURL {
-                UIApplication.sharedApplication().openURL(url)
-            }
-        }
-        
-        let cancelAction = UIAlertAction(title : "Zrusit", style: .Default) { (action) in
-            print (action)
-            
-        }
-        
-        alertController.addAction(settingsAction)
-        alertController.addAction(cancelAction)
-        self.presentViewController(alertController, animated : true, completion: nil)
-        
-        
-    }
-    
     
 
     /*
