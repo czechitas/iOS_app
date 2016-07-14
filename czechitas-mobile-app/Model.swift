@@ -122,7 +122,10 @@ class Model : BaseViewController {
                     course.setState(subJson["states"].stringValue)
                     
                     courses.append(course)
-                    self.allCourses.append(course)
+                    
+                    if self.allCourses.contains({$0.id == course.id}) == false {
+                        self.allCourses.append(course)
+                    }
                     
                 }
             }

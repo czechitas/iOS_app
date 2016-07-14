@@ -34,6 +34,7 @@ class CourseTableViewController: UITableViewController {
         SVProgressHUD.setDefaultStyle(.Custom)
         SVProgressHUD.setForegroundColor(.whiteColor())
         SVProgressHUD.setBackgroundColor(UIColor(hexString: "#283891"))
+        
         Model.sharedInstance.fetchCourseData(setTableView(), courseData: {
             (data, data2) -> Void in
             
