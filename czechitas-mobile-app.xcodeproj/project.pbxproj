@@ -22,7 +22,6 @@
 		DC6946C71D11881300E5753C /* open-sans in Resources */ = {isa = PBXBuildFile; fileRef = DC6946C61D11881300E5753C /* open-sans */; };
 		DC6946C91D12AAAA00E5753C /* CourseDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC6946C81D12AAAA00E5753C /* CourseDetailViewController.swift */; };
 		DC740B471D212BDB00E2450B /* Reachibility.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC740B461D212BDB00E2450B /* Reachibility.swift */; };
-		DC8D4CAB1D23F11600404599 /* PopUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC8D4CAA1D23F11600404599 /* PopUpViewController.swift */; };
 		DC91E8AE1D0583F90054F356 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC91E8AD1D0583F90054F356 /* AppDelegate.swift */; };
 		DC91E8B01D0583F90054F356 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC91E8AF1D0583F90054F356 /* ViewController.swift */; };
 		DC91E8B31D0583F90054F356 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DC91E8B11D0583F90054F356 /* Main.storyboard */; };
@@ -30,6 +29,7 @@
 		DC91E8B81D0583F90054F356 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DC91E8B61D0583F90054F356 /* LaunchScreen.storyboard */; };
 		DCA292491D12C778001B32E4 /* CourseDescriptionTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCA292481D12C778001B32E4 /* CourseDescriptionTableViewCell.swift */; };
 		DCA2924D1D133FDB001B32E4 /* InfoTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCA2924C1D133FDB001B32E4 /* InfoTableViewCell.swift */; };
+		DCB731C51D3BE0CC005C992C /* PopUpTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCB731C41D3BE0CC005C992C /* PopUpTableViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -48,7 +48,6 @@
 		DC6946C61D11881300E5753C /* open-sans */ = {isa = PBXFileReference; lastKnownFileType = folder; path = "open-sans"; sourceTree = "<group>"; };
 		DC6946C81D12AAAA00E5753C /* CourseDetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CourseDetailViewController.swift; sourceTree = "<group>"; };
 		DC740B461D212BDB00E2450B /* Reachibility.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Reachibility.swift; sourceTree = "<group>"; };
-		DC8D4CAA1D23F11600404599 /* PopUpViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PopUpViewController.swift; sourceTree = "<group>"; };
 		DC91E8AA1D0583F90054F356 /* czechitas-mobile-app.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "czechitas-mobile-app.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		DC91E8AD1D0583F90054F356 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		DC91E8AF1D0583F90054F356 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -58,6 +57,7 @@
 		DC91E8B91D0583F90054F356 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		DCA292481D12C778001B32E4 /* CourseDescriptionTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CourseDescriptionTableViewCell.swift; sourceTree = "<group>"; };
 		DCA2924C1D133FDB001B32E4 /* InfoTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InfoTableViewCell.swift; sourceTree = "<group>"; };
+		DCB731C41D3BE0CC005C992C /* PopUpTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PopUpTableViewController.swift; sourceTree = "<group>"; };
 		DCD3765A1D2E584F009B4124 /* cs */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = cs; path = cs.lproj/Main.storyboard; sourceTree = "<group>"; };
 		DCD3765B1D2E584F009B4124 /* cs */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = cs; path = cs.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		FDF7574992EF1F62F3D05742 /* Pods-czechitas-mobile-app.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-czechitas-mobile-app.release.xcconfig"; path = "Pods/Target Support Files/Pods-czechitas-mobile-app/Pods-czechitas-mobile-app.release.xcconfig"; sourceTree = "<group>"; };
@@ -113,9 +113,9 @@
 				DC25BBF31D19333C008C5AB8 /* FavouriteViewController.swift */,
 				DC25BBF51D193846008C5AB8 /* FavouriteTableViewController.swift */,
 				DC740B461D212BDB00E2450B /* Reachibility.swift */,
-				DC8D4CAA1D23F11600404599 /* PopUpViewController.swift */,
 				DC2040131D2D079C008CFF6F /* WebViewController.swift */,
 				DC26F4991D2D45CC0093DE58 /* BaseViewController.swift */,
+				DCB731C41D3BE0CC005C992C /* PopUpTableViewController.swift */,
 			);
 			name = Controllers;
 			sourceTree = "<group>";
@@ -301,11 +301,11 @@
 				DC29A0BB1D05C20200D22919 /* DataManager.swift in Sources */,
 				DCA292491D12C778001B32E4 /* CourseDescriptionTableViewCell.swift in Sources */,
 				DC25BBF41D19333C008C5AB8 /* FavouriteViewController.swift in Sources */,
-				DC8D4CAB1D23F11600404599 /* PopUpViewController.swift in Sources */,
 				DC25BBF61D193846008C5AB8 /* FavouriteTableViewController.swift in Sources */,
 				DC91E8AE1D0583F90054F356 /* AppDelegate.swift in Sources */,
 				DCA2924D1D133FDB001B32E4 /* InfoTableViewCell.swift in Sources */,
 				DC29A0CA1D08554500D22919 /* OpenViewController.swift in Sources */,
+				DCB731C51D3BE0CC005C992C /* PopUpTableViewController.swift in Sources */,
 				DC29A0CC1D0889E300D22919 /* Model.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

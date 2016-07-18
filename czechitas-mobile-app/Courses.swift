@@ -118,11 +118,16 @@ class Category : NSObject {
     var id : Int
     var title : String
     var colorCode : String
+    var isSelected : Bool?
     
     init(id : Int, title : String, colorCode : String) {
         self.id = id
         self.title = title
         self.colorCode = colorCode        
+    }
+    
+    func chooseCategory(state : Bool) {
+     isSelected = state 
     }
     
     
