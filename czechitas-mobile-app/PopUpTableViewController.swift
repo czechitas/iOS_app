@@ -82,7 +82,7 @@ class PopUpTableViewController: UITableViewController {
         cell.accessoryView = UIImageView(image: UIImage(named: ""))
         cell.accessoryView?.frame = CGRectMake(0, 0, 22, 22)
         cell.textLabel?.text = categories[indexPath.row].title
-        cell.textLabel?.textColor = UIColor(hexString: categories[indexPath.row].colorCode)
+        cell.textLabel?.textColor = categories[indexPath.row].colorCode
         self.categories[indexPath.row].isSelected = false
         
         getSelectedCategories()
