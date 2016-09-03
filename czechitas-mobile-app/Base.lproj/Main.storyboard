@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="10117" systemVersion="15F34" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="Vnw-Cj-qXi">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="10117" systemVersion="15G31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="Vnw-Cj-qXi">
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
@@ -26,6 +26,35 @@
         </mutableArray>
     </customFonts>
     <scenes>
+        <!--Pop Up Table View Controller-->
+        <scene sceneID="hTS-4r-DJT">
+            <objects>
+                <tableViewController id="Mvv-Gd-wRw" customClass="PopUpTableViewController" customModule="czechitas_mobile_app" customModuleProvider="target" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" id="ygQ-gI-AFv">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <prototypes>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="categoryCell" id="pX3-64-WTd">
+                                <rect key="frame" x="0.0" y="28" width="320" height="44"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="pX3-64-WTd" id="dkW-uz-fYw">
+                                    <rect key="frame" x="0.0" y="0.0" width="320" height="43.5"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                </tableViewCellContentView>
+                            </tableViewCell>
+                        </prototypes>
+                        <connections>
+                            <outlet property="dataSource" destination="Mvv-Gd-wRw" id="FoF-Mq-gaT"/>
+                            <outlet property="delegate" destination="Mvv-Gd-wRw" id="62b-Qi-fGB"/>
+                        </connections>
+                    </tableView>
+                    <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="NgC-g3-AYK" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="3298" y="-248"/>
+        </scene>
         <!--Kurzy-->
         <scene sceneID="5yr-qL-GzV">
             <objects>
@@ -165,6 +194,10 @@
                         <barButtonItem key="backBarButtonItem" title="Kurzy" id="cLC-pw-BbR"/>
                         <barButtonItem key="rightBarButtonItem" image="filter-1" width="25" id="89V-DA-jZT">
                             <color key="tintColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                            <connections>
+                                <action selector="showCategories:" destination="akH-qF-stU" id="Iga-tq-Dtz"/>
+                                <segue destination="Mvv-Gd-wRw" kind="presentation" identifier="showCategories" id="HpN-eQ-Tl2"/>
+                            </connections>
                         </barButtonItem>
                     </navigationItem>
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>
@@ -444,7 +477,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="OFa-vG-2Fa" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3251" y="448"/>
+            <point key="canvasLocation" x="3298" y="448"/>
         </scene>
         <!--Web View Controller-->
         <scene sceneID="jEM-nH-zXU">
@@ -473,41 +506,6 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="DeI-eV-8Nw" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="3656" y="448"/>
-        </scene>
-        <!--Pop Up View Controller-->
-        <scene sceneID="7ab-vX-ODj">
-            <objects>
-                <viewController storyboardIdentifier="catPopUpID" id="mXZ-6Y-kva" customClass="PopUpViewController" customModule="czechitas_mobile_app" customModuleProvider="target" sceneMemberID="viewController">
-                    <layoutGuides>
-                        <viewControllerLayoutGuide type="top" id="tg5-BH-3e9"/>
-                        <viewControllerLayoutGuide type="bottom" id="CV3-2d-Lsk"/>
-                    </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" id="iO2-GC-usF">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <subviews>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="35" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="p5X-tf-O11">
-                                <rect key="frame" x="0.0" y="63" width="320" height="128"/>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" rowHeight="35" id="dyg-dD-yjv">
-                                        <rect key="frame" x="0.0" y="28" width="320" height="35"/>
-                                        <autoresizingMask key="autoresizingMask"/>
-                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="dyg-dD-yjv" id="wVd-sX-vwQ">
-                                            <rect key="frame" x="0.0" y="0.0" width="320" height="34.5"/>
-                                            <autoresizingMask key="autoresizingMask"/>
-                                        </tableViewCellContentView>
-                                    </tableViewCell>
-                                </prototypes>
-                            </tableView>
-                        </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                    </view>
-                    <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="Lio-xp-2Kz" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="3251" y="-204"/>
         </scene>
         <!--Moje kurzy-->
         <scene sceneID="dID-Bl-R6M">
@@ -762,7 +760,7 @@
         <image name="prepared" width="30" height="30"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="qi5-bH-u3I"/>
         <segue reference="11m-D8-yna"/>
+        <segue reference="rxr-s1-DWT"/>
     </inferredMetricsTieBreakers>
 </document>

@@ -117,12 +117,15 @@ class Model : BaseViewController {
                     
                     //course.convertDate()
                     
-                    course.addDetailInfo(subJson["course_price"].stringValue, courseNotes: subJson["notes"].stringValue, courseLink: subJson["registration_form_link"].stringValue, interestedLink : subJson["interested_form_link"].stringValue, courseVenueTitle: subJson["course_venue"]["title"].stringValue, courseStreetName: subJson["course_venue"]["street_name"].stringValue, courseStreetNumber: subJson["course_venue"]["street_number"].stringValue, courseCouchEmail: subJson["couch"]["user"].stringValue)
+                    course.addDetailInfo(subJson["course_price"].stringValue, courseNotes: subJson["notes"].stringValue, courseLink: subJson["registration_form_link"].stringValue, interestedLink : subJson["interested_form_link"].stringValue, courseVenueTitle: subJson["course_venue"]["title"].stringValue, courseStreetName: subJson["course_venue"]["street_name"].stringValue, courseStreetNumber: subJson["course_venue"]["street_number"].stringValue, courseCouchEmail: subJson["contact_person"]["user"].stringValue, open_registration: subJson["open_registration"].boolValue, publish: subJson["publish"].boolValue, repeatCourse: subJson["repeat"].stringValue, couches: subJson["couches"].stringValue)
                     
                     course.setState(subJson["states"].stringValue)
                     
                     courses.append(course)
-                    self.allCourses.append(course)
+                    
+                    if self.allCourses.contains({$0.id == course.id}) == false {
+                        self.allCourses.append(course)
+                    }
                     
                 }
             }

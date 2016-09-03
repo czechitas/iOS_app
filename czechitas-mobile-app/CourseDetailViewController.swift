@@ -23,7 +23,8 @@ class CourseDetailViewController: BaseViewController, UITableViewDelegate, UITab
     @IBOutlet weak var courseInfoView: UIView!
     @IBOutlet weak var courseTitle: UILabel!
     @IBOutlet weak var courseDates: UILabel!
-    
+    var finalLink : String?
+    var repeatCourse : String = ""
     
     var course : Course!
     var savedEventId : String?
@@ -53,11 +54,7 @@ class CourseDetailViewController: BaseViewController, UITableViewDelegate, UITab
         courseTitle.text = course.title
         
         
-        if course.courseLink == "" || course.courseLink == "None" {
-            buttonAction.setTitle("Mám záujem", forState: .Normal)
-        } else {
-            buttonAction.setTitle("Registrovať sa", forState: .Normal)
-        }
+       
         
         courseDetails = createStruct()
         
@@ -67,6 +64,7 @@ class CourseDetailViewController: BaseViewController, UITableViewDelegate, UITab
         
         
         savedEventId = "0"
+        getCourseState()
     }
     
     func setBtnTitle() -> String {
@@ -78,7 +76,22 @@ class CourseDetailViewController: BaseViewController, UITableViewDelegate, UITab
         }
     }
     
-    
+    func getCourseState() -> String {
+        if course.open_registration == true {
+            if let finalLink = course.courseLink {
+                buttonAction.setTitle("Registrovať sa", forState: .Normal)
+                return finalLink
+            }
+        }
+        else {
+            if let finalLink = course.interestedLink {
+                buttonAction.setTitle("Mám záujem", forState: .Normal)
+                return finalLink
+            }
+        }
+        return finalLink ?? "None"
+        
+    }
     
     
     func createStruct() -> [CourseStruct] {
@@ -89,14 +102,20 @@ class CourseDetailViewController: BaseViewController, UITableViewDelegate, UITab
             price1 = price + " CZK"
         }
         
+        
+        if let repeatValue = course.repeatCourse {
+            self.repeatCourse = repeatValue
+        }
+        
         let rowEmpty = CourseStruct(icon: "", description: "")
-        let row1 = CourseStruct(icon: "time", description: dates.2 + " - " + dates.3 ?? "Datum neuvedeny")
+        let row1 = CourseStruct(icon: "time", description: repeatCourse + " " + dates.2 + " - " + dates.3 ?? "Datum neuvedeny")
         let row2 = CourseStruct(icon: "pin", description: (course.createFullAddress()) ?? "Adresa neuvedena")
         let row3 = CourseStruct(icon: "money", description: price1 ?? "Cena neuvedena")
-        let row4 = CourseStruct(icon: "email", description: "Napíš koučovi")
-        let row5 = CourseStruct(icon: "notes", description: course.courseNotes ?? "Poznamka neuvedena")
+        let row4 = CourseStruct(icon: "email", description: "Napíš nám")
+        let row5 = CourseStruct(icon: "couch", description: course.couches ?? "Kouc neuvedeny")
+        let row6 = CourseStruct(icon: "notes", description: course.courseNotes ?? "Poznamka neuvedena")
         
-        return [rowEmpty, row1, row2, row3, row4, row5]
+        return [rowEmpty, row1, row2, row3, row4, row5, row6]
 
     }
     
@@ -171,7 +190,7 @@ class CourseDetailViewController: BaseViewController, UITableViewDelegate, UITab
                 self.createAlert("Oznam", message : "Udalost pridana do kalendara")
                 
             } catch {
-                self.createAlert("Oznam", message : "Chyba")
+                self.createAlert("Oznam", message : "Potvrdene")
             }
         } else {
             self.createAlert("Oznam", message : "Udalost je uz do kalendara pridana")
@@ -181,7 +200,8 @@ class CourseDetailViewController: BaseViewController, UITableViewDelegate, UITab
     
     
     @IBAction func buttonClick(sender: AnyObject) {
-        if let url = course.courseLink {
+        
+        let url = getCourseState()
             let request = NSURLRequest(URL: NSURL(string : url)!)
             print (request)
             let webController = self.storyboard?.instantiateViewControllerWithIdentifier("WebViewController") as! WebViewController
@@ -191,7 +211,7 @@ class CourseDetailViewController: BaseViewController, UITableViewDelegate, UITab
             
             
             
-        }
+        
     }
     
     func sendEmail() {
@@ -246,7 +266,7 @@ class CourseDetailViewController: BaseViewController, UITableViewDelegate, UITab
                 cell.imageCourse.image = UIImage(named: courseDetails[indexPath.row].icon)
                 cell.selectionStyle = .None
                 if indexPath.row == 4 {
-                    cell.selectionStyle = .Blue
+                    cell.selectionStyle = .Default
                 }
                 return cell
             }

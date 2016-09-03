@@ -43,6 +43,7 @@ class FavouriteTableViewController: UITableViewController {
             courses = existingCourse
             
         }
+        
         myCourses = []
         
         addMyCourse()

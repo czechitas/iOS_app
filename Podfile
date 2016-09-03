@@ -7,4 +7,5 @@ target 'czechitas-mobile-app' do
   pod 'SwiftHEXColors'
   pod 'ReachabilitySwift'
   pod 'SVProgressHUD'
+  pod 'M13Checkbox'
 end

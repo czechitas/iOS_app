@@ -11,14 +11,17 @@ import SwiftHEXColors
 import ReachabilitySwift
 import SVProgressHUD
 
-class CourseTableViewController: UITableViewController {
+class CourseTableViewController: UITableViewController, PopUtTableViewControllerDelegate {
     
     var reachability: Reachability?
-    var courses = [Course]()
+    var filteredCourses = [Course]()
     var categories = [Category]()
+    
+    var courses = [Course]()
    
     var courseID : Int = 0
     var course : Course?
+    var saved : Bool = false
     
     
     override func viewDidLoad() {
@@ -34,28 +37,57 @@ class CourseTableViewController: UITableViewController {
         SVProgressHUD.setDefaultStyle(.Custom)
         SVProgressHUD.setForegroundColor(.whiteColor())
         SVProgressHUD.setBackgroundColor(UIColor(hexString: "#283891"))
+        
         Model.sharedInstance.fetchCourseData(setTableView(), courseData: {
             (data, data2) -> Void in
             
             
-            self.courses = data
+            self.filteredCourses = data
             self.categories = data2
             SVProgressHUD.dismiss()
+            self.saved = true
             self.tableView.reloadData()
         })
         
         
-        
+        self.courses = self.filteredCourses
         tableView.tableFooterView = UIView()
 
     }
     
     
-    override func viewWillAppear(animated: Bool) {
+    
+    func controller(controller: PopUpTableViewController, sendCategories: [Category]) {
         
+        
+        
+        let titles = sendCategories.map {$0.title}
+        self.courses = []
+        if sendCategories.count != 0 {
+            
+            for title in titles {
+                let courseItem = self.filteredCourses.filter { $0.courseCategoryTitle == title }
+                self.courses += courseItem
+                tableView.reloadData()
+            }
+            
+        } else {
+            self.courses = self.filteredCourses
+            tableView.reloadData()
+        }
+        
+    }
+    
+    @IBAction func showCategories(sender: AnyObject) {
+        
+        
+        performSegueWithIdentifier("showCategories", sender: self)
+    }
+    
+    override func viewWillAppear(animated: Bool) {
         Model.sharedInstance.checkReachibility()
         
-        if courses.isEmpty == true {
+        if courses.isEmpty == true && !saved {
             SVProgressHUD.showWithStatus("Stahovanie dat")
             SVProgressHUD.setDefaultStyle(.Custom)
             SVProgressHUD.setForegroundColor(.whiteColor())
@@ -80,6 +112,8 @@ class CourseTableViewController: UITableViewController {
             return APIRouter.CoursesPrepared()
         case is OpenViewController:
             return APIRouter.CoursesOpen()
+        case is ClosedViewController:
+            return APIRouter.CoursesClosed()
         default:
             return APIRouter.CoursesOpen()
         }
@@ -110,6 +144,7 @@ class CourseTableViewController: UITableViewController {
         if let cell = tableView.dequeueReusableCellWithIdentifier("courseCell", forIndexPath: indexPath) as? CourseTableViewCell {
         
             cell.configureCell(courses[indexPath.row])
+            
             return cell
             
         }
@@ -119,6 +154,17 @@ class CourseTableViewController: UITableViewController {
     }
     
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+        
+        if segue.identifier == "showCategories" {
+            if let navigationController = segue.destinationViewController as? UINavigationController,
+            let mc = navigationController.viewControllers.first as? PopUpTableViewController {
+                mc.categories = self.categories
+                mc.delegate = self
+                
+            }
+            
+        }
+        
         if let index = tableView.indexPathForSelectedRow {
             let courseDetail = courses[index.row]
             if segue.identifier == "courseDetailSegue" {
@@ -127,10 +173,18 @@ class CourseTableViewController: UITableViewController {
                     vc.hidesBottomBarWhenPushed = true
                 }
             }
+            
         } else {
             print ("error")
         }
+        
+        
     }
+    
+    
+    
+    
+    
 }
 
 class TableViewHelper {

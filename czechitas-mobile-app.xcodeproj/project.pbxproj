@@ -8,6 +8,14 @@
 
 /* Begin PBXBuildFile section */
 		8C74DBEA702C012FDB7D4D56 /* Pods_czechitas_mobile_app.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FE206C2A293010A8821A1E28 /* Pods_czechitas_mobile_app.framework */; };
+		DC00C3321D43CE930042B1C6 /* Interface.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DC00C3301D43CE930042B1C6 /* Interface.storyboard */; };
+		DC00C3341D43CE930042B1C6 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = DC00C3331D43CE930042B1C6 /* Assets.xcassets */; };
+		DC00C33B1D43CE930042B1C6 /* Watch Extension.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = DC00C33A1D43CE930042B1C6 /* Watch Extension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+		DC00C3421D43CE930042B1C6 /* ExtensionDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC00C3411D43CE930042B1C6 /* ExtensionDelegate.swift */; };
+		DC00C3441D43CE930042B1C6 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = DC00C3431D43CE930042B1C6 /* Assets.xcassets */; };
+		DC00C3481D43CE930042B1C6 /* Watch.app in Embed Watch Content */ = {isa = PBXBuildFile; fileRef = DC00C32E1D43CE930042B1C6 /* Watch.app */; };
+		DC00C3551D43D2960042B1C6 /* CourseInterfaceController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC00C3541D43D2960042B1C6 /* CourseInterfaceController.swift */; };
+		DC128AD11D7AC372006B0D9E /* ClosedViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC128AD01D7AC372006B0D9E /* ClosedViewController.swift */; };
 		DC2040141D2D079D008CFF6F /* WebViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC2040131D2D079C008CFF6F /* WebViewController.swift */; };
 		DC25BBF41D19333C008C5AB8 /* FavouriteViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC25BBF31D19333C008C5AB8 /* FavouriteViewController.swift */; };
 		DC25BBF61D193846008C5AB8 /* FavouriteTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC25BBF51D193846008C5AB8 /* FavouriteTableViewController.swift */; };
@@ -22,7 +30,6 @@
 		DC6946C71D11881300E5753C /* open-sans in Resources */ = {isa = PBXBuildFile; fileRef = DC6946C61D11881300E5753C /* open-sans */; };
 		DC6946C91D12AAAA00E5753C /* CourseDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC6946C81D12AAAA00E5753C /* CourseDetailViewController.swift */; };
 		DC740B471D212BDB00E2450B /* Reachibility.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC740B461D212BDB00E2450B /* Reachibility.swift */; };
-		DC8D4CAB1D23F11600404599 /* PopUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC8D4CAA1D23F11600404599 /* PopUpViewController.swift */; };
 		DC91E8AE1D0583F90054F356 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC91E8AD1D0583F90054F356 /* AppDelegate.swift */; };
 		DC91E8B01D0583F90054F356 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC91E8AF1D0583F90054F356 /* ViewController.swift */; };
 		DC91E8B31D0583F90054F356 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DC91E8B11D0583F90054F356 /* Main.storyboard */; };
@@ -30,10 +37,63 @@
 		DC91E8B81D0583F90054F356 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DC91E8B61D0583F90054F356 /* LaunchScreen.storyboard */; };
 		DCA292491D12C778001B32E4 /* CourseDescriptionTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCA292481D12C778001B32E4 /* CourseDescriptionTableViewCell.swift */; };
 		DCA2924D1D133FDB001B32E4 /* InfoTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCA2924C1D133FDB001B32E4 /* InfoTableViewCell.swift */; };
+		DCB731C51D3BE0CC005C992C /* PopUpTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCB731C41D3BE0CC005C992C /* PopUpTableViewController.swift */; };
 /* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		DC00C33C1D43CE930042B1C6 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = DC91E8A21D0583F80054F356 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = DC00C3391D43CE930042B1C6;
+			remoteInfo = "Watch Extension";
+		};
+		DC00C3461D43CE930042B1C6 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = DC91E8A21D0583F80054F356 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = DC00C32D1D43CE930042B1C6;
+			remoteInfo = Watch;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		DC00C34E1D43CE930042B1C6 /* Embed App Extensions */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 13;
+			files = (
+				DC00C33B1D43CE930042B1C6 /* Watch Extension.appex in Embed App Extensions */,
+			);
+			name = "Embed App Extensions";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		DC00C3501D43CE930042B1C6 /* Embed Watch Content */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "$(CONTENTS_FOLDER_PATH)/Watch";
+			dstSubfolderSpec = 16;
+			files = (
+				DC00C3481D43CE930042B1C6 /* Watch.app in Embed Watch Content */,
+			);
+			name = "Embed Watch Content";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
 		623A6661139BD833CF55CED6 /* Pods-czechitas-mobile-app.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-czechitas-mobile-app.debug.xcconfig"; path = "Pods/Target Support Files/Pods-czechitas-mobile-app/Pods-czechitas-mobile-app.debug.xcconfig"; sourceTree = "<group>"; };
+		DC00C32E1D43CE930042B1C6 /* Watch.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Watch.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		DC00C3311D43CE930042B1C6 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Interface.storyboard; sourceTree = "<group>"; };
+		DC00C3331D43CE930042B1C6 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		DC00C3351D43CE930042B1C6 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		DC00C33A1D43CE930042B1C6 /* Watch Extension.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = "Watch Extension.appex"; sourceTree = BUILT_PRODUCTS_DIR; };
+		DC00C3411D43CE930042B1C6 /* ExtensionDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExtensionDelegate.swift; sourceTree = "<group>"; };
+		DC00C3431D43CE930042B1C6 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		DC00C3451D43CE930042B1C6 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		DC00C3541D43D2960042B1C6 /* CourseInterfaceController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CourseInterfaceController.swift; sourceTree = "<group>"; };
+		DC128AD01D7AC372006B0D9E /* ClosedViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ClosedViewController.swift; sourceTree = "<group>"; };
 		DC2040131D2D079C008CFF6F /* WebViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WebViewController.swift; sourceTree = "<group>"; };
 		DC25BBF31D19333C008C5AB8 /* FavouriteViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FavouriteViewController.swift; sourceTree = "<group>"; };
 		DC25BBF51D193846008C5AB8 /* FavouriteTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FavouriteTableViewController.swift; sourceTree = "<group>"; };
@@ -48,7 +108,6 @@
 		DC6946C61D11881300E5753C /* open-sans */ = {isa = PBXFileReference; lastKnownFileType = folder; path = "open-sans"; sourceTree = "<group>"; };
 		DC6946C81D12AAAA00E5753C /* CourseDetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CourseDetailViewController.swift; sourceTree = "<group>"; };
 		DC740B461D212BDB00E2450B /* Reachibility.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Reachibility.swift; sourceTree = "<group>"; };
-		DC8D4CAA1D23F11600404599 /* PopUpViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PopUpViewController.swift; sourceTree = "<group>"; };
 		DC91E8AA1D0583F90054F356 /* czechitas-mobile-app.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "czechitas-mobile-app.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		DC91E8AD1D0583F90054F356 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		DC91E8AF1D0583F90054F356 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -58,6 +117,7 @@
 		DC91E8B91D0583F90054F356 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		DCA292481D12C778001B32E4 /* CourseDescriptionTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CourseDescriptionTableViewCell.swift; sourceTree = "<group>"; };
 		DCA2924C1D133FDB001B32E4 /* InfoTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InfoTableViewCell.swift; sourceTree = "<group>"; };
+		DCB731C41D3BE0CC005C992C /* PopUpTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PopUpTableViewController.swift; sourceTree = "<group>"; };
 		DCD3765A1D2E584F009B4124 /* cs */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = cs; path = cs.lproj/Main.storyboard; sourceTree = "<group>"; };
 		DCD3765B1D2E584F009B4124 /* cs */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = cs; path = cs.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		FDF7574992EF1F62F3D05742 /* Pods-czechitas-mobile-app.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-czechitas-mobile-app.release.xcconfig"; path = "Pods/Target Support Files/Pods-czechitas-mobile-app/Pods-czechitas-mobile-app.release.xcconfig"; sourceTree = "<group>"; };
@@ -65,6 +125,13 @@
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
+		DC00C3371D43CE930042B1C6 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		DC91E8A71D0583F80054F356 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
@@ -93,6 +160,27 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
+		DC00C32F1D43CE930042B1C6 /* Watch */ = {
+			isa = PBXGroup;
+			children = (
+				DC00C3301D43CE930042B1C6 /* Interface.storyboard */,
+				DC00C3331D43CE930042B1C6 /* Assets.xcassets */,
+				DC00C3351D43CE930042B1C6 /* Info.plist */,
+			);
+			path = Watch;
+			sourceTree = "<group>";
+		};
+		DC00C33E1D43CE930042B1C6 /* Watch Extension */ = {
+			isa = PBXGroup;
+			children = (
+				DC00C3411D43CE930042B1C6 /* ExtensionDelegate.swift */,
+				DC00C3431D43CE930042B1C6 /* Assets.xcassets */,
+				DC00C3451D43CE930042B1C6 /* Info.plist */,
+				DC00C3541D43D2960042B1C6 /* CourseInterfaceController.swift */,
+			);
+			path = "Watch Extension";
+			sourceTree = "<group>";
+		};
 		DC29A0C01D07579700D22919 /* Model */ = {
 			isa = PBXGroup;
 			children = (
@@ -113,9 +201,10 @@
 				DC25BBF31D19333C008C5AB8 /* FavouriteViewController.swift */,
 				DC25BBF51D193846008C5AB8 /* FavouriteTableViewController.swift */,
 				DC740B461D212BDB00E2450B /* Reachibility.swift */,
-				DC8D4CAA1D23F11600404599 /* PopUpViewController.swift */,
 				DC2040131D2D079C008CFF6F /* WebViewController.swift */,
 				DC26F4991D2D45CC0093DE58 /* BaseViewController.swift */,
+				DCB731C41D3BE0CC005C992C /* PopUpTableViewController.swift */,
+				DC128AD01D7AC372006B0D9E /* ClosedViewController.swift */,
 			);
 			name = Controllers;
 			sourceTree = "<group>";
@@ -134,6 +223,8 @@
 			isa = PBXGroup;
 			children = (
 				DC91E8AC1D0583F90054F356 /* czechitas-mobile-app */,
+				DC00C32F1D43CE930042B1C6 /* Watch */,
+				DC00C33E1D43CE930042B1C6 /* Watch Extension */,
 				DC91E8AB1D0583F90054F356 /* Products */,
 				8A8F37340527E7E1B7168C83 /* Pods */,
 				D5ECD7D71A77940B057CD92A /* Frameworks */,
@@ -144,6 +235,8 @@
 			isa = PBXGroup;
 			children = (
 				DC91E8AA1D0583F90054F356 /* czechitas-mobile-app.app */,
+				DC00C32E1D43CE930042B1C6 /* Watch.app */,
+				DC00C33A1D43CE930042B1C6 /* Watch Extension.appex */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -168,6 +261,40 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
+		DC00C32D1D43CE930042B1C6 /* Watch */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = DC00C34F1D43CE930042B1C6 /* Build configuration list for PBXNativeTarget "Watch" */;
+			buildPhases = (
+				DC00C32C1D43CE930042B1C6 /* Resources */,
+				DC00C34E1D43CE930042B1C6 /* Embed App Extensions */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				DC00C33D1D43CE930042B1C6 /* PBXTargetDependency */,
+			);
+			name = Watch;
+			productName = Watch;
+			productReference = DC00C32E1D43CE930042B1C6 /* Watch.app */;
+			productType = "com.apple.product-type.application.watchapp2";
+		};
+		DC00C3391D43CE930042B1C6 /* Watch Extension */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = DC00C34D1D43CE930042B1C6 /* Build configuration list for PBXNativeTarget "Watch Extension" */;
+			buildPhases = (
+				DC00C3361D43CE930042B1C6 /* Sources */,
+				DC00C3371D43CE930042B1C6 /* Frameworks */,
+				DC00C3381D43CE930042B1C6 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = "Watch Extension";
+			productName = "Watch Extension";
+			productReference = DC00C33A1D43CE930042B1C6 /* Watch Extension.appex */;
+			productType = "com.apple.product-type.watchkit2-extension";
+		};
 		DC91E8A91D0583F80054F356 /* czechitas-mobile-app */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = DC91E8BC1D0583F90054F356 /* Build configuration list for PBXNativeTarget "czechitas-mobile-app" */;
@@ -178,10 +305,12 @@
 				DC91E8A81D0583F80054F356 /* Resources */,
 				A7707BD42253A67BCD2A5AFA /* 📦 Embed Pods Frameworks */,
 				0DBEAD559C4ABE1DF298EAB3 /* 📦 Copy Pods Resources */,
+				DC00C3501D43CE930042B1C6 /* Embed Watch Content */,
 			);
 			buildRules = (
 			);
 			dependencies = (
+				DC00C3471D43CE930042B1C6 /* PBXTargetDependency */,
 			);
 			name = "czechitas-mobile-app";
 			productName = "czechitas-mobile-app";
@@ -198,9 +327,16 @@
 				LastUpgradeCheck = 0730;
 				ORGANIZATIONNAME = "Svetlana Margetová";
 				TargetAttributes = {
+					DC00C32D1D43CE930042B1C6 = {
+						CreatedOnToolsVersion = 7.3.1;
+						DevelopmentTeam = D3U95MADM7;
+					};
+					DC00C3391D43CE930042B1C6 = {
+						CreatedOnToolsVersion = 7.3.1;
+					};
 					DC91E8A91D0583F80054F356 = {
 						CreatedOnToolsVersion = 7.3.1;
-						DevelopmentTeam = V74C3HABYQ;
+						DevelopmentTeam = D3U95MADM7;
 					};
 				};
 			};
@@ -218,11 +354,30 @@
 			projectRoot = "";
 			targets = (
 				DC91E8A91D0583F80054F356 /* czechitas-mobile-app */,
+				DC00C32D1D43CE930042B1C6 /* Watch */,
+				DC00C3391D43CE930042B1C6 /* Watch Extension */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
+		DC00C32C1D43CE930042B1C6 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				DC00C3341D43CE930042B1C6 /* Assets.xcassets in Resources */,
+				DC00C3321D43CE930042B1C6 /* Interface.storyboard in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		DC00C3381D43CE930042B1C6 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				DC00C3441D43CE930042B1C6 /* Assets.xcassets in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		DC91E8A81D0583F80054F356 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -285,6 +440,15 @@
 /* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
+		DC00C3361D43CE930042B1C6 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				DC00C3551D43D2960042B1C6 /* CourseInterfaceController.swift in Sources */,
+				DC00C3421D43CE930042B1C6 /* ExtensionDelegate.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		DC91E8A61D0583F80054F356 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -296,23 +460,45 @@
 				DC26F49A1D2D45CC0093DE58 /* BaseViewController.swift in Sources */,
 				DC29A0BF1D05E9A500D22919 /* Courses.swift in Sources */,
 				DC6946C51D11562100E5753C /* CourseTableViewCell.swift in Sources */,
+				DC128AD11D7AC372006B0D9E /* ClosedViewController.swift in Sources */,
 				DC91E8B01D0583F90054F356 /* ViewController.swift in Sources */,
 				DC740B471D212BDB00E2450B /* Reachibility.swift in Sources */,
 				DC29A0BB1D05C20200D22919 /* DataManager.swift in Sources */,
 				DCA292491D12C778001B32E4 /* CourseDescriptionTableViewCell.swift in Sources */,
 				DC25BBF41D19333C008C5AB8 /* FavouriteViewController.swift in Sources */,
-				DC8D4CAB1D23F11600404599 /* PopUpViewController.swift in Sources */,
 				DC25BBF61D193846008C5AB8 /* FavouriteTableViewController.swift in Sources */,
 				DC91E8AE1D0583F90054F356 /* AppDelegate.swift in Sources */,
 				DCA2924D1D133FDB001B32E4 /* InfoTableViewCell.swift in Sources */,
 				DC29A0CA1D08554500D22919 /* OpenViewController.swift in Sources */,
+				DCB731C51D3BE0CC005C992C /* PopUpTableViewController.swift in Sources */,
 				DC29A0CC1D0889E300D22919 /* Model.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
 
+/* Begin PBXTargetDependency section */
+		DC00C33D1D43CE930042B1C6 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = DC00C3391D43CE930042B1C6 /* Watch Extension */;
+			targetProxy = DC00C33C1D43CE930042B1C6 /* PBXContainerItemProxy */;
+		};
+		DC00C3471D43CE930042B1C6 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = DC00C32D1D43CE930042B1C6 /* Watch */;
+			targetProxy = DC00C3461D43CE930042B1C6 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
 /* Begin PBXVariantGroup section */
+		DC00C3301D43CE930042B1C6 /* Interface.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				DC00C3311D43CE930042B1C6 /* Base */,
+			);
+			name = Interface.storyboard;
+			sourceTree = "<group>";
+		};
 		DC91E8B11D0583F90054F356 /* Main.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
@@ -334,6 +520,70 @@
 /* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
+		DC00C3491D43CE930042B1C6 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				EMBEDDED_CONTENT_CONTAINS_SWIFT = YES;
+				IBSC_MODULE = Watch_Extension;
+				INFOPLIST_FILE = Watch/Info.plist;
+				PRODUCT_BUNDLE_IDENTIFIER = "com.brainity.czechitas-mobile-app.watchkitapp";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = watchos;
+				SKIP_INSTALL = YES;
+				TARGETED_DEVICE_FAMILY = 4;
+				WATCHOS_DEPLOYMENT_TARGET = 2.2;
+			};
+			name = Debug;
+		};
+		DC00C34A1D43CE930042B1C6 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				EMBEDDED_CONTENT_CONTAINS_SWIFT = YES;
+				IBSC_MODULE = Watch_Extension;
+				INFOPLIST_FILE = Watch/Info.plist;
+				PRODUCT_BUNDLE_IDENTIFIER = "com.brainity.czechitas-mobile-app.watchkitapp";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = watchos;
+				SKIP_INSTALL = YES;
+				TARGETED_DEVICE_FAMILY = 4;
+				WATCHOS_DEPLOYMENT_TARGET = 2.2;
+			};
+			name = Release;
+		};
+		DC00C34B1D43CE930042B1C6 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				INFOPLIST_FILE = "Watch Extension/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.brainity.czechitas-mobile-app.watchkitapp.watchkitextension";
+				PRODUCT_NAME = "${TARGET_NAME}";
+				SDKROOT = watchos;
+				SKIP_INSTALL = YES;
+				TARGETED_DEVICE_FAMILY = 4;
+				WATCHOS_DEPLOYMENT_TARGET = 2.2;
+			};
+			name = Debug;
+		};
+		DC00C34C1D43CE930042B1C6 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				INFOPLIST_FILE = "Watch Extension/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.brainity.czechitas-mobile-app.watchkitapp.watchkitextension";
+				PRODUCT_NAME = "${TARGET_NAME}";
+				SDKROOT = watchos;
+				SKIP_INSTALL = YES;
+				TARGETED_DEVICE_FAMILY = 4;
+				WATCHOS_DEPLOYMENT_TARGET = 2.2;
+			};
+			name = Release;
+		};
 		DC91E8BA1D0583F90054F356 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -423,12 +673,13 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				INFOPLIST_FILE = "czechitas-mobile-app/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.brainity.czechitas-mobile-app";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "6ac5cd8d-4fdc-4210-8926-bc50fc318b28";
+				PROVISIONING_PROFILE = "";
 			};
 			name = Debug;
 		};
@@ -438,18 +689,37 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				INFOPLIST_FILE = "czechitas-mobile-app/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.brainity.czechitas-mobile-app";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "6ac5cd8d-4fdc-4210-8926-bc50fc318b28";
+				PROVISIONING_PROFILE = "";
 			};
 			name = Release;
 		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
+		DC00C34D1D43CE930042B1C6 /* Build configuration list for PBXNativeTarget "Watch Extension" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				DC00C34B1D43CE930042B1C6 /* Debug */,
+				DC00C34C1D43CE930042B1C6 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		DC00C34F1D43CE930042B1C6 /* Build configuration list for PBXNativeTarget "Watch" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				DC00C3491D43CE930042B1C6 /* Debug */,
+				DC00C34A1D43CE930042B1C6 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
 		DC91E8A51D0583F80054F356 /* Build configuration list for PBXProject "czechitas-mobile-app" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
