@@ -29,6 +29,10 @@ class Course : NSObject {
     var courseCategoryTitle : String?
     var courseCategoryColorCode : UIColor?
     var courseState : String?
+    var open_registration : Bool?
+    var publish : Bool?
+    var repeatCourse : String?
+    var couches : String?
     
     
     
@@ -85,7 +89,7 @@ class Course : NSObject {
         self.courseCategoryColorCode = UIColor(hexString : courseCategoryColorCode ?? "#dedede")
     }
     
-    func addDetailInfo(coursePrice : String, courseNotes : String, courseLink : String, interestedLink : String, courseVenueTitle : String, courseStreetName : String, courseStreetNumber : String, courseCouchEmail : String) {
+    func addDetailInfo(coursePrice : String, courseNotes : String, courseLink : String, interestedLink : String, courseVenueTitle : String, courseStreetName : String, courseStreetNumber : String, courseCouchEmail : String, open_registration : Bool, publish : Bool, repeatCourse : String, couches : String) {
         self.coursePrice = coursePrice
         self.courseNotes = courseNotes
         self.courseLink = courseLink
@@ -94,6 +98,14 @@ class Course : NSObject {
         self.courseStreetName = courseStreetName
         self.courseStreetNumber = courseStreetNumber
         self.courseCouchEmail = courseCouchEmail
+        self.open_registration = open_registration
+        self.publish = publish
+        self.repeatCourse = repeatCourse
+        self.couches = couches
+        
+        if couches == "" ||  couches == "None" {
+            self.couches = "Kouc neuvedeny"
+        }
         
         if courseNotes == "" {
             self.courseNotes = "Ziadne dodatocne informacie"

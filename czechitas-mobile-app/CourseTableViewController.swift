@@ -21,6 +21,7 @@ class CourseTableViewController: UITableViewController, PopUtTableViewController
    
     var courseID : Int = 0
     var course : Course?
+    var saved : Bool = false
     
     
     override func viewDidLoad() {
@@ -44,6 +45,7 @@ class CourseTableViewController: UITableViewController, PopUtTableViewController
             self.filteredCourses = data
             self.categories = data2
             SVProgressHUD.dismiss()
+            self.saved = true
             self.tableView.reloadData()
         })
         
@@ -59,12 +61,12 @@ class CourseTableViewController: UITableViewController, PopUtTableViewController
         
         
         
-        var titles = sendCategories.map {$0.title}
+        let titles = sendCategories.map {$0.title}
         self.courses = []
         if sendCategories.count != 0 {
             
             for title in titles {
-                var courseItem = self.filteredCourses.filter { $0.courseCategoryTitle == title }
+                let courseItem = self.filteredCourses.filter { $0.courseCategoryTitle == title }
                 self.courses += courseItem
                 tableView.reloadData()
             }
@@ -85,7 +87,7 @@ class CourseTableViewController: UITableViewController, PopUtTableViewController
     override func viewWillAppear(animated: Bool) {
         Model.sharedInstance.checkReachibility()
         
-        if courses.isEmpty == true {
+        if courses.isEmpty == true && !saved {
             SVProgressHUD.showWithStatus("Stahovanie dat")
             SVProgressHUD.setDefaultStyle(.Custom)
             SVProgressHUD.setForegroundColor(.whiteColor())
@@ -110,6 +112,8 @@ class CourseTableViewController: UITableViewController, PopUtTableViewController
             return APIRouter.CoursesPrepared()
         case is OpenViewController:
             return APIRouter.CoursesOpen()
+        case is ClosedViewController:
+            return APIRouter.CoursesClosed()
         default:
             return APIRouter.CoursesOpen()
         }
@@ -140,6 +144,7 @@ class CourseTableViewController: UITableViewController, PopUtTableViewController
         if let cell = tableView.dequeueReusableCellWithIdentifier("courseCell", forIndexPath: indexPath) as? CourseTableViewCell {
         
             cell.configureCell(courses[indexPath.row])
+            
             return cell
             
         }

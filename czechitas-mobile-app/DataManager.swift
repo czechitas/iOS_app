@@ -20,6 +20,7 @@ enum APIRouter: URLRequestConvertible {
     case CoursesPrepared()
     case CoursesOpen()
     case CoursesAll()
+    case CoursesClosed()
     case Venues()
     case Update(timestamp : Int)
     
@@ -35,6 +36,8 @@ enum APIRouter: URLRequestConvertible {
                 return ("/courses/open/")
             case .CoursesAll:
                 return ("/courses/all/")
+            case .CoursesClosed:
+                return ("/courses/closed/")
             case .Venues:
                 return ("/courses/")
             case .Update:

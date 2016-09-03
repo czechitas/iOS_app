@@ -17,7 +17,17 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
         
         
+        Model.sharedInstance.fetchCourseData(APIRouter.CoursesOpen(), courseData: {
+            (data, data2) -> Void in
+        })
+        Model.sharedInstance.fetchCourseData(APIRouter.CoursesPrepared(), courseData: {
+            (data, data2) -> Void in
+        })
         
+        Model.sharedInstance.fetchCourseData(APIRouter.CoursesClosed(), courseData: {
+            (data, data2) -> Void in
+        })
+
         
         
   
