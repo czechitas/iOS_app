@@ -149,8 +149,14 @@ class CourseTableViewController: UITableViewController, PopUtTableViewController
             
         }
         
+        
+        
         return UITableViewCell()
         
+    }
+    
+    override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+        tableView.deselectRowAtIndexPath(indexPath, animated: false)
     }
     
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
