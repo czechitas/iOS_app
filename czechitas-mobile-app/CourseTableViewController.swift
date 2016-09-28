@@ -133,6 +133,7 @@ class CourseTableViewController: UITableViewController, PopUtTableViewController
             return 1
         }
         else {
+            TableViewHelper.emptyImage("", viewController: self)
             return 1
         }
         
