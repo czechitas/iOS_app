@@ -37,11 +37,10 @@ class CourseDetailViewController: BaseViewController, UITableViewDelegate, UITab
         super.viewDidLoad()
         
         
-        let image2 = UIImage(named: setBtnTitle())
         
         
         
-        addBtn.image = image2
+        
         
         
         navigationItem.title = course.title
@@ -65,6 +64,12 @@ class CourseDetailViewController: BaseViewController, UITableViewDelegate, UITab
         
         savedEventId = "0"
         getCourseState()
+    }
+    
+    override func viewWillAppear(animated: Bool) {
+        super.viewWillAppear(true)
+        let image2 = UIImage(named: setBtnTitle())
+        addBtn.image = image2
     }
     
     func setBtnTitle() -> String {
@@ -218,7 +223,11 @@ class CourseDetailViewController: BaseViewController, UITableViewDelegate, UITab
         if MFMailComposeViewController.canSendMail() {
             let mail = MFMailComposeViewController()
             mail.mailComposeDelegate = self
+            if course.courseCouchEmail == "" {
+                course.courseCouchEmail = "czechitas@info.com"
+            }
             mail.setToRecipients([course.courseCouchEmail ?? "czechitas@info.com"])
+            mail.setSubject("Informacie o kurze \(course.title)")
             mail.setMessageBody("", isHTML: false)
             presentViewController(mail, animated: true, completion: nil)
             
@@ -236,9 +245,14 @@ class CourseDetailViewController: BaseViewController, UITableViewDelegate, UITab
         
         if let courseIndex = Model.sharedInstance.getCourse()?.indexOf({$0["id"] == course.id}) {
             Model.sharedInstance.removeCourse(courseIndex)
+            self.createAlert("Oznam", message : "Kurz bol odobraný z obľúbených.")
+            viewWillAppear(true)
             
         } else {
             Model.sharedInstance.saveCourse(["id" : course.id])
+            self.createAlert("Oznam", message : "Kurz bol pridaný do obľúbených.")
+            viewWillAppear(true)
+            
         }
     }
     
@@ -265,9 +279,11 @@ class CourseDetailViewController: BaseViewController, UITableViewDelegate, UITab
                 cell.infoCourse.text = courseDetails[indexPath.row].description
                 cell.imageCourse.image = UIImage(named: courseDetails[indexPath.row].icon)
                 cell.selectionStyle = .None
+                /*
                 if indexPath.row == 4 {
                     cell.selectionStyle = .Default
-                }
+                } */
+                
                 return cell
             }
             
@@ -280,6 +296,8 @@ class CourseDetailViewController: BaseViewController, UITableViewDelegate, UITab
         if indexPath.row == 4 {
             sendEmail()
         }
+        
+        
     }
     
     // MARK: - MFMailComposerViewController Delegate

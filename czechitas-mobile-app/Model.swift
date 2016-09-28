@@ -276,6 +276,7 @@ class Model : BaseViewController {
         
         
         NSUserDefaults.standardUserDefaults().setObject(newCourses, forKey: "Courses")
+        
         NSUserDefaults.standardUserDefaults().synchronize()
         
     }
@@ -287,6 +288,7 @@ class Model : BaseViewController {
             newCourses.removeAtIndex(index)
             
             NSUserDefaults.standardUserDefaults().setObject(newCourses, forKey: "Courses")
+           
             NSUserDefaults.standardUserDefaults().synchronize()
         }
     }

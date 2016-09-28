@@ -13,7 +13,6 @@
 		DC00C33B1D43CE930042B1C6 /* Watch Extension.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = DC00C33A1D43CE930042B1C6 /* Watch Extension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		DC00C3421D43CE930042B1C6 /* ExtensionDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC00C3411D43CE930042B1C6 /* ExtensionDelegate.swift */; };
 		DC00C3441D43CE930042B1C6 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = DC00C3431D43CE930042B1C6 /* Assets.xcassets */; };
-		DC00C3481D43CE930042B1C6 /* Watch.app in Embed Watch Content */ = {isa = PBXBuildFile; fileRef = DC00C32E1D43CE930042B1C6 /* Watch.app */; };
 		DC00C3551D43D2960042B1C6 /* CourseInterfaceController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC00C3541D43D2960042B1C6 /* CourseInterfaceController.swift */; };
 		DC128AD11D7AC372006B0D9E /* ClosedViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC128AD01D7AC372006B0D9E /* ClosedViewController.swift */; };
 		DC2040141D2D079D008CFF6F /* WebViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC2040131D2D079C008CFF6F /* WebViewController.swift */; };
@@ -48,13 +47,6 @@
 			remoteGlobalIDString = DC00C3391D43CE930042B1C6;
 			remoteInfo = "Watch Extension";
 		};
-		DC00C3461D43CE930042B1C6 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = DC91E8A21D0583F80054F356 /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = DC00C32D1D43CE930042B1C6;
-			remoteInfo = Watch;
-		};
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -67,17 +59,6 @@
 				DC00C33B1D43CE930042B1C6 /* Watch Extension.appex in Embed App Extensions */,
 			);
 			name = "Embed App Extensions";
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		DC00C3501D43CE930042B1C6 /* Embed Watch Content */ = {
-			isa = PBXCopyFilesBuildPhase;
-			buildActionMask = 2147483647;
-			dstPath = "$(CONTENTS_FOLDER_PATH)/Watch";
-			dstSubfolderSpec = 16;
-			files = (
-				DC00C3481D43CE930042B1C6 /* Watch.app in Embed Watch Content */,
-			);
-			name = "Embed Watch Content";
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXCopyFilesBuildPhase section */
@@ -305,12 +286,10 @@
 				DC91E8A81D0583F80054F356 /* Resources */,
 				A7707BD42253A67BCD2A5AFA /* 📦 Embed Pods Frameworks */,
 				0DBEAD559C4ABE1DF298EAB3 /* 📦 Copy Pods Resources */,
-				DC00C3501D43CE930042B1C6 /* Embed Watch Content */,
 			);
 			buildRules = (
 			);
 			dependencies = (
-				DC00C3471D43CE930042B1C6 /* PBXTargetDependency */,
 			);
 			name = "czechitas-mobile-app";
 			productName = "czechitas-mobile-app";
@@ -483,11 +462,6 @@
 			target = DC00C3391D43CE930042B1C6 /* Watch Extension */;
 			targetProxy = DC00C33C1D43CE930042B1C6 /* PBXContainerItemProxy */;
 		};
-		DC00C3471D43CE930042B1C6 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = DC00C32D1D43CE930042B1C6 /* Watch */;
-			targetProxy = DC00C3461D43CE930042B1C6 /* PBXContainerItemProxy */;
-		};
 /* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
@@ -624,6 +598,7 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
+				PROVISIONING_PROFILE = "cbf773be-b99b-4878-b765-2d3afea264af";
 				SDKROOT = iphoneos;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 			};
@@ -662,6 +637,7 @@
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
 				MTL_ENABLE_DEBUG_INFO = NO;
+				PROVISIONING_PROFILE = "cbf773be-b99b-4878-b765-2d3afea264af";
 				SDKROOT = iphoneos;
 				VALIDATE_PRODUCT = YES;
 			};
@@ -672,12 +648,12 @@
 			baseConfigurationReference = 623A6661139BD833CF55CED6 /* Pods-czechitas-mobile-app.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				CODE_SIGN_IDENTITY = "iPhone Developer";
+				CODE_SIGN_IDENTITY = "iPhone Distribution: Svetlana Margetova (D3U95MADM7)";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				INFOPLIST_FILE = "czechitas-mobile-app/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = "com.brainity.czechitas-mobile-app";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.margetova.czechitas-mobile-app";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 			};
@@ -688,12 +664,12 @@
 			baseConfigurationReference = FDF7574992EF1F62F3D05742 /* Pods-czechitas-mobile-app.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				CODE_SIGN_IDENTITY = "iPhone Developer";
+				CODE_SIGN_IDENTITY = "iPhone Distribution: Svetlana Margetova (D3U95MADM7)";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				INFOPLIST_FILE = "czechitas-mobile-app/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = "com.brainity.czechitas-mobile-app";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.margetova.czechitas-mobile-app";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 			};

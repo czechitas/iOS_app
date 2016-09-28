@@ -44,7 +44,7 @@ class CourseTableViewController: UITableViewController, PopUtTableViewController
             
             self.filteredCourses = data
             self.categories = data2
-            SVProgressHUD.dismiss()
+            
             self.saved = true
             self.tableView.reloadData()
         })
@@ -98,7 +98,7 @@ class CourseTableViewController: UITableViewController, PopUtTableViewController
                 
                 self.courses = data
                 self.categories = data2
-                SVProgressHUD.dismiss()
+                
                 self.tableView.reloadData()
             })
         }
@@ -124,9 +124,12 @@ class CourseTableViewController: UITableViewController, PopUtTableViewController
         if courses.count > 0 {
             tableView.separatorStyle = .SingleLine
             tableView.backgroundView?.hidden = true
+            SVProgressHUD.dismiss()
             return 1
-        } else if SVProgressHUD.isVisible() == true && courses.isEmpty {
+        } else if courses.isEmpty && SVProgressHUD.isVisible() == true {
+            
             TableViewHelper.emptyImage("empty", viewController: self)
+            SVProgressHUD.dismiss()
             return 1
         }
         else {
