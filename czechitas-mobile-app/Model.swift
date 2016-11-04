@@ -8,7 +8,6 @@
 
 import Foundation
 import SwiftyJSON
-import ReachabilitySwift
 import SVProgressHUD
 
 class Model : BaseViewController {
@@ -17,13 +16,15 @@ class Model : BaseViewController {
     var allCourses = [Course]()
     var categories = [Category]()
     
-    var reachability: Reachability?
+    
     
     override func viewDidLoad() {
-        checkReachibility()
+        //checkReachibility()
     
     }
-    func reachabilityChanged(note: NSNotification) {
+    
+    /*
+    func reachabilityChanged(_ note: Notification) {
         
         let reachability = note.object as! Reachability
         
@@ -41,8 +42,9 @@ class Model : BaseViewController {
             self.createAlert2("Chyba", message : "Nie ste pripojeny k netu")
             SVProgressHUD.dismiss()
         }
-    }
+    } */
     
+    /*
     func checkReachibility() {
         do {
             try reachability?.startNotifier()
@@ -59,15 +61,16 @@ class Model : BaseViewController {
             return
             
         }
-        
-        NSNotificationCenter.defaultCenter().addObserver(self, selector: "reachabilityChanged:",name: ReachabilityChangedNotification,object: reachability)
+        */
+        /*
+        NotificationCenter.default.addObserver(self, selector: #selector(Model.reachabilityChanged(_:)),name: ReachabilityChangedNotification,object: reachability)
         do{
             try reachability?.startNotifier()
             
         }catch{
             print("could not start reachability notifier")
         }
-    }
+    }*/
         
     
         
@@ -78,7 +81,7 @@ class Model : BaseViewController {
 
     
     
-    func isCategoryWithThisID(id : Int) -> Bool {
+    func isCategoryWithThisID(_ id : Int) -> Bool {
         for cat in self.categories {
             if cat.id == id {
                 return true
@@ -87,7 +90,7 @@ class Model : BaseViewController {
         return false
     }
     
-    func fetchCourseData(method : APIRouter, courseData : ((data : [Course], data2 : [Category]) -> Void)) {
+    func fetchCourseData(_ method : APIRouter, courseData : @escaping ((_ data : [Course], _ data2 : [Category]) -> Void)) {
         
         
         var courses = [Course]()
@@ -100,12 +103,12 @@ class Model : BaseViewController {
             
             for (index,subJson) : (String, JSON) in data {
                 
-                if let course = Course(id: subJson["id"].intValue, title: subJson["title"].stringValue, courseStartDate: subJson["course_start_date"].stringValue, courseEndDate: subJson["course_end_date"].stringValue, courseDescription: subJson["course_description"].stringValue, courseCity: subJson["course_venue"]["city"].stringValue) {
+                if let course = Course(id: subJson["id"].intValue, title: subJson["title"].stringValue, courseStartDate: subJson["course_start_date"].stringValue, courseEndDate: subJson["course_end_date"].stringValue, courseDescription: subJson["course_description"].stringValue, courseCity: subJson["course_venue"]["city"].stringValue, coursePrice: subJson["course_price"].stringValue) {
                     
                     
                     let category = Category(id: subJson["course_category"]["id"].intValue, title: subJson["course_category"]["title"].stringValue, colorCode: subJson["course_category"]["color_code"].stringValue)
                     
-                    if self.categories.contains({$0.id == category.id}) == false {
+                    if self.categories.contains(where: {$0.id == category.id}) == false {
                         self.categories.append(category)
                     }
                     
@@ -113,7 +116,7 @@ class Model : BaseViewController {
                     
                     
                     // toto tu finalne nebude , lebo kategorie sa vraj budu este menit
-                    course.addCategory(subJson["course_category"]["title"].stringValue, courseCategoryColorCode: subJson["course_category"]["color_code"].stringValue)
+                    course.addCategory(subJson["course_category"]["title"].stringValue, colorCode: subJson["course_category"]["color_code"].stringValue)
                     
                     //course.convertDate()
                     
@@ -123,7 +126,7 @@ class Model : BaseViewController {
                     
                     courses.append(course)
                     
-                    if self.allCourses.contains({$0.id == course.id}) == false {
+                    if self.allCourses.contains(where: {$0.id == course.id}) == false {
                         self.allCourses.append(course)
                     }
                     
@@ -134,7 +137,7 @@ class Model : BaseViewController {
             
             
             print (self.categories.count)
-            courseData(data: courses, data2 : self.categories)
+            courseData(courses, self.categories)
             
         })
     }
@@ -256,12 +259,12 @@ class Model : BaseViewController {
     
     func getCourse() -> [[String : Int]]? {
         
-        return NSUserDefaults.standardUserDefaults().arrayForKey("Courses") as? [[String : Int]]
+        return UserDefaults.standard.array(forKey: "Courses") as? [[String : Int]]
         //NSUserDefaults.standardUserDefaults().synchronize()
         
     }
     
-    func saveCourse(dict : [String:Int]) {
+    func saveCourse(_ dict : [String:Int]) {
         
         var newCourses : [[String : Int]]
         if let existingCourse = getCourse() {
@@ -275,21 +278,21 @@ class Model : BaseViewController {
         }
         
         
-        NSUserDefaults.standardUserDefaults().setObject(newCourses, forKey: "Courses")
+        UserDefaults.standard.set(newCourses, forKey: "Courses")
         
-        NSUserDefaults.standardUserDefaults().synchronize()
+        UserDefaults.standard.synchronize()
         
     }
     
-    func removeCourse(index : Int) {
+    func removeCourse(_ index : Int) {
         var newCourses : [[String : Int]]
         if let existingCourse = getCourse() {
             newCourses = existingCourse
-            newCourses.removeAtIndex(index)
+            newCourses.remove(at: index)
             
-            NSUserDefaults.standardUserDefaults().setObject(newCourses, forKey: "Courses")
+            UserDefaults.standard.set(newCourses, forKey: "Courses")
            
-            NSUserDefaults.standardUserDefaults().synchronize()
+            UserDefaults.standard.synchronize()
         }
     }
 

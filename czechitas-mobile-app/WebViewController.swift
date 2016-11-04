@@ -7,16 +7,21 @@
 //
 
 import UIKit
+import SVProgressHUD
 
 class WebViewController: UIViewController {
 
     @IBOutlet weak var webView: UIWebView!
-    var urlRequest : NSURLRequest?
+    var urlRequest : URLRequest?
     
     override func viewDidLoad() {
+        
+
         super.viewDidLoad()
-        print (urlRequest!)
+        
+        SVProgressHUD.show()
         webView.loadRequest(urlRequest!)
+        SVProgressHUD.dismiss()
         
         
                 

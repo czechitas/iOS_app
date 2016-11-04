@@ -1,30 +1,22 @@
-//
-//  BaseViewController.swift
-//  czechitas-mobile-app
-//
-//  Created by Svetlana Margetová on 06.07.16.
-//  Copyright © 2016 Svetlana Margetová. All rights reserved.
-//
-
 import UIKit
 
 class BaseViewController: UIViewController {
-
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
     }
     
-    private func presentViewController(alert: UIAlertController, animated flag: Bool, completion: (() -> Void)?) -> Void {
-        UIApplication.sharedApplication().keyWindow?.rootViewController?.presentViewController(alert, animated: flag, completion: completion)
+    fileprivate func presentViewController(_ alert: UIAlertController, animated flag: Bool, completion: (() -> Void)?) -> Void {
+        UIApplication.shared.keyWindow?.rootViewController?.present(alert, animated: flag, completion: completion)
     }
     
     
     
-    func createAlert(title : String, message : String) {
-        let alertController = UIAlertController(title: title, message: message, preferredStyle: .Alert)
-        let OKAction = UIAlertAction(title : "OK", style: .Default) { (action) in
-            print (action)
+    func createAlert(_ title : String, message : String) {
+        let alertController = UIAlertController(title: title, message: message, preferredStyle: .alert)
+        let OKAction = UIAlertAction(title : "OK", style: .default) { (action) in
+            
             
         }
         
@@ -35,18 +27,18 @@ class BaseViewController: UIViewController {
         
     }
     
-    func createAlert2(title : String, message : String) {
-        let alertController = UIAlertController(title: title, message: message, preferredStyle: .Alert)
+    func createAlert2(_ title : String, message : String) {
+        let alertController = UIAlertController(title: title, message: message, preferredStyle: .alert)
         
-        var settingsAction = UIAlertAction(title: "Nastavenia", style: .Default) { (_) -> Void in
-            let settingsURL = NSURL(string: UIApplicationOpenSettingsURLString)
+        let settingsAction = UIAlertAction(title: "Nastavenia", style: .default) { (_) -> Void in
+            let settingsURL = URL(string: UIApplicationOpenSettingsURLString)
             if let url = settingsURL {
-                UIApplication.sharedApplication().openURL(url)
+                UIApplication.shared.openURL(url)
             }
         }
         
-        let cancelAction = UIAlertAction(title : "Zrusit", style: .Default) { (action) in
-            print (action)
+        let cancelAction = UIAlertAction(title : "Zrusit", style: .default) { (action) in
+            
             
         }
         
@@ -56,5 +48,5 @@ class BaseViewController: UIViewController {
         
         
     }
-
+    
 }

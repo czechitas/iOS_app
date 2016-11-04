@@ -1,69 +1,74 @@
-//
-//  DataManager.swift
-//  czechitas-mobile-app
-//
-//  Created by Svetlana Margetová on 06.06.16.
-//  Copyright © 2016 Svetlana Margetová. All rights reserved.
-//
-
 import UIKit
 import Alamofire
 import SwiftyJSON
 
-extension Manager {
-    static let baseURL = "https://czechitas-app.herokuapp.com:443/api/v1"
-}
+
 
 enum APIRouter: URLRequestConvertible {
+    /// Returns a URL request or throws if an `Error` was encountered.
+    ///
+    /// - throws: An `Error` if the underlying `URLRequest` is `nil`.
+    ///
+    /// - returns: A URL request.
     
-    case Cities()
-    case CoursesPrepared()
-    case CoursesOpen()
-    case CoursesAll()
-    case CoursesClosed()
-    case Venues()
-    case Update(timestamp : Int)
     
-    var URLRequest: NSMutableURLRequest {
-        let path : String = {
+    static let baseURL = "https://czechitas-app.herokuapp.com:443/api/v1"
+    case cities()
+    case coursesPrepared()
+    case coursesOpen()
+    case coursesAll()
+    case coursesClosed()
+    case venues()
+    case update(timestamp : Int)
+    
+    func asURLRequest() throws -> URLRequest {
+        let result: (path: String, parameters: Parameters) = {
             switch self
             {
-            case .Cities:
-                return ("/cities/")
-            case .CoursesPrepared:
-                return ("/courses/prepared/")
-            case .CoursesOpen:
-                return ("/courses/open/")
-            case .CoursesAll:
-                return ("/courses/all/")
-            case .CoursesClosed:
-                return ("/courses/closed/")
-            case .Venues:
-                return ("/courses/")
-            case .Update:
-                return ("/update-from=1464889500/")
+            case .cities:
+                return ("/cities/", [:])
+            case .coursesPrepared:
+                return ("/courses/prepared/", [:])
+            case .coursesOpen:
+                return ("/courses/open/", [:])
+            case .coursesAll:
+                return ("/courses/all/", [:])
+            case .coursesClosed:
+                return ("/courses/closed/", [:])
+            case .venues:
+                return ("/courses/", [:])
+            case .update:
+                return ("/update-from=1464889500/", [:])
             }
         }()
-
-        if let URL = NSURL(string: Alamofire.Manager.baseURL) {
-        let URLRequest = NSMutableURLRequest(URL: URL.URLByAppendingPathComponent(path))
-        return URLRequest
+        
+        let url = try APIRouter.baseURL.asURL()
+        let urlRequest = URLRequest(url: url.appendingPathComponent(result.path))
+        
+        return try URLEncoding.default.encode(urlRequest, with : result.parameters)
+        
+        /*
+        if let URL = URL(string: "https://czechitas-app.herokuapp.com:443/api/v1") {
+            let URLRequest = NSMutableURLRequest(url: URL)
+            return URLRequest
         }
-        return NSMutableURLRequest()
+        return NSMutableURLRequest()*/
     }
-}
+    
+    }
+    
 
 class APIManager {
     static let sharedInstance = APIManager()
-
-    func callAPI(method : APIRouter, onComplete : ((data : JSON) -> Void)) {
+    
+    func callAPI(_ method : APIRouter, onComplete : @escaping ((_ data : JSON) -> Void)) {
         Alamofire.request(method)
-        .validate()
-        .responseJSON { response in
-            if let value = response.result.value {
-                let valueJSON = JSON(value)
-                onComplete(data: valueJSON)
-            }
+            .validate()
+            .responseJSON { response in
+                if let value = response.result.value {
+                    let valueJSON = JSON(value)
+                    onComplete(valueJSON)
+                }
         }
     }
     
@@ -71,5 +76,3 @@ class APIManager {
     
     
 }
-
-

@@ -106,6 +106,13 @@
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
+		A0AB5243FC55482553FA7B0B /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		DC00C3371D43CE930042B1C6 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
@@ -248,6 +255,7 @@
 			buildPhases = (
 				DC00C32C1D43CE930042B1C6 /* Resources */,
 				DC00C34E1D43CE930042B1C6 /* Embed App Extensions */,
+				A0AB5243FC55482553FA7B0B /* Frameworks */,
 			);
 			buildRules = (
 			);
@@ -316,6 +324,7 @@
 					DC91E8A91D0583F80054F356 = {
 						CreatedOnToolsVersion = 7.3.1;
 						DevelopmentTeam = D3U95MADM7;
+						LastSwiftMigration = 0810;
 					};
 				};
 			};
@@ -651,11 +660,12 @@
 				CODE_SIGN_IDENTITY = "iPhone Distribution: Svetlana Margetova (D3U95MADM7)";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				INFOPLIST_FILE = "czechitas-mobile-app/Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.margetova.czechitas-mobile-app";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
+				SWIFT_VERSION = 3.0;
 			};
 			name = Debug;
 		};
@@ -667,11 +677,12 @@
 				CODE_SIGN_IDENTITY = "iPhone Distribution: Svetlana Margetova (D3U95MADM7)";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				INFOPLIST_FILE = "czechitas-mobile-app/Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.margetova.czechitas-mobile-app";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
+				SWIFT_VERSION = 3.0;
 			};
 			name = Release;
 		};

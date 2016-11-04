@@ -9,6 +9,7 @@
 import UIKit
 import EventKit
 import MessageUI
+import SVProgressHUD
 
 struct CourseStruct {
     var icon : String
@@ -16,7 +17,6 @@ struct CourseStruct {
 }
 
 class CourseDetailViewController: BaseViewController, UITableViewDelegate, UITableViewDataSource, MFMailComposeViewControllerDelegate {
-    
     @IBOutlet weak var addBtn: UIBarButtonItem!
     @IBOutlet weak var buttonAction: UIButton!
     @IBOutlet weak var courseTableView: UITableView!
@@ -25,56 +25,35 @@ class CourseDetailViewController: BaseViewController, UITableViewDelegate, UITab
     @IBOutlet weak var courseDates: UILabel!
     var finalLink : String?
     var repeatCourse : String = ""
-    
     var course : Course!
     var savedEventId : String?
-    
     var btnAddTitle : String?
-    
     var courseDetails = [CourseStruct]()
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        
-        
-        
-        
-        
-        
-        
         navigationItem.title = course.title
-        navigationController?.navigationBar.tintColor = .whiteColor()
-        
+        navigationController?.navigationBar.tintColor = .white
         courseInfoView.backgroundColor = course.courseCategoryColorCode
-        
         let dates = course.convertDate()
         courseDates.text = (dates.0) + " - " +  (dates.1)
         courseTitle.text = course.title
-        
-        
-       
-        
         courseDetails = createStruct()
-        
         courseTableView.tableFooterView = UIView()
         courseTableView.estimatedRowHeight = 15.0
         courseTableView.rowHeight = UITableViewAutomaticDimension
-        
-        
         savedEventId = "0"
         getCourseState()
     }
     
-    override func viewWillAppear(animated: Bool) {
+    override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(true)
         let image2 = UIImage(named: setBtnTitle())
         addBtn.image = image2
     }
     
     func setBtnTitle() -> String {
-        
-        if Model.sharedInstance.getCourse()?.contains({$0["id"] == course.id}) == true {
+        if Model.sharedInstance.getCourse()?.contains(where: {$0["id"] == course.id}) == true {
             return "course-remove"
         } else {
             return "course-add"
@@ -84,62 +63,51 @@ class CourseDetailViewController: BaseViewController, UITableViewDelegate, UITab
     func getCourseState() -> String {
         if course.open_registration == true {
             if let finalLink = course.courseLink {
-                buttonAction.setTitle("Registrovať sa", forState: .Normal)
+                buttonAction.setTitle("Zaregistrovat se", for: UIControlState())
                 return finalLink
             }
-        }
-        else {
+        } else {
             if let finalLink = course.interestedLink {
-                buttonAction.setTitle("Mám záujem", forState: .Normal)
+                buttonAction.setTitle("Mám zájem", for: UIControlState())
                 return finalLink
             }
         }
         return finalLink ?? "None"
-        
     }
-    
     
     func createStruct() -> [CourseStruct] {
         let dates = course.convertDate()
-        
         var price1 : String = ""
         if let price = course.coursePrice {
             price1 = price + " CZK"
         }
-        
-        
         if let repeatValue = course.repeatCourse {
             self.repeatCourse = repeatValue
         }
-        
         let rowEmpty = CourseStruct(icon: "", description: "")
-        let row1 = CourseStruct(icon: "time", description: repeatCourse + " " + dates.2 + " - " + dates.3 ?? "Datum neuvedeny")
-        let row2 = CourseStruct(icon: "pin", description: (course.createFullAddress()) ?? "Adresa neuvedena")
-        let row3 = CourseStruct(icon: "money", description: price1 ?? "Cena neuvedena")
-        let row4 = CourseStruct(icon: "email", description: "Napíš nám")
-        let row5 = CourseStruct(icon: "couch", description: course.couches ?? "Kouc neuvedeny")
-        let row6 = CourseStruct(icon: "notes", description: course.courseNotes ?? "Poznamka neuvedena")
-        
+        let row1 = CourseStruct(icon: "time", description: repeatCourse + " " + dates.2 + " - " + dates.3 )
+        let row2 = CourseStruct(icon: "pin", description: (course.createFullAddress()) )
+        let row3 = CourseStruct(icon: "money", description: price1 )
+        let row4 = CourseStruct(icon: "email", description: "Napiš nám")
+        let row5 = CourseStruct(icon: "couch", description: course.couches ?? "Kouč neuveden")
+        let row6 = CourseStruct(icon: "notes", description: course.courseNotes ?? "Poznámka neuvedená")
         return [rowEmpty, row1, row2, row3, row4, row5, row6]
 
     }
     
-    @IBAction func addToCalendar(sender: UIBarButtonItem) {
+    @IBAction func addToCalendar(_ sender: UIBarButtonItem) {
         let eventStore = EKEventStore()
-        if (EKEventStore.authorizationStatusForEntityType(.Event) != EKAuthorizationStatus.Authorized) {
-            eventStore.requestAccessToEntityType(.Event, completion: { granted, error in
-                print (error)
+        if (EKEventStore.authorizationStatus(for: .event) != EKAuthorizationStatus.authorized) {
+            eventStore.requestAccess(to: .event, completion: { granted, error in
+                debugPrint (error ?? "Chyba")
                 if granted {
-                    
-                    
+                
                 } else {
-                    self.createAlert("Oznam", message : "Povolenie sa nepodarilo.")
+                    self.createAlert("Oznam", message : "Autorizace proběhla úspěšně.")
                 }
             })
         } else {
-            
-            eventStore.requestAccessToEntityType(.Event, completion: { granted, error in
-                
+            eventStore.requestAccess(to: .event, completion: { granted, error in
             })
         }
         
@@ -152,36 +120,36 @@ class CourseDetailViewController: BaseViewController, UITableViewDelegate, UITab
         
     }
     
-    func convertToDate(startDate : String, endDate : String) -> (NSDate, NSDate) {
-        let formatter = NSDateFormatter()
+    func convertToDate(_ startDate : String, endDate : String) -> (Date, Date) {
+        let formatter = DateFormatter()
         formatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss'Z'"
-        let startDate1 = formatter.dateFromString(startDate)
-        let endDate1 = formatter.dateFromString(endDate)
-        return (startDate1 ?? NSDate(), endDate1 ?? NSDate())
+        let startDate1 = formatter.date(from: startDate)
+        let endDate1 = formatter.date(from: endDate)
+        return (startDate1 ?? Date(), endDate1 ?? Date())
     }
     
-    func getAllEvents(eventStore : EKEventStore) -> Bool {
-        let oneMonthAgo = NSDate(timeIntervalSinceNow: -30*24*3600)
-        let oneMonthAfter = NSDate(timeIntervalSinceNow: +30*24*3600)
+    func getAllEvents(_ eventStore : EKEventStore) -> Bool {
+        let oneMonthAgo = Date(timeIntervalSinceNow: -90*24*3600)
+        let oneMonthAfter = Date(timeIntervalSinceNow: +90*24*3600)
         
-        let predicate = eventStore.predicateForEventsWithStartDate(oneMonthAgo, endDate: oneMonthAfter, calendars: nil)
+        let predicate = eventStore.predicateForEvents(withStart: oneMonthAgo, end: oneMonthAfter, calendars: nil)
         
-        let events = eventStore.eventsMatchingPredicate(predicate)
+        let events = eventStore.events(matching: predicate)
         
-        return events.contains({$0.title == course.title})
+        return events.contains(where: {$0.title == course.title})
         
     }
     
-    func createEvent(eventStore : EKEventStore, title : String, startDate : NSDate, endDate : NSDate) {
+    func createEvent(_ eventStore : EKEventStore, title : String, startDate : Date, endDate : Date) {
         
-        eventStore.requestAccessToEntityType(.Event, completion: { granted, error in
+        eventStore.requestAccess(to: .event, completion: { granted, error in
             
         })
         
         
         if !getAllEvents(eventStore) {
             
-            print (!getAllEvents(eventStore))
+            
             let event = EKEvent(eventStore : eventStore)
             
             event.title = title
@@ -189,30 +157,34 @@ class CourseDetailViewController: BaseViewController, UITableViewDelegate, UITab
             event.endDate = endDate
             event.calendar = eventStore.defaultCalendarForNewEvents
             do {
-                try eventStore.saveEvent(event, span: .ThisEvent)
+                try eventStore.save(event, span: .thisEvent)
                 savedEventId = event.eventIdentifier
                 
-                self.createAlert("Oznam", message : "Udalost pridana do kalendara")
+                self.createAlert("Oznam", message : "Kurz " + course.title + " úspěšně přidaný do kalendáře.")
                 
             } catch {
-                self.createAlert("Oznam", message : "Potvrdene")
+                debugPrint("Error")
             }
         } else {
-            self.createAlert("Oznam", message : "Udalost je uz do kalendara pridana")
+            self.createAlert("Oznam", message : "Kurz " + course.title + " je už do kalendáře přidaný.")
         }
     }
     
     
     
-    @IBAction func buttonClick(sender: AnyObject) {
+    @IBAction func buttonClick(_ sender: AnyObject) {
         
         let url = getCourseState()
-            let request = NSURLRequest(URL: NSURL(string : url)!)
-            print (request)
-            let webController = self.storyboard?.instantiateViewControllerWithIdentifier("WebViewController") as! WebViewController
+        
+        if url != "None" || url != ""{
+            let request = URLRequest(url: URL(string : url)!)
+            
+            SVProgressHUD.show()
+            let webController = self.storyboard?.instantiateViewController(withIdentifier: "WebViewController") as! WebViewController
             self.navigationController?.pushViewController(webController, animated: true)
             webController.urlRequest = request
-            
+        }
+        
             
             
             
@@ -224,33 +196,33 @@ class CourseDetailViewController: BaseViewController, UITableViewDelegate, UITab
             let mail = MFMailComposeViewController()
             mail.mailComposeDelegate = self
             if course.courseCouchEmail == "" {
-                course.courseCouchEmail = "czechitas@info.com"
+                course.courseCouchEmail = "czechitas@info.cz"
             }
             mail.setToRecipients([course.courseCouchEmail ?? "czechitas@info.com"])
-            mail.setSubject("Informacie o kurze \(course.title)")
+            mail.setSubject("Informace o kurzu \(course.title)")
             mail.setMessageBody("", isHTML: false)
-            presentViewController(mail, animated: true, completion: nil)
+            present(mail, animated: true, completion: nil)
             
         } else {
-            self.createAlert("Chyba", message: "Email nie je mozne poslat")
+            self.createAlert("Chyba", message: "Email není možné poslat.")
         }
     }
     
-    func mailComposeController(controller : MFMailComposeViewController, didFinishWithResult : MFMailComposeResult, error : NSError?) {
-        controller.dismissViewControllerAnimated(true, completion: nil)
+    func mailComposeController(_ controller : MFMailComposeViewController, didFinishWith didFinishWithResult : MFMailComposeResult, error : Error?) {
+        controller.dismiss(animated: true, completion: nil)
     }
     
         
-    @IBAction func addCourse(sender: UIBarButtonItem) {
+    @IBAction func addCourse(_ sender: UIBarButtonItem) {
         
-        if let courseIndex = Model.sharedInstance.getCourse()?.indexOf({$0["id"] == course.id}) {
+        if let courseIndex = Model.sharedInstance.getCourse()?.index(where: {$0["id"] == course.id}) {
             Model.sharedInstance.removeCourse(courseIndex)
-            self.createAlert("Oznam", message : "Kurz bol odobraný z obľúbených.")
+            self.createAlert("Oznam", message : "Kurz " + course.title + " odebraný ze seznamu oblíbených kurzů.")
             viewWillAppear(true)
             
         } else {
             Model.sharedInstance.saveCourse(["id" : course.id])
-            self.createAlert("Oznam", message : "Kurz bol pridaný do obľúbených.")
+            self.createAlert("Oznam", message : "Kurz " + course.title + " přidaný do seznamu oblíbených kurzů.")
             viewWillAppear(true)
             
         }
@@ -258,31 +230,27 @@ class CourseDetailViewController: BaseViewController, UITableViewDelegate, UITab
     
     
     
-    func tableView(courseTableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+    func tableView(_ courseTableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         
         
         return courseDetails.count
     }
     
-    func tableView(courseTableView: UITableView, cellForRowAtIndexPath indexPath : NSIndexPath) -> UITableViewCell {
+    func tableView(_ courseTableView: UITableView, cellForRowAt indexPath : IndexPath) -> UITableViewCell {
         if indexPath.row == 0 {
-            if let cell = courseTableView.dequeueReusableCellWithIdentifier("courseDesc", forIndexPath: indexPath) as?  CourseDescriptionTableViewCell {
+            if let cell = courseTableView.dequeueReusableCell(withIdentifier: "courseDesc", for: indexPath) as?  CourseDescriptionTableViewCell {
                 cell.courseDescription.text = course?.courseDescription
-                cell.selectionStyle = .None
+                cell.selectionStyle = .none
                 return cell
             }
             
         } else {
-            if let cell = courseTableView.dequeueReusableCellWithIdentifier("infoCell", forIndexPath: indexPath) as? InfoTableViewCell {
+            if let cell = courseTableView.dequeueReusableCell(withIdentifier: "infoCell", for: indexPath) as? InfoTableViewCell {
                 
-                print (indexPath.row)
+                
                 cell.infoCourse.text = courseDetails[indexPath.row].description
                 cell.imageCourse.image = UIImage(named: courseDetails[indexPath.row].icon)
-                cell.selectionStyle = .None
-                /*
-                if indexPath.row == 4 {
-                    cell.selectionStyle = .Default
-                } */
+                cell.selectionStyle = .none
                 
                 return cell
             }
@@ -292,7 +260,7 @@ class CourseDetailViewController: BaseViewController, UITableViewDelegate, UITab
         
     }
     
-    func tableView(courseTableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+    func tableView(_ courseTableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         if indexPath.row == 4 {
             sendEmail()
         }
@@ -301,9 +269,9 @@ class CourseDetailViewController: BaseViewController, UITableViewDelegate, UITab
     }
     
     // MARK: - MFMailComposerViewController Delegate
-    func mailComposeController(controller: MFMailComposeViewController, didFinishWith:
+    func mailComposeController(_ controller: MFMailComposeViewController, didFinishWith:
         MFMailComposeResult, error: NSError?) {
-        controller.dismissViewControllerAnimated(true, completion: nil)
+        controller.dismiss(animated: true, completion: nil)
     }
     
 }

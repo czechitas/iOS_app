@@ -13,7 +13,7 @@ class FavouriteViewController: UINavigationController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        self.navigationBar.tintColor = .whiteColor()
+        self.navigationBar.tintColor = .white
         // Do any additional setup after loading the view.
     }
 

@@ -7,7 +7,8 @@
 //
 
 import Foundation
-import SwiftHEXColors
+import UIKit
+
 
 class Course : NSObject {
     var id : Int
@@ -37,7 +38,7 @@ class Course : NSObject {
     
     
     
-    init?(id : Int, title : String, courseStartDate : String, courseEndDate : String,courseDescription : String, courseCity : String) {
+    init?(id : Int, title : String, courseStartDate : String, courseEndDate : String,courseDescription : String, courseCity : String, coursePrice : String) {
         
         
         self.id = id
@@ -46,10 +47,11 @@ class Course : NSObject {
         self.courseEndDate = courseEndDate
         self.courseCity = courseCity
         self.courseDescription = courseDescription
+        self.coursePrice = coursePrice
         
         if courseStartDate.isEmpty || courseEndDate.isEmpty {
-            self.courseStartDate = String(NSDate())
-            self.courseEndDate = String(NSDate())
+            self.courseStartDate = String(describing: Date())
+            self.courseEndDate = String(describing: Date())
         }
         
         
@@ -59,20 +61,22 @@ class Course : NSObject {
         
     }
     
+   
+    
     func convertDate() -> (String, String, String, String) {
         
-        let formatter = NSDateFormatter()
+        let formatter = DateFormatter()
         formatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss'Z'"
-        let startDate = formatter.dateFromString(courseStartDate)
-        let startTime = formatter.dateFromString(courseStartDate)
-        let endTime = formatter.dateFromString(courseEndDate)
-        let endDate = formatter.dateFromString(courseEndDate)
+        let startDate = formatter.date(from: courseStartDate)
+        let startTime = formatter.date(from: courseStartDate)
+        let endTime = formatter.date(from: courseEndDate)
+        let endDate = formatter.date(from: courseEndDate)
         formatter.dateFormat = "dd. MM. yyyy"
-        let startDate1 = formatter.stringFromDate(startDate ?? NSDate())
-        let endDate1 = formatter.stringFromDate(endDate ?? NSDate())
+        let startDate1 = formatter.string(from: startDate ?? Date())
+        let endDate1 = formatter.string(from: endDate ?? Date())
         formatter.dateFormat = "HH:mm"
-        self.courseStartTime = formatter.stringFromDate(startTime ?? NSDate())
-        self.courseEndTime = formatter.stringFromDate(endTime ?? NSDate())
+        self.courseStartTime = formatter.string(from: startTime ?? Date())
+        self.courseEndTime = formatter.string(from: endTime ?? Date())
         return (startDate1, endDate1, courseStartTime ?? "00:00:00", courseEndTime ?? "00:00:00")
     }
     
@@ -80,16 +84,16 @@ class Course : NSObject {
     
     
     
-    func setState(courseState : String) {
+    func setState(_ courseState : String) {
         self.courseState = courseState
     }
     
-    func addCategory(courseCategoryTitle : String, courseCategoryColorCode : String) {
+    func addCategory(_ courseCategoryTitle : String, colorCode : String) {
         self.courseCategoryTitle = courseCategoryTitle
-        self.courseCategoryColorCode = UIColor(hexString : courseCategoryColorCode ?? "#dedede")
+        self.courseCategoryColorCode = UIColor(hexString: colorCode)
     }
     
-    func addDetailInfo(coursePrice : String, courseNotes : String, courseLink : String, interestedLink : String, courseVenueTitle : String, courseStreetName : String, courseStreetNumber : String, courseCouchEmail : String, open_registration : Bool, publish : Bool, repeatCourse : String, couches : String) {
+    func addDetailInfo(_ coursePrice : String, courseNotes : String, courseLink : String, interestedLink : String, courseVenueTitle : String, courseStreetName : String, courseStreetNumber : String, courseCouchEmail : String, open_registration : Bool, publish : Bool, repeatCourse : String, couches : String) {
         self.coursePrice = coursePrice
         self.courseNotes = courseNotes
         self.courseLink = courseLink
@@ -104,11 +108,11 @@ class Course : NSObject {
         self.couches = couches
         
         if couches == "" ||  couches == "None" {
-            self.couches = "Kouc neuvedeny"
+            self.couches = "Kouč neuveden"
         }
         
         if courseNotes == "" {
-            self.courseNotes = "Ziadne dodatocne informacie"
+            self.courseNotes = "Žádné dodatečné informace"
         }
         
     }
@@ -122,9 +126,47 @@ class Course : NSObject {
 }
 
 
+extension String {
+    func index(from: Int) -> Index {
+        return self.index(startIndex, offsetBy: from)
+    }
+    
+    func substring(from: Int) -> String {
+        let fromIndex = index(from: from)
+        return substring(from: fromIndex)
+    }
+    
+    func substring(to: Int) -> String {
+        let toIndex = index(from: to)
+        return substring(to: toIndex)
+    }
+    
+    func substring(with r: Range<Int>) -> String {
+        let startIndex = index(from: r.lowerBound)
+        let endIndex = index(from: r.upperBound)
+        return substring(with: startIndex..<endIndex)
+    }
+}
 
-
-
+extension UIColor {
+    convenience init(hexString: String) {
+        let hex = hexString.trimmingCharacters(in: CharacterSet.alphanumerics.inverted)
+        var int = UInt32()
+        Scanner(string: hex).scanHexInt32(&int)
+        let a, r, g, b: UInt32
+        switch hex.characters.count {
+        case 3: // RGB (12-bit)
+            (a, r, g, b) = (255, (int >> 8) * 17, (int >> 4 & 0xF) * 17, (int & 0xF) * 17)
+        case 6: // RGB (24-bit)
+            (a, r, g, b) = (255, int >> 16, int >> 8 & 0xFF, int & 0xFF)
+        case 8: // ARGB (32-bit)
+            (a, r, g, b) = (int >> 24, int >> 16 & 0xFF, int >> 8 & 0xFF, int & 0xFF)
+        default:
+            (a, r, g, b) = (255, 0, 0, 0)
+        }
+        self.init(red: CGFloat(r) / 255, green: CGFloat(g) / 255, blue: CGFloat(b) / 255, alpha: CGFloat(a) / 255)
+    }
+}
 
 class Category : NSObject {
     var id : Int
@@ -132,16 +174,26 @@ class Category : NSObject {
     var colorCode : UIColor?
     var isSelected : Bool?
     
-    init(id : Int, title : String, colorCode : String) {
+    init(id : Int, title : String, colorCode: String) {
         self.id = id
         self.title = title
-        self.colorCode = UIColor(hexString: colorCode ?? "#dedede")
+        
+        
+        self.colorCode = UIColor(hexString : colorCode)
+        
+        
+        
+        
+        
+        
     }
     
-    func chooseCategory(state : Bool) {
+    
+    
+    
+    func chooseCategory(_ state : Bool) {
      isSelected = state 
     }
-    
     
 }
 
