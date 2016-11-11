@@ -8,8 +8,9 @@
 
 import UIKit
 import SVProgressHUD
+import MessageUI
 
-class CourseTableViewController: UITableViewController, PopUtTableViewControllerDelegate {
+class CourseTableViewController: UITableViewController, PopUtTableViewControllerDelegate, MFMailComposeViewControllerDelegate {
     var filteredCourses = [Course]()
     var categories = [Category]()
     var courses = [Course]()
@@ -34,6 +35,28 @@ class CourseTableViewController: UITableViewController, PopUtTableViewController
         })
         self.courses = self.filteredCourses
         tableView.tableFooterView = UIView()
+    }
+    
+    @IBAction func sendEmail(_ sender: UIBarButtonItem) {
+        if MFMailComposeViewController.canSendMail() {
+            let mail = MFMailComposeViewController()
+            mail.mailComposeDelegate = self
+            mail.mailComposeDelegate = self
+            mail.setToRecipients(["info@czechitas.cz"])
+            mail.setSubject("Mám zájem o kurz: ")
+            mail.setMessageBody("", isHTML: false)
+            present(mail, animated: true, completion: nil)
+            
+        }
+    }
+    
+    func mailComposeController(_ controller : MFMailComposeViewController, didFinishWith didFinishWithResult : MFMailComposeResult, error : Error?) {
+        controller.dismiss(animated: true, completion: nil)
+    }
+
+    func mailComposeController(_ controller: MFMailComposeViewController, didFinishWith:
+        MFMailComposeResult, error: NSError?) {
+        controller.dismiss(animated: true, completion: nil)
     }
     
     func controller(_ controller: PopUpTableViewController, sendCategories: [Category]) {

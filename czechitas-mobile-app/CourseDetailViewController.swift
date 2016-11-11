@@ -196,9 +196,9 @@ class CourseDetailViewController: BaseViewController, UITableViewDelegate, UITab
             let mail = MFMailComposeViewController()
             mail.mailComposeDelegate = self
             if course.courseCouchEmail == "" {
-                course.courseCouchEmail = "czechitas@info.cz"
+                course.courseCouchEmail = "info@czechitas.cz"
             }
-            mail.setToRecipients([course.courseCouchEmail ?? "czechitas@info.com"])
+            mail.setToRecipients([course.courseCouchEmail ?? "info@czechitas.cz"])
             mail.setSubject("Informace o kurzu \(course.title)")
             mail.setMessageBody("", isHTML: false)
             present(mail, animated: true, completion: nil)

@@ -32,7 +32,7 @@
                                 <rect key="frame" x="0.0" y="28" width="375" height="166"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="f5M-jK-PKG" id="fDN-Fx-aBN">
-                                    <rect key="frame" x="0.0" y="0.0" width="375" height="165"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="375" height="165.5"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="253" verticalCompressionResistancePriority="751" text="Label" textAlignment="natural" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="none" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2K8-pZ-0cS">
@@ -124,17 +124,25 @@
                     </tableView>
                     <navigationItem key="navigationItem" title="Kurzy" id="hfh-Fs-Chp">
                         <barButtonItem key="backBarButtonItem" title="Kurzy" id="cLC-pw-BbR"/>
-                        <barButtonItem key="rightBarButtonItem" image="filter-1" width="25" id="89V-DA-jZT">
-                            <color key="tintColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                            <connections>
-                                <segue destination="fLd-mL-LOO" kind="presentation" identifier="showCategories" modalPresentationStyle="overCurrentContext" modalTransitionStyle="coverVertical" id="5gP-UV-vfi"/>
-                            </connections>
-                        </barButtonItem>
+                        <rightBarButtonItems>
+                            <barButtonItem image="filter-1" width="25" id="89V-DA-jZT">
+                                <color key="tintColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <connections>
+                                    <segue destination="fLd-mL-LOO" kind="presentation" identifier="showCategories" modalPresentationStyle="overCurrentContext" modalTransitionStyle="coverVertical" id="5gP-UV-vfi"/>
+                                </connections>
+                            </barButtonItem>
+                            <barButtonItem image="email" id="2Dd-GM-1Zp">
+                                <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <connections>
+                                    <action selector="sendEmail:" destination="akH-qF-stU" id="ZkS-uX-k7E"/>
+                                </connections>
+                            </barButtonItem>
+                        </rightBarButtonItems>
                     </navigationItem>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="4Au-na-htW" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2840.8000000000002" y="447.52623688155927"/>
+            <point key="canvasLocation" x="2806" y="448"/>
         </scene>
         <!--KurzDetail-->
         <scene sceneID="J91-sB-E6X">
@@ -232,7 +240,7 @@
                                         <rect key="frame" x="0.0" y="28" width="320" height="40"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KcP-Ap-aNu" id="kJV-Cq-f8l">
-                                            <rect key="frame" x="0.0" y="0.0" width="320" height="39"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="320" height="39.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="none" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="c08-7W-VI1">
@@ -271,7 +279,7 @@
                                         <rect key="frame" x="0.0" y="68" width="320" height="40"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="yE5-Td-VNp" id="y2X-Lw-Avr">
-                                            <rect key="frame" x="0.0" y="0.0" width="320" height="39"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="320" height="39.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="Fyr-Iz-L1i">
@@ -463,7 +471,7 @@
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="ILb-vm-ibv" customClass="OpenViewController" customModule="czechitas_mobile_app" customModuleProvider="target" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="Otevřené kurzy" image="open@1x" id="JWQ-bg-Z4O"/>
                     <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" translucent="NO" id="JFA-sg-yWX">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" translucent="NO" id="JFA-sg-yWX">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <color key="barTintColor" red="0.15686274509803921" green="0.2196078431372549" blue="0.56862745098039214" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -487,7 +495,7 @@
                     <tabBarItem key="tabBarItem" title="Připravované kurzy" image="prepared" id="5ZR-9b-gqm"/>
                     <toolbarItems/>
                     <navigationItem key="navigationItem" id="lzQ-la-zmu"/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" translucent="NO" id="nwU-ae-clx">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" translucent="NO" id="nwU-ae-clx">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <color key="barTintColor" red="0.15686274509803921" green="0.2196078431372549" blue="0.56862745098039214" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -520,7 +528,7 @@
                                 <rect key="frame" x="0.0" y="28" width="375" height="44"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" clearsContextBeforeDrawing="NO" multipleTouchEnabled="YES" contentMode="center" tableViewCell="Dbf-9f-89z" id="RXO-E1-Fqj">
-                                    <rect key="frame" x="0.0" y="0.0" width="375" height="43"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="375" height="43.5"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                 </tableViewCellContentView>
                             </tableViewCell>
@@ -590,7 +598,7 @@
                                 <rect key="frame" x="0.0" y="28" width="375" height="166"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="sk2-xN-iy4" id="fZj-z2-biy">
-                                    <rect key="frame" x="0.0" y="0.0" width="375" height="165"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="375" height="165.5"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="253" verticalCompressionResistancePriority="751" text="Label" textAlignment="natural" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="none" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="NNc-5j-tEO">
@@ -709,11 +717,11 @@
             </objects>
             <point key="canvasLocation" x="3251" y="-198"/>
         </scene>
-        <!--Bežiace kurzy-->
+        <!--Běžící kurzy-->
         <scene sceneID="Pll-Vs-N4j">
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="uSr-2q-bh8" customClass="ClosedViewController" customModule="czechitas_mobile_app" customModuleProvider="target" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Bežiace kurzy" image="closed" id="nZq-b5-7J6"/>
+                    <tabBarItem key="tabBarItem" title="Běžící kurzy" image="closed" id="nZq-b5-7J6"/>
                     <toolbarItems/>
                     <navigationItem key="navigationItem" id="KUv-xF-kBd"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" translucent="NO" id="B66-DL-9D1">
@@ -739,13 +747,14 @@
         <image name="calendar" width="30" height="30"/>
         <image name="closed" width="30" height="30"/>
         <image name="course-add" width="30" height="30"/>
+        <image name="email" width="30" height="30"/>
         <image name="filter-1" width="30" height="30"/>
         <image name="my-courses" width="30" height="30"/>
         <image name="open@1x" width="30" height="30"/>
         <image name="prepared" width="30" height="30"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="D4E-Ud-jbM"/>
-        <segue reference="qi5-bH-u3I"/>
+        <segue reference="fBi-i1-HLj"/>
+        <segue reference="rxr-s1-DWT"/>
     </inferredMetricsTieBreakers>
 </document>
