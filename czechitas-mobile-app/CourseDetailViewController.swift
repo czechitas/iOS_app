@@ -101,9 +101,10 @@ class CourseDetailViewController: BaseViewController, UITableViewDelegate, UITab
             eventStore.requestAccess(to: .event, completion: { granted, error in
                 debugPrint (error ?? "Chyba")
                 if granted {
+                    self.createAlert("Oznam", message : "Autorizace proběhla úspěšně.")
                 
                 } else {
-                    self.createAlert("Oznam", message : "Autorizace proběhla úspěšně.")
+                    self.createAlert("Oznam", message : "Přístup ke kalendáři odepřen. Toto nastavení je možné v budoucnu změnit v Nastavení telefonu.")
                 }
             })
         } else {

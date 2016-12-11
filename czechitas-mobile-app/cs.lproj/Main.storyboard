@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11542" systemVersion="16A323" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="Vnw-Cj-qXi">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11542" systemVersion="16B2555" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="Vnw-Cj-qXi">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
@@ -444,12 +444,12 @@
             </objects>
             <point key="canvasLocation" x="3656" y="448"/>
         </scene>
-        <!--Moje kurzy-->
+        <!--Oblíbené kurzy-->
         <scene sceneID="dID-Bl-R6M">
             <objects>
                 <navigationController id="Ctm-jL-raf" customClass="FavouriteViewController" customModule="czechitas_mobile_app" customModuleProvider="target" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Moje kurzy" image="my-courses" id="EvL-49-KRS"/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" translucent="NO" id="9yV-9h-Qlp">
+                    <tabBarItem key="tabBarItem" title="Oblíbené kurzy" image="my-courses" id="EvL-49-KRS"/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" translucent="NO" id="9yV-9h-Qlp">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <color key="barTintColor" red="0.15686274509803921" green="0.2196078431372549" blue="0.56862745098039214" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -602,7 +602,7 @@
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="253" verticalCompressionResistancePriority="751" text="Label" textAlignment="natural" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="none" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="NNc-5j-tEO">
-                                            <rect key="frame" x="18" y="22" width="38" height="20"/>
+                                            <rect key="frame" x="18" y="22" width="34.5" height="16.5"/>
                                             <constraints>
                                                 <constraint firstAttribute="height" constant="15" id="hcQ-Ww-T5e"/>
                                                 <constraint firstAttribute="width" constant="294" id="mhN-BN-EWp"/>
@@ -618,7 +618,7 @@
                                             </variation>
                                         </label>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="FL0-jz-8z1">
-                                            <rect key="frame" x="18" y="47" width="344" height="70"/>
+                                            <rect key="frame" x="18" y="43.5" width="344" height="73.5"/>
                                             <constraints>
                                                 <constraint firstAttribute="height" constant="35" id="6KI-f3-VyO"/>
                                             </constraints>
@@ -703,7 +703,7 @@
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="fLd-mL-LOO" sceneMemberID="viewController">
                     <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" translucent="NO" id="hiM-jY-WY0">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" translucent="NO" id="hiM-jY-WY0">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <color key="barTintColor" red="0.15686274510000001" green="0.21960784310000001" blue="0.56862745100000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -724,7 +724,7 @@
                     <tabBarItem key="tabBarItem" title="Běžící kurzy" image="closed" id="nZq-b5-7J6"/>
                     <toolbarItems/>
                     <navigationItem key="navigationItem" id="KUv-xF-kBd"/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" translucent="NO" id="B66-DL-9D1">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" translucent="NO" id="B66-DL-9D1">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <color key="barTintColor" red="0.15686274510000001" green="0.21960784310000001" blue="0.56862745100000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
