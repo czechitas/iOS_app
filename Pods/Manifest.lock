@@ -1,18 +1,28 @@
 PODS:
-  - Alamofire (4.0.1)
-  - SVProgressHUD (2.0.3)
-  - SwiftyJSON (3.1.1)
+  - Alamofire (4.2.0)
+  - SVProgressHUD (2.1.2)
+  - SwiftyJSON (2.3.2)
 
 DEPENDENCIES:
   - Alamofire (~> 4.0)
   - SVProgressHUD
-  - SwiftyJSON
+  - SwiftyJSON (from `https://github.com/acegreen/SwiftyJSON.git`, branch `swift3`)
+
+EXTERNAL SOURCES:
+  SwiftyJSON:
+    :branch: swift3
+    :git: https://github.com/acegreen/SwiftyJSON.git
+
+CHECKOUT OPTIONS:
+  SwiftyJSON:
+    :commit: 8971384559780e631b041ac91b16734a396d4c14
+    :git: https://github.com/acegreen/SwiftyJSON.git
 
 SPEC CHECKSUMS:
-  Alamofire: 7682d43245de14874acd142ec137b144aa1dd335
-  SVProgressHUD: b0830714205bea1317ea1a2ebc71e5633af334d4
-  SwiftyJSON: f0be2e604f83e8405a624e9f891898bf6ed4e019
+  Alamofire: aa2e09d871c9160ac53c90e83c68064a94e3dfbe
+  SVProgressHUD: c404a55d78acbeb7ebb78b76d3faf986475a6994
+  SwiftyJSON: 04ccea08915aa0109039157c7974cf0298da292a
 
-PODFILE CHECKSUM: 1294cf71af673358dced4fd143750cb3678bc08a
+PODFILE CHECKSUM: 4174e4d4dfd6bc79a0b76efcbf373381a361575a
 
-COCOAPODS: 1.0.0
+COCOAPODS: 1.2.0.beta.1
